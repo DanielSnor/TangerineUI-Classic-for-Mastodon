@@ -4533,6 +4533,11 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .app-body .column-header__title .logo {
     opacity: 0;
     visibility: hidden;
+    /* 4.6 wraps the narrow-layout symbol logo in <Icon class="column-header__icon">,
+       giving it a fixed ~20px box so the title text ends up tight against it. Keep
+       a wider box so the text clears the logo (drawn via ::before) with a ~10px
+       gap, like pre-4.6. */
+    width: 43px;
 }
 .app-body .column-header__title:has(> .logo)::before {
     content: " ";
@@ -4545,6 +4550,12 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     background-image: var(--logo);
     background-repeat: no-repeat;
     background-size: cover;
+}
+/* Wide layout uses the native home icon (HomeIcon, no .logo) with a very tight
+   native gap — widen it to match the narrow layout / pre-4.6 spacing. :not(.logo)
+   keeps it off the narrow symbol logo handled above. */
+.app-body .column-header__icon.icon-home:not(.logo) {
+    margin-inline-end: 10px;
 }
 .app-body .navigation-panel__logo {
     margin-bottom: 5px;
