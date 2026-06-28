@@ -9096,3 +9096,31 @@ a:is(.active,
         background-color: var(--color-bg);
     }
 }
+
+/* Verified links: drop 4.6's green-tinted row + top-right green badge; instead
+   recolour the badge seal (a gradient fill) to the accent and lay it at the start
+   of the value, before the link — like the original Tangerine. */
+.app-body ._comp_account_header__fieldList ._comp_account_header__fieldVerified {
+    background-color: transparent;
+    padding-right: 12px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 8px;
+    align-items: center;
+}
+.app-body ._comp_account_header__fieldVerifiedIcon path[fill] {
+    fill: var(--color-accent);
+}
+.app-body ._comp_account_header__fieldVerified dt {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+.app-body ._comp_account_header__fieldVerifiedIcon {
+    position: static;
+    grid-column: 1;
+    grid-row: 2;
+}
+.app-body ._comp_account_header__fieldVerified dd {
+    grid-column: 2;
+    grid-row: 2;
+}
