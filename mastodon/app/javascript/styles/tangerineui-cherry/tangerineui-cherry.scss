@@ -9093,7 +9093,7 @@ a:is(.active,
 }
 :is(html[data-color-scheme="dark"], html:not([data-color-scheme])) {
     .app-body ._comp_tab_list__tab.active {
-        background-color: var(--color-bg);
+        background-color: var(--color-secondary-bg);
     }
 }
 
