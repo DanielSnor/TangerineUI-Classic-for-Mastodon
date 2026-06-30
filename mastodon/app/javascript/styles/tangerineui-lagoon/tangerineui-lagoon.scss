@@ -7267,6 +7267,27 @@ a:is(.active,
     animation: slowin .3s 1;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .app-body .navigation-bar .icon-button.active,
+    .app-body .character-counter--over,
+    .app-body .compose-form:not(:has(.autosuggest-textarea__textarea:placeholder-shown)) .compose-form__submit,
+    .app-body .poll__footer .button.button-secondary:not(:disabled),
+    .app-body .ui__navigation-bar__item.active,
+    .app-body .search__popout,
+    .app-body .account__header__buttons .icon-button.active .icon-bell,
+    .app-body .modal-root > div,
+    .app-body:has(.search__input[value="Tangerine UI"])::after,
+    .app-body:has(.search__input[value="tangerine ui"])::after {
+        animation: none;
+    }
+    .app-body :is(.status__action-bar, .detailed-status__action-bar, .picture-in-picture__footer) .icon-button.star-icon.active > .icon-star,
+    .app-body :is(.status__action-bar, .detailed-status__action-bar, .picture-in-picture__footer) .icon-button.active > .icon-retweet,
+    .app-body .status__action-bar .icon-button.bookmark-icon.active > .icon-bookmark,
+    .app-body .detailed-status__action-bar .icon-button.bookmark-icon.active > .icon-bookmark {
+        animation: none !important;
+    }
+}
+
 
 
 /* Report modals */
