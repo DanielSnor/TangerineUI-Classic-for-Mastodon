@@ -6662,6 +6662,12 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .app-body .button.logo-button:is(:active, :hover) {
     background-color: var(--color-accent-focus);
 }
+.app-body .button:active {
+    transform: scale(.95);
+}
+@media (prefers-reduced-motion: reduce) {
+    .app-body .button:active { transform: none; }
+}
 
 .app-body .react-toggle {
     transition: transform .3s;
