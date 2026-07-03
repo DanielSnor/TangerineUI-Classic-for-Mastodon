@@ -4,3 +4,5 @@ update.sh
 install.sh
 docs/
 .claude/
+*claude*
+art/Screenshots/_screenshot-assets/
