@@ -9187,6 +9187,19 @@ a:is(.active,
     width: 100% !important;
 }
 
+/* Handle explainer popover ("Handle je jako e-mailová adresa") on the profile
+   header — unstyled by default, so match the dropdown-menu look. */
+.app-body ._comp_account_header__handleHelp {
+    background-color: var(--color-content-bg);
+    color: var(--color-content-fg);
+    border: 1px solid var(--color-lines);
+    border-radius: 8px;
+}
+.app-body .icon-help {
+    width: 14px;
+    height: 14px;
+}
+
 /* Verified links: drop 4.6's green-tinted row + top-right green badge; instead
    recolour the badge seal (a gradient fill) to the accent and lay it at the start
    of the value, before the link — like the original Tangerine. */
