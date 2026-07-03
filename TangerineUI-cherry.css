@@ -7139,6 +7139,8 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 .app-body .actions-modal {
     background-color: var(--color-content-bg);
+    border-radius: 8px;
+    overflow: hidden;
 }
 .app-body .actions-modal :is(a, button) {
     color: var(--color-content-fg);
@@ -9095,4 +9097,16 @@ a:is(.active,
 .app-body .icon-help {
     width: 14px;
     height: 14px;
+}
+
+/* Collection share modal: "Post on Mastodon" / "Share to…" ship as light
+   "button-secondary" too; make them solid accent like other primary actions. */
+.app-body ._collections_components_share_modal__shareButtonWrapper .button.button-secondary {
+    background-color: var(--color-accent);
+    color: var(--color-accent-fg);
+    border-color: var(--color-accent);
+}
+.app-body ._collections_components_share_modal__shareButtonWrapper .button.button-secondary:is(:hover, :active, :focus) {
+    background-color: var(--color-accent-focus);
+    border-color: var(--color-accent-focus);
 }
