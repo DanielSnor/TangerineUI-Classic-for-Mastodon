@@ -9170,6 +9170,23 @@ a:is(.active,
     }
 }
 
+/* This tab_list component is shared beyond the profile header (e.g. the
+   Collections "Created by you / Featuring you" switcher). Root cause
+   confirmed live: ._feat_collections__header has display:flex and a
+   fixed computed width (565px) set by Mastodon's own Collections CSS
+   chunk — which is route-lazy-loaded, so it lands AFTER our theme CSS in
+   the cascade and wins on source order even though our width:100% rule
+   isn't lower specificity. !important forces our override regardless of
+   load order. */
+.app-body ._feat_collections__header {
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.app-body ._feat_collections__header ._comp_tab_list__tabList {
+    width: 100% !important;
+}
+
 /* Verified links: drop 4.6's green-tinted row + top-right green badge; instead
    recolour the badge seal (a gradient fill) to the accent and lay it at the start
    of the value, before the link — like the original Tangerine. */
