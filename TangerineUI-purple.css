@@ -3205,6 +3205,32 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     text-decoration: none;
 }
 
+/* Hashtag filter chips (4.6 "Posts and boosts" filter on the account timeline) */
+.app-body ._comp_tags__tag {
+    font: inherit;
+    font-weight: 500;
+    color: var(--color-content-fg-muted);
+    background-color:
+        color-mix(
+            in srgb,
+            var(--color-content-fg),
+            transparent 92%
+        );
+    border: 0;
+    padding: 3px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .3s;
+}
+.app-body ._comp_tags__tag:hover {
+    color: var(--color-accent);
+    background-color: var(--color-accent-bg);
+}
+.app-body ._comp_tags__tag[aria-pressed="true"] {
+    color: var(--color-accent-fg);
+    background-color: var(--color-accent);
+}
+
 /* ⭐ Action bar */
 .app-body .status__action-bar {
     justify-content: left;
