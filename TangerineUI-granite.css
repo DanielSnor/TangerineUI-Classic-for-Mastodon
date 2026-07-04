@@ -8346,11 +8346,13 @@ a:is(.active,
     font-weight: 600;
 }
 
-.layout-multiple-columns .column:has(> .getting-started) {
-    width: 330px;
+/* The nav column contained .getting-started pre-4.6; 4.6 renders
+   .navigation-panel instead — match both. */
+.layout-multiple-columns .column:has(> .getting-started, .navigation-panel) {
+    width: 300px;
 }
 .layout-multiple-columns
-    .column:has(> .getting-started)
+    .column:has(> .getting-started, .navigation-panel)
     :is(.column-header, .column-back-button),
 .layout-single-column .navigation-bar:has(+ .getting-started) {
     display: none;
@@ -8366,47 +8368,17 @@ a:is(.active,
 }
 
 .layout-multiple-columns .drawer {
-    width: 280px;
-    transition: width .3s;
+    width: 300px;
 }
-.layout-multiple-columns
-    .drawer:has(> .drawer__pager > .drawer__inner > .search-results > .search-results__section) {
-        width: 400px;
-}
-.layout-multiple-columns .drawer__inner:has(> .search-results > .search-results__section) {
-    z-index: 2;
-    background-color: var(--color-content-bg);
-    border-left: 1px solid var(--color-lines);
-    border-right: 1px solid var(--color-lines);
-}
-
-.layout-multiple-columns
-    .drawer
-    > .search:has(+ .drawer__pager > .drawer__inner > .search-results > .search-results__section) {
-        margin-bottom: 0;
-}
-.layout-multiple-columns
-    .drawer
-    > .search:has(+ .drawer__pager > .drawer__inner > .search-results > .search-results__section)
-    > .search__input {
-        border-radius: 8px 8px 0 0;
-}
+/* Note: pre-4.6, search results rendered inside the drawer (which the theme
+   widened to 400px for them); 4.6 routes search results into the spare
+   column instead, so those drawer-expansion rules were removed as dead. */
 
 .layout-multiple-columns .drawer__pager {
     border-radius: 0;
     border: 0;
 }
-.layout-multiple-columns
-    .drawer
-    > .search:has(+ .drawer__pager > .drawer__inner > .search-results > .search-results__section)
-    > .search__popout {
-        border-radius: 0 0 8px 8px;
-        margin-top: 0;
-}
 
-.layout-multiple-columns .drawer__inner:has(.search-results .empty-column-indicator) {
-    z-index: 3;
-}
 .layout-multiple-columns .search-results .empty-column-indicator {
     border: 1px solid var(--color-lines);
     border-radius: 8px;
@@ -8444,6 +8416,34 @@ a:is(.active,
             border-left: 1px solid var(--color-lines);
             border-top-left-radius: 8px !important;
             border-top-right-radius: 8px !important;
+    }
+}
+
+/* Advanced UI: mirror the single-column arrangement — navigation | content
+   columns | search & compose — via flex order, the same technique as the
+   "Rordered layout" block for the single-column panes. Side panels keep
+   their fixed widths; content columns share the remaining width equally.
+   On large screens the whole deck takes 92% of the viewport, centered;
+   below that it uses the full width so columns don't collapse.
+   The nav lives in the spare (last) column, which also hosts anything
+   opened from it (Favourites, Collections, …) — target it structurally
+   via :last-of-type so its position stays stable on the far left even
+   after navigating; only its width switches (300px nav / fluid content). */
+.layout-multiple-columns .columns-area > .column:last-of-type {
+    order: -1;
+}
+.layout-multiple-columns .drawer {
+    order: 99;
+}
+.layout-multiple-columns .column:not(:has(> .getting-started, .navigation-panel)) {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 330px;
+}
+@media screen and (min-width:1600px) {
+    .layout-multiple-columns .columns-area {
+        width: 92%;
+        margin-inline: auto;
     }
 }
 
