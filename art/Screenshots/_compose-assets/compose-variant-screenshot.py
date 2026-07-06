@@ -30,7 +30,7 @@ Input screenshot requirements (see README-recipe.md in this folder):
 """
 import argparse
 from pathlib import Path
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 
 SHADOW_STRENGTH = 0.45  # scales down the base canvas's own alpha (the drop
                          # shadow); the shadow is legitimate/present in the
@@ -112,52 +112,76 @@ def tint_bg_color(accent_hex, mix=0.20):
 
 
 def build(light_path, dark_path, phone_path, out_path, accent_hex):
-    canvas = Image.open(ASSETS / "base-canvas.png").convert("RGBA")
-
-    # Weaken the drop shadow — it's legitimate/present in the original
-    # assets too, but reads harsher on our real-UI light background than it
-    # did against the original's custom warm promo-page color.
-    r, g, b, a = canvas.split()
-    a = a.point(lambda v: round(v * SHADOW_STRENGTH))
-    canvas = Image.merge("RGBA", (r, g, b, a))
-
+    """phone_path may be None — e.g. the advanced-UI feature screenshot
+    uses the same diagonal light/dark composite but has no phone layer."""
+    base_size = Image.open(ASSETS / "base-canvas.png").size
     bg_color = tint_bg_color(accent_hex)
-    colored_bg = Image.new("RGBA", canvas.size, bg_color)
-    colored_bg.alpha_composite(canvas)
-    canvas = colored_bg
 
     dark_combined = build_masked_layer(
         ASSETS / "chrome-dark-template.png", dark_path, CHROME_H_DARK, DARK_SIZE
     )
-    canvas.alpha_composite(dark_combined, dest=DARK_OFFSET)
-
     light_combined = build_masked_layer(
         ASSETS / "chrome-light-template.png", light_path, CHROME_H_LIGHT, LIGHT_SIZE
     )
+
+    if phone_path is not None:
+        # Base canvas carries the baked window+phone drop shadow.
+        canvas = Image.open(ASSETS / "base-canvas.png").convert("RGBA")
+        # Weaken the drop shadow — it's legitimate/present in the original
+        # assets too, but reads harsher on our real-UI light background than
+        # it did against the original's custom warm promo-page color.
+        r, g, b, a = canvas.split()
+        a = a.point(lambda v: round(v * SHADOW_STRENGTH))
+        canvas = Image.merge("RGBA", (r, g, b, a))
+        colored_bg = Image.new("RGBA", base_size, bg_color)
+        colored_bg.alpha_composite(canvas)
+        canvas = colored_bg
+    else:
+        # No phone layer to cover the phone-shaped part of the baked shadow,
+        # so skip the base canvas entirely and synthesize a window-only
+        # shadow from the actual window alpha instead.
+        canvas = Image.new("RGBA", base_size, bg_color)
+        window_mask = Image.new("L", base_size, 0)
+        window_mask.paste(dark_combined.split()[-1], DARK_OFFSET)
+        light_alpha = light_combined.split()[-1]
+        placed_light = Image.new("L", base_size, 0)
+        placed_light.paste(light_alpha, LIGHT_OFFSET)
+        window_mask = Image.composite(
+            Image.new("L", base_size, 255), window_mask,
+            placed_light.point(lambda v: 255 if v > 8 else 0))
+        window_mask = window_mask.point(lambda v: 255 if v > 8 else 0)
+        shadow = Image.new("RGBA", base_size, (0, 0, 0, 0))
+        black = Image.new("RGBA", base_size, (0, 0, 0, round(160 * SHADOW_STRENGTH)))
+        shadow.paste(black, (0, 22), window_mask)
+        shadow = shadow.filter(ImageFilter.GaussianBlur(40))
+        canvas.alpha_composite(shadow)
+
+    canvas.alpha_composite(dark_combined, dest=DARK_OFFSET)
     canvas.alpha_composite(light_combined, dest=LIGHT_OFFSET)
 
-    phone_frame = Image.open(ASSETS / "phone-frame-template2.png").convert("RGBA")
-    phone_shot = Image.open(phone_path).convert("RGBA")
-    x0, y0, x1, y1 = PHONE_INNER_BOX
-    inner_w, inner_h = x1 - x0, y1 - y0
+    if phone_path is not None:
+        phone_frame = Image.open(ASSETS / "phone-frame-template2.png").convert("RGBA")
+        phone_shot = Image.open(phone_path).convert("RGBA")
+        x0, y0, x1, y1 = PHONE_INNER_BOX
+        inner_w, inner_h = x1 - x0, y1 - y0
 
-    if phone_shot.size != (inner_w, inner_h):
-        scale = inner_w / phone_shot.width
-        new_h = round(phone_shot.height * scale)
-        resized = phone_shot.resize((inner_w, new_h), Image.LANCZOS)
-        if new_h > inner_h:
-            top_crop = (new_h - inner_h) // 2
-            resized = resized.crop((0, top_crop, inner_w, top_crop + inner_h))
-        elif new_h < inner_h:
-            pad = Image.new("RGBA", (inner_w, inner_h), (0, 0, 0, 255))
-            pad.paste(resized, (0, (inner_h - new_h) // 2))
-            resized = pad
-    else:
-        resized = phone_shot
+        if phone_shot.size != (inner_w, inner_h):
+            scale = inner_w / phone_shot.width
+            new_h = round(phone_shot.height * scale)
+            resized = phone_shot.resize((inner_w, new_h), Image.LANCZOS)
+            if new_h > inner_h:
+                top_crop = (new_h - inner_h) // 2
+                resized = resized.crop((0, top_crop, inner_w, top_crop + inner_h))
+            elif new_h < inner_h:
+                pad = Image.new("RGBA", (inner_w, inner_h), (0, 0, 0, 255))
+                pad.paste(resized, (0, (inner_h - new_h) // 2))
+                resized = pad
+        else:
+            resized = phone_shot
 
-    phone_composite = phone_frame.copy()
-    phone_composite.alpha_composite(resized, dest=(x0, y0))
-    canvas.alpha_composite(phone_composite, dest=PHONE_OFFSET)
+        phone_composite = phone_frame.copy()
+        phone_composite.alpha_composite(resized, dest=(x0, y0))
+        canvas.alpha_composite(phone_composite, dest=PHONE_OFFSET)
 
     # The base canvas carries a ~50px outer margin (the shape's drop-shadow
     # blur bleed allowance from the PSD). The existing published screenshots
@@ -177,7 +201,8 @@ if __name__ == "__main__":
     p.add_argument("variant", help="variant name, just for messages")
     p.add_argument("--light", required=True)
     p.add_argument("--dark", required=True)
-    p.add_argument("--iphone", required=True)
+    p.add_argument("--iphone", default=None,
+                   help="optional; omit for a phone-less composite (e.g. the advanced-UI feature image)")
     p.add_argument("--out", required=True)
     p.add_argument("--accent", required=True, help="variant's light-mode accent color, hex without #, e.g. 32863a")
     args = p.parse_args()

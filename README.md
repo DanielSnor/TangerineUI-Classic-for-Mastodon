@@ -97,9 +97,9 @@ Classic Twitter blue, for the nostalgic among us.
 ### 2.b Features
 
 🧑‍🔬 **Support for the advanced web interface**  
-All variants of TangerineUI Classic support Mastodon's multi-column layout.
+All variants of TangerineUI Classic support Mastodon's multi-column layout — rearranged to mirror the single-column UI: navigation on the left, content columns in the middle, search & compose on the right, the whole deck centered.
   
-<img width="1840" alt="Mastodon's advanced web interface featuring TangerineUI Classic" src="https://github.com/nileane/TangerineUI-for-Mastodon/assets/914451/bfa74219-bfef-46ec-9742-78165593e2a6">  
+<img width="1784" alt="Mastodon's advanced web interface featuring TangerineUI Classic, split diagonally between light and dark mode" src="./art/Screenshots/TangerineUI-advanced.png">  
 
 
 🚀 **Playful animations**  
