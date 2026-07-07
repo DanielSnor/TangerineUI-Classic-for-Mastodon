@@ -110,7 +110,7 @@ The rocket flies!
 
 <br>🌚 **Dark mode**  
 TangerineUI Classic automatically switches from light to dark mode based on your system or browser preference.[^1]
-[^1]: TangerineUI Classic uses the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) CSS media feature to detect if you have requested a light or dark theme through an operating system setting or a user agent setting.
+[^1]: TangerineUI Classic follows Mastodon's appearance setting (Preferences → Appearance): set to "Automatic", it matches your system's light/dark preference, or you can force light or dark explicitly. (Technically, the theme keys off Mastodon 4.6's `data-color-scheme` attribute rather than the [`prefers-color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query used by pre-4.6 versions.)
   
 💬 **Distinct look for DMs**  
 It can be easy to mistake a DM for a regular post on Mastodon. TangerineUI Classic gives DMs a specific look, so they stand out in your timeline, and you don't make any embarrassing mistakes.
@@ -130,8 +130,9 @@ TangerineUI Classic was designed with care and great attention to detail. Feel f
 
 ### 2.c List of instances that use TangerineUI Classic
 
-This is a list of known Mastodon instances on which TangerineUI Classic has been installed, either as the only theme or as an optional theme.[^2]
-[^2]: If you're an admin and have installed TangerineUI Classic on your instance, **feel free to add yours to this list**. (Make a Pull Request, or just [DM me](https://mastodon.social/@danielsnor))
+This is a list of known Mastodon instances on which TangerineUI Classic has been installed, either as the only theme or as an optional theme.
+
+> If you're an admin and have installed TangerineUI Classic on your instance, **feel free to add yours to this list** — open a Pull Request, or just [DM me](https://mastodon.social/@danielsnor).
 
 | **Instance**                                               | **User count** | **Installed as...** | **Default theme?**      |
 | ---------------------------------------------------------- | -------------- | ------------------- | ----------------------- |
@@ -142,17 +143,15 @@ Which theme to use depends on your Mastodon version:
 
 | Mastodon version       | What to use                                                                                                                                 |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| **4.6 and later**      | ✅ [**Tangerine Neue**](https://github.com/mattbirchler/Tangerine-Neue-for-Mastodon/releases/latest) — the actively evolving upstream fork<br>✅ [**TangerineUI Classic**](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/releases/latest) — this fork, staying close to the original v2.5.x look and feel[^3][^4][^variants] |
-| **4.5._x_**            | [**Tangerine UI for Mastodon**](https://github.com/nileane/TangerineUI-for-Mastodon) — the original theme; use it until you can upgrade to 4.6+[^variants] |
+| **4.6 and later**      | ✅ [**Tangerine Neue**](https://github.com/mattbirchler/Tangerine-Neue-for-Mastodon/releases/latest) — the actively evolving upstream fork<br>✅ [**TangerineUI Classic**](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/releases/latest) — this fork, staying close to the original v2.5.x look and feel[^2][^3] |
+| **4.5._x_**            | [**Tangerine UI for Mastodon**](https://github.com/nileane/TangerineUI-for-Mastodon) — the original theme; use it until you can upgrade to 4.6+[^3] |
 | **4.3._x_ – 4.4._x_**  | 🚫 Not supported by any version of the theme                                                                                                |
-| **4.1._x_ – 4.2._x_**  | [**Tangerine UI Legacy** (v1.9)](https://github.com/nileane/TangerineUI-for-Mastodon/tree/legacy) only[^5][^6]                               |
+| **4.1._x_ – 4.2._x_**  | [**Tangerine UI Legacy** (v1.9)](https://github.com/nileane/TangerineUI-for-Mastodon/tree/legacy) only[^4]                               |
 | **4.0._x_ and older**  | 🚫 Not supported by any version of the theme                                                                                                |
 
-[^3]: TangerineUI Classic (v2._x_) is also compatible with instances running a version of **Glitch-soc** based on the current stable release of Mastodon, as long as it is [installed as a vanilla theme](#4-installation-for-mastodon-admins) on these instances.
-[^4]: Instances running on nightly/alpha/beta builds of Mastodon are not officially supported. If you do use TangerineUI Classic with an unstable version of Mastodon, feel free to [report](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/issues) UI issues as they appear. As a general rule, since the maintainer is on mastodon.social, it will tend to get updated to run whatever that instance is currently running.
-[^5]: The advanced web interface (multi-column layout) is not supported by Tangerine UI Legacy (v1.9) and will fall back to Mastodon's default appearance if enabled.
-[^6]: Only the Tangerine and Purple variants are available with Tangerine UI Legacy (v1.9).
-[^variants]: The original Tangerine UI (v2.5._x_) offers four color variants: Tangerine, Purple, Cherry, and Lagoon. Tangerine Neue adds Granite. The Garden, Ocean, and Bluebird variants are exclusive to TangerineUI Classic.
+[^2]: TangerineUI Classic (v2.6.4c and later) is also compatible with **Glitch-soc** instances running a version based on the current stable Mastodon release, as long as it is [installed as a vanilla theme](#4-installation-for-mastodon-admins). Nightly/alpha/beta builds of Mastodon are not officially supported — if you use one, feel free to [report](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/issues) UI issues as they appear; since the maintainer is on mastodon.social, the theme tends to track whatever that instance currently runs.
+[^3]: The original Tangerine UI (v2.5._x_) offers four color variants: Tangerine, Purple, Cherry, and Lagoon. Tangerine Neue adds Granite. The Garden, Ocean, and Bluebird variants are exclusive to TangerineUI Classic.
+[^4]: Tangerine UI Legacy (v1.9) only offers the Tangerine and Purple variants, and does not support the advanced web interface — the multi-column layout falls back to Mastodon's default appearance.
 
 
 ## 4. Installation for Mastodon admins
@@ -238,8 +237,7 @@ git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
 cp -r ./mastodon/app/javascript/styles/* $LIVE/app/javascript/styles
 ```
 
-3. **Add localized names.** Copy the provided file located under `mastodon/config/locales/tangerineui.yml` in the TangerineUI Classic repository to your Mastodon locales directory. This will add localized names in a selection of languages for each variant of TangerineUI Classic.[^7]
-[^7]: Mastodon will fallback to the English names for non-included locales.
+3. **Add localized names.** Copy the provided file located under `mastodon/config/locales/tangerineui.yml` in the TangerineUI Classic repository to your Mastodon locales directory. This will add localized names in a selection of languages for each variant of TangerineUI Classic. *(Mastodon falls back to the English names for locales not included in the file.)*
 
 ```sh
 # Replace $LIVE with the path to your Mastodon installation.
