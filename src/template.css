@@ -5004,41 +5004,6 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     border-bottom: 0;
 }
 
-/* Profile stat cards (Followers / Following / Posts / Joined) */
-.app-body ul[class*="account_header__numberFields"] {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 4px;
-}
-@container (width < 420px) {
-    .app-body ul[class*="account_header__numberFields"] {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-.app-body ul[class*="account_header__numberFields"] > li {
-    position: relative;
-    border: 1px solid var(--color-border-primary);
-    border-radius: 8px;
-    padding: 8px;
-    transition: background-color .2s, border-color .2s;
-}
-.app-body ul[class*="account_header__numberFields"] > li :is(a, button) {
-    cursor: pointer;
-}
-.app-body ul[class*="account_header__numberFields"] > li :is(a, button):is(:hover, :focus, :focus-visible) {
-    text-decoration: none;
-    outline: none;
-}
-.app-body ul[class*="account_header__numberFields"] > li :is(a, button)::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-}
-.app-body ul[class*="account_header__numberFields"] > li:has(:is(a, button):is(:hover, :focus-visible)) {
-    background-color: var(--color-bg-brand-softest);
-    border-color: var(--color-accent);
-}
-
 .app-body .account__header__buttons .icon-button.copied,
 .app-body .account__header__buttons .icon-button.copied:is(:active, :focus, :hover) {
     background-color: rgba(121, 189, 154, 0.3);
