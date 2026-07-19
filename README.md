@@ -6,7 +6,7 @@
  </picture>
 </h1>
 
-TangerineUI Classic is a custom theme for Mastodon's Web UI, available in eight variants: 🍊 Tangerine, 🪻 Purple, 🍒 Cherry, 🐠 Lagoon, 🪨 Granite, 🌿 Garden, 🌊 Ocean, and 🐦 Bluebird. It is a fork of [**Tangerine Neue**](https://github.com/mattbirchler/Tangerine-Neue-for-Mastodon) by [@matt_birchler](https://mastodon.social/@matt_birchler), which itself continued [**Tangerine UI for Mastodon**](https://github.com/nileane/TangerineUI-for-Mastodon) by [@nileane](https://nileane.fr/@nileane) after the original project [stopped being maintained](https://nileane.fr/@TangerineUI/116776620945959421).
+TangerineUI Classic is a custom theme for Mastodon's Web UI, available in nine variants: 🍊 Tangerine, 🪻 Purple, 🍒 Cherry, 🐠 Lagoon, 🪨 Granite, 🌿 Garden, 🌊 Ocean, 🐦 Bluebird, and 🌻 Sunflower. It is a fork of [**Tangerine Neue**](https://github.com/mattbirchler/Tangerine-Neue-for-Mastodon) by [@matt_birchler](https://mastodon.social/@matt_birchler), which itself continued [**Tangerine UI for Mastodon**](https://github.com/nileane/TangerineUI-for-Mastodon) by [@nileane](https://nileane.fr/@nileane) after the original project [stopped being maintained](https://nileane.fr/@TangerineUI/116776620945959421).
 
 This fork deliberately stays close to the original v2.5.x look and feel — flat surfaces, no motion "personality" — while keeping up with Mastodon 4.6+ compatibility.
 
@@ -94,6 +94,13 @@ Classic Twitter blue, for the nostalgic among us.
 &nbsp;
 
 
+**🌻 Sunflower**  
+Sunflower fields at golden hour: warm gold petals, deep brown centers, and just enough green to remind you summer doesn't last forever.
+
+<img width="1784" alt="TangerineUI-sunflower" src="./art/Screenshots/TangerineUI-sunflower.png">  
+&nbsp;
+
+
 ### 2.b Features
 
 🧑‍🔬 **Support for the advanced web interface**  
@@ -150,7 +157,7 @@ Which theme to use depends on your Mastodon version:
 | **4.0._x_ and older**  | 🚫 Not supported by any version of the theme                                                                                                |
 
 [^2]: TangerineUI Classic (v2.6.4c and later) is also compatible with **Glitch-soc** instances running a version based on the current stable Mastodon release, as long as it is [installed as a vanilla theme](#4-installation-for-mastodon-admins). Nightly/alpha/beta builds of Mastodon are not officially supported — if you use one, feel free to [report](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/issues) UI issues as they appear; since the maintainer is on mastodon.social, the theme tends to track whatever that instance currently runs.
-[^3]: The original Tangerine UI (v2.5._x_) offers four color variants: Tangerine, Purple, Cherry, and Lagoon. Tangerine Neue adds Granite. The Garden, Ocean, and Bluebird variants are exclusive to TangerineUI Classic.
+[^3]: The original Tangerine UI (v2.5._x_) offers four color variants: Tangerine, Purple, Cherry, and Lagoon. Tangerine Neue adds Granite. The Garden, Ocean, Bluebird, and Sunflower variants are exclusive to TangerineUI Classic.
 [^4]: Tangerine UI Legacy (v1.9) only offers the Tangerine and Purple variants, and does not support the advanced web interface — the multi-column layout falls back to Mastodon's default appearance.
 
 
@@ -209,7 +216,7 @@ Alternatively:
 
 4. **Restart** your Mastodon instance for the changes to take effect.
 
-Your users should now be able to choose '*Tangerine UI*', '*Tangerine UI (Purple)*', '*Tangerine UI (Cherry)*', '*Tangerine UI (Lagoon)*', '*Tangerine UI (Granite)*', '*Tangerine UI (Garden)*', '*Tangerine UI (Ocean)*', or '*Tangerine UI (Bluebird)*' as their site theme:
+Your users should now be able to choose '*Tangerine UI*', '*Tangerine UI (Purple)*', '*Tangerine UI (Cherry)*', '*Tangerine UI (Lagoon)*', '*Tangerine UI (Granite)*', '*Tangerine UI (Garden)*', '*Tangerine UI (Ocean)*', '*Tangerine UI (Bluebird)*', or '*Tangerine UI (Sunflower)*' as their site theme:
 
 ![Screenshot : select TangerineUI Classic as a theme in appearance settings on Mastodon.](https://github.com/nileane/TangerineUI-for-Mastodon/assets/914451/8cce803c-099b-4f25-8e39-e1c0da3aa6dc)
 
@@ -244,7 +251,7 @@ cp -r ./mastodon/app/javascript/styles/* $LIVE/app/javascript/styles
 cp -r ./mastodon/config/locales/tangerineui.yml $LIVE/config/locales
 ```
 
-4. **Add TangerineUI Classic to `themes.yml`**. So that TangerineUI Classic can be selected as an available option in your users' settings, you need to edit the `themes.yml` file located in your Mastodon installation under `config/themes.yml`. In this file, add 8 new lines, one for each variant of TangerineUI Classic, as follows:
+4. **Add TangerineUI Classic to `themes.yml`**. So that TangerineUI Classic can be selected as an available option in your users' settings, you need to edit the `themes.yml` file located in your Mastodon installation under `config/themes.yml`. In this file, add 9 new lines, one for each variant of TangerineUI Classic, as follows:
 
 ```yml
 default: styles/application.scss
@@ -258,6 +265,7 @@ tangerineui-granite: styles/tangerineui-granite.scss
 tangerineui-garden: styles/tangerineui-garden.scss
 tangerineui-ocean: styles/tangerineui-ocean.scss
 tangerineui-bluebird: styles/tangerineui-bluebird.scss
+tangerineui-sunflower: styles/tangerineui-sunflower.scss
 ```
 
 5. **Compile** assets:
@@ -269,7 +277,7 @@ RAILS_ENV=production bundle exec rails assets:precompile
 
 6. **Restart** your Mastodon instance for the changes to take effect.
 
-Your users should now be able to choose '*Tangerine UI*', '*Tangerine UI (Purple)*', '*Tangerine UI (Cherry)*', '*Tangerine UI (Lagoon)*', '*Tangerine UI (Granite)*', '*Tangerine UI (Garden)*', '*Tangerine UI (Ocean)*', or '*Tangerine UI (Bluebird)*' as their site theme:
+Your users should now be able to choose '*Tangerine UI*', '*Tangerine UI (Purple)*', '*Tangerine UI (Cherry)*', '*Tangerine UI (Lagoon)*', '*Tangerine UI (Granite)*', '*Tangerine UI (Garden)*', '*Tangerine UI (Ocean)*', '*Tangerine UI (Bluebird)*', or '*Tangerine UI (Sunflower)*' as their site theme:
 
 ![Screenshot : select TangerineUI Classic as a theme in appearance settings on Mastodon.](https://github.com/nileane/TangerineUI-for-Mastodon/assets/914451/8cce803c-099b-4f25-8e39-e1c0da3aa6dc)
 
@@ -330,6 +338,7 @@ Your users should now be able to select TangerineUI Classic as a theme in their 
    * 🌿 For the Garden variant, copy the contents of [`TangerineUI-garden.css`](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/blob/main/TangerineUI-garden.css) instead.
    * 🌊 For the Ocean variant, copy the contents of [`TangerineUI-ocean.css`](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/blob/main/TangerineUI-ocean.css) instead.
    * 🐦 For the Bluebird variant, copy the contents of [`TangerineUI-bluebird.css`](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/blob/main/TangerineUI-bluebird.css) instead.
+   * 🌻 For the Sunflower variant, copy the contents of [`TangerineUI-sunflower.css`](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/blob/main/TangerineUI-sunflower.css) instead.
 
 > [!WARNING]
 > **Using the '*Custom CSS*' field to apply TangerineUI Classic will prevent all users on your instance from being able to choose another theme in their Appearance settings** ([see *Accessibility*](#6-accessibility)).  
@@ -349,6 +358,7 @@ Even if you are not an admin on your instance, you can still use TangerineUI Cla
    * 🌿 For the Garden variant, copy the contents of [`TangerineUI-garden.css`](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/blob/main/TangerineUI-garden.css) instead.
    * 🌊 For the Ocean variant, copy the contents of [`TangerineUI-ocean.css`](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/blob/main/TangerineUI-ocean.css) instead.
    * 🐦 For the Bluebird variant, copy the contents of [`TangerineUI-bluebird.css`](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/blob/main/TangerineUI-bluebird.css) instead.
+   * 🌻 For the Sunflower variant, copy the contents of [`TangerineUI-sunflower.css`](https://github.com/DanielSnor/TangerineUI-Classic-for-Mastodon/blob/main/TangerineUI-sunflower.css) instead.
 
 > [!IMPORTANT]
 > If you are a user on a Glitch-soc instance, you must switch to the Vanilla Mastodon flavour for TangerineUI Classic to work properly: in your instance settings, navigate to *Flavours* → *Vanilla Mastodon* → select the '*Default*' skin.
