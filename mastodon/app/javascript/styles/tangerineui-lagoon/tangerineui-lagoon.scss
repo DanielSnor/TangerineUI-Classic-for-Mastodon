@@ -40,6 +40,7 @@
     --color-content-bg-focus: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 96%);
 
     --color-accent: #008CB4;
+    --color-accent-text: #008CB4;
     --color-accent-focus: #009AC6;
     --color-accent-lines: rgba(99, 207, 255, 0.52);
     --color-accent-bg: #DDF1F6;
@@ -79,6 +80,7 @@
         --color-content-bg-focus: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 90%);
 
         --color-accent: #08A6B7;
+        --color-accent-text: #08A6B7;
         --color-accent-focus: #09C1D4;
         --color-accent-lines: rgba(27, 181, 245, 0.3);
         --color-accent-bg: #1F313C;
@@ -754,7 +756,7 @@ body.app-body  {
 }
 .app-body .circular-progress,
 .app-body .load-more .loading-indicator .circular-progress {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 .app-body .redirect__logo {
@@ -767,7 +769,7 @@ body.app-body  {
     opacity: 0;
 }
 .app-body .redirect__message a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 .app-body .getting-started,
@@ -1256,8 +1258,10 @@ body.app-body  {
 .app-body .reblog-menu-item.dropdown-menu__item--highlighted .icon {
     background-image: var(--icon-boost-accent-active);
 }
-.app-body .status__prepend__icon .icon-retweet,
 .app-body .notification-group--reblog .icon-repeat {
+    background-image: var(--icon-boost-accent-active);
+}
+.app-body .status__prepend__icon .icon-retweet {
     background-image: var(--icon-boost-accent-active);
 }
 .app-body .notification__message .icon-retweet {
@@ -1841,7 +1845,10 @@ body.app-body  {
 .app-body a.mention:not(.hashtag) > span {
     font-weight: 500;
 }
-.app-body a:is(.mention, .hashtag) > span {
+.app-body a.mention > span {
+    color: var(--color-content-fg);
+}
+.app-body a.hashtag > span {
     color: var(--color-content-fg);
 }
 
@@ -1971,7 +1978,7 @@ body.app-body  {
 .app-body .dropdown-button {
     border-radius: 8px;
     border-color: var(--color-accent-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     padding: 5px 8px;
     transition: border-color .2s;
 }
@@ -2042,7 +2049,7 @@ body.app-body  {
     color: var(--color-content-fg);
 }
 .app-body .edit-indicator__content a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .edit-indicator__attachments {
     color: var(--color-content-fg);
@@ -2051,7 +2058,7 @@ body.app-body  {
 
 .app-body .navigation-bar .icon-button:not(:has(.icon-bars),.active) {
     border: 1px solid var(--color-accent-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     border-radius: 8px;
     transition: all .2s;
 }
@@ -2093,7 +2100,7 @@ body.app-body  {
 .app-body .compose-form .compose-form__warning a,
 .app-body .reply-indicator__content a,
 .app-body .navigation-bar__profile-edit {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .simple_form .recommended {
     border-color: var(--color-lines);
@@ -2128,7 +2135,7 @@ body.app-body  {
     background-repeat: no-repeat;
     background-size: 20px;
     background-color: var(--color-accent-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     border: 1px solid var(--color-accent-lines);
     margin-bottom: 0;
     border-radius: 8px;
@@ -2277,7 +2284,7 @@ body.app-body  {
     background-color: var(--color-accent-bg);
 }
 .app-body .upload-progress .icon {
-    color: var(--color-accent)
+    color: var(--color-accent-text)
 }
 .app-body .upload-progress__message,
 .app-body .upload-progress__message span {
@@ -2329,7 +2336,7 @@ body.app-body  {
     background-size: 15px;
     background-repeat: no-repeat;
     background-color: var(--color-content-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     padding: 4px 8px 4px 27px;
     border-radius: 8px;
     border: 1px solid var(--color-accent-bg);
@@ -2426,7 +2433,7 @@ body.app-body  {
     padding: 0;
 }
 .app-body .poll__link {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     text-decoration: none;
     box-sizing: border-box;
     padding: 0 8px;
@@ -2471,12 +2478,12 @@ body.app-body  {
 }
 .app-body .poll__option.selectable:hover {
     border-color: var(--color-accent);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .poll__option.selectable:has(.poll__input.active) {
     border-color: var(--color-accent);
     background-color: var(--color-accent-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .poll__option.selectable .poll__input:not(.active) {
     border-width: 0;
@@ -2509,7 +2516,7 @@ body.app-body  {
 .app-body .poll__footer .button.button-secondary:disabled {
     opacity: 1;
     background-color: var(--color-content-secondary-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     display: none;
 }
 .app-body .poll__footer .button.button-secondary:not(:disabled) {
@@ -2522,7 +2529,7 @@ body.app-body  {
     position: absolute;
     right: 3px;
     height: 20px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .poll__option:has(+ .poll__chart.leading) .poll__voted {
     right: 28px;
@@ -2597,7 +2604,7 @@ body.app-body  {
     background-color: var(--color-accent);
 }
 .app-body .emoji-mart-anchor-selected {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .emoji-mart-anchor-icon svg path,
 .app-body .emoji-mart-anchor-icon svg rect {
@@ -2633,7 +2640,7 @@ body.app-body  {
     outline: 0;
 }
 .app-body .emoji-mart-search input::placeholder {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 
@@ -2657,8 +2664,10 @@ body.app-body  {
 }
 .app-body .account__display-name strong,
 .app-body .status__display-name strong,
-.app-body .status__info .status__display-name .display-name__account,
 .app-body .status__prepend a bdi {
+    color: var(--color-content-fg);
+}
+.app-body .status__info .status__display-name .display-name__account {
     color: var(--color-content-fg);
 }
 .app-body .translate-button {
@@ -3196,7 +3205,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     font-weight: 500;
 }
 .app-body .status__action-bar .animated-number {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     font-weight: 500;
 }
 .app-body .status__action-bar__button:has(.icon-button__counter > .animated-number) {
@@ -3208,7 +3217,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     :is(.status__action-bar, .detailed-status__action-bar, .picture-in-picture__footer)
     .active
     .icon-retweet + .icon-button__counter > .animated-number {
-        color: var(--color-accent);
+        color: var(--color-accent-text);
 }
 .app-body
     :is(.status__action-bar, .detailed-status__action-bar, .picture-in-picture__footer)
@@ -3243,19 +3252,14 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     margin-left: 3px;
 }
 .app-body .hashtag-bar a {
-    background-color:
-        color-mix(
-            in srgb,
-            var(--color-content-fg),
-            transparent 92%
-        );
+    background-color: color-mix(in srgb, var(--color-content-fg), transparent 92%);
     transition: all .3s;
     padding: 3px 8px;
     border-radius: 8px;
 }
 .app-body .hashtag-bar a:hover,
 .app-body .hashtag-bar .link-button:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .hashtag-bar a:hover {
     background-color: var(--color-accent-bg);
@@ -3274,12 +3278,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     font: inherit;
     font-weight: 500;
     color: var(--color-content-fg-muted);
-    background-color:
-        color-mix(
-            in srgb,
-            var(--color-content-fg),
-            transparent 92%
-        );
+    background-color: color-mix(in srgb, var(--color-content-fg), transparent 92%);
     border: 0;
     padding: 3px 8px;
     border-radius: 8px;
@@ -3287,7 +3286,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     transition: all .3s;
 }
 .app-body ._comp_tags__tag:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     background-color: var(--color-accent-bg);
 }
 .app-body ._comp_tags__tag[aria-pressed="true"] {
@@ -3473,7 +3472,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .app-body .status-card:active .status-card__host,
 .app-body .status-card:focus .status-card__host,
 .app-body .status-card:hover .status-card__host {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .status-card:active .status-card__author,
 .app-body .status-card:active .status-card__description,
@@ -3563,7 +3562,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     height: 16px !important;
 }
 .app-body .more-from-author a:is(:active, :hover, :focus) {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .more-from-author a {
     color: var(--color-content-fg);
@@ -3671,7 +3670,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     background-color: rgba(0, 0, 0, .4);
 }
 .app-body .status__wrapper--filtered__button {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .status__wrapper--filtered {
     color: var(--color-content-fg);
@@ -3713,7 +3712,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     transform: scale(.98);
 }
 .app-body .status__quote-icon {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .status__quote .status__quote-icon {
     display: none;
@@ -3892,7 +3891,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     contain: content;
 }
 .app-body .empty-column-indicator a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .explore__links > .empty-column-indicator {
     border: 0;
@@ -3912,7 +3911,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     line-height: 1.5;
 }
 .app-body .timeline-hint a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .timeline-hint p {
     opacity: .7;
@@ -3957,7 +3956,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     border-radius: 0;
 }
 .app-body .follow_requests-unlocked_explanation a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .conversation__unread {
     background-color: var(--color-accent);
@@ -4157,11 +4156,11 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     width: 42px;
 }
 .app-body .column-header.active .column-header__icon {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     text-shadow: none;
 }
 .app-body .column-header__button:is(.active, .active:hover, :hover) {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     background-color: var(--color-accent-bg);
 }
 .app-body .column-header__button.active .icon {
@@ -4239,7 +4238,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 
 .app-body :is(.load-gap, .load-more) {
     background-color: var(--color-content-secondary-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     border-bottom: 0;
     display: flex;
     justify-content: center;
@@ -4270,7 +4269,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 .app-body .column-header__select-row__actions button {
     background-color: var(--color-accent-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     border-color: var(--color-accent-bg);
 }
 .app-body .column-header__select-row__actions button:hover {
@@ -4383,7 +4382,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     :is(.account__section-headline, .notification__filter-bar)
     :is(a, button) {
         background-color: var(--color-accent-bg);
-        color: var(--color-accent);
+        color: var(--color-accent-text);
         box-shadow: 0 0 0 4px var(--color-accent-bg) inset;
         border-radius: 9px;
         transition: all .2s;
@@ -4399,7 +4398,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     :is(.account__section-headline, .notification__filter-bar)
     :is(a, button):hover {
         background-color: var(--color-accent-lines);
-        color: var(--color-accent);
+        color: var(--color-accent-text);
         box-shadow: 0 0 0 4px var(--color-accent-bg) inset;
 }
 .app-body
@@ -4847,7 +4846,9 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     height: 100px !important;
     background-color: var(--color-content-bg);
 }
-.app-body .account__header__tabs__name h1,
+.app-body .account__header__tabs__name h1 {
+    color: var(--color-content-fg);
+}
 .app-body .account__header__tabs__name h1 small {
     color: var(--color-content-fg);
 }
@@ -4864,7 +4865,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     vertical-align: bottom;
 }
 .app-body .account__header__content a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     text-decoration: none;
 }
 .app-body .account__header__content a:hover {
@@ -4925,7 +4926,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 
 .app-body .account-role svg {
     opacity: 1;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .account__header__extra__links a,
 .app-body .account__header__bio .account__header__content,
@@ -4980,7 +4981,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 .app-body .account__header__bio .account__header__fields .verified :is(a, dd),
 .app-body .hover-card .account-fields dl.verified dd a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     gap: 5px;
 }
 .app-body .account__header__bio .account__header__fields :is(.verified dt, dt) {
@@ -5028,7 +5029,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .app-body .account__domain-pill,
 .app-body .account__domain-pill__popout__handle {
     background-color: color-mix(in srgb, var(--color-accent), transparent 88%);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     border-color: var(--color-accent);
     border-radius: 8px;
     font-weight: 500;
@@ -5165,11 +5166,11 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     outline-offset: -1px;
     padding: 5px 12px;
     border-radius: 50px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .featured-carousel__header .icon-button:has(.icon-chevron-left, .icon-chevron-right):hover {
     background-color: var(--color-accent-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .featured-carousel__header .icon-button:has(.icon-chevron-left) {
     border-radius: 50px 0 0 50px;
@@ -5301,7 +5302,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     transition: all .3s;
 }
 .app-body .getting-started__trends h4 a:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .getting-started__trends h4 a:active {
     transform: scale(.95);
@@ -5483,7 +5484,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     font-weight: bold;
 }
 .app-body .account-card__bio a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .filter-form {
     background-color: var(--color-content-secondary-bg);
@@ -5562,7 +5563,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     transition: all .3s;
 }
 .app-body .story:has(:is(.story__thumbnail, .story__details__title):hover) :is(.story__details__publisher, .story__details__title) {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     opacity: 1;
 }
 .app-body .story__details__shared {
@@ -5575,7 +5576,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
             var(--color-accent),
             transparent 92%
         );
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     border-radius: 8px;
     transition: all .3s;
 }
@@ -5600,7 +5601,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     color: var(--color-content-fg);
 }
 .app-body .story__details__shared__author-link:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 
@@ -5638,7 +5639,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .app-body .search__input::placeholder,
 .app-body .compose-form .spoiler-input__input::placeholder {
     font-weight: 500;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .search__input:focus {
     border-color: var(--color-accent);
@@ -5706,13 +5707,13 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     color: var(--color-content-fg);
 }
 .app-body .search-results__section__header button {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .account .account__details > span {
     color: var(--color-content-fg);
 }
 .app-body .account .account__details .verified-badge {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .account .account__details .verified-badge span {
     font-weight: 500;
@@ -5752,7 +5753,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .app-body .search__popout__menu__item .icon-button:is(:active, :focus, :hover),
 .app-body .search__popout__menu__item .icon-button:is(:active, :focus, :hover) .icon {
     background-color: var(--color-content-secondary-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .search__popout__menu__item:is(.selected, :active, :focus, :hover),
 .app-body .search__popout__menu__item:is(.selected, :active, :focus, :hover) mark {
@@ -5853,7 +5854,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     font-weight: normal;
 }
 .app-body .dismissable-banner .dismissable-banner__action .icon-button:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .dismissable-banner__message__actions__wrapper {
     flex-flow: row-reverse;
@@ -5870,7 +5871,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     border-bottom: 1px solid var(--color-lines);
 }
 .app-body .dismissable-banner:has(.dismissable-banner__message > img:first-child) .dismissable-banner__action .icon-button {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .dismissable-banner:has(.dismissable-banner__message > img:first-child) .dismissable-banner__message {
     color: var(--color-content-fg);
@@ -5935,7 +5936,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     color: var(--color-content-fg);
 }
 .app-body .notification__message .icon {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     width: 18px;
     margin-left: 38px;
     text-align: right;
@@ -6044,12 +6045,12 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     backdrop-filter: blur(10px);
 }
 .app-body .notification-bar__action {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     transition: all .2s;
 }
 .app-body .notification-bar__action:is(:active, :focus, :hover) {
     background-color: var(--color-accent-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 .app-body .column-settings h3,
@@ -6076,7 +6077,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 
 .app-body .filtered-notifications-banner {
     background-color: var(--color-content-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     border: 0;
     position: relative;
     padding: 25px;
@@ -6203,7 +6204,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     z-index: 1;
     position: relative;
     font-weight: 500;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     background-color: var(--color-post-bg);
     transition: background .3s;
 }
@@ -6280,7 +6281,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
    weight+color; the :is(bdi, bdi > strong) rule above still recolors just
    the name back to dark+bold on top of this. */
 .app-body .notification-group__main__header__label {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     font-weight: 500;
 }
 /* Only push content apart when there's a trailing <time> to right-align
@@ -6364,7 +6365,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     transition: all .3s;
 }
 .app-body .lists__item__title:hover {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     background-color: var(--color-content-secondary-bg);
 }
 .app-body .simple_form .input.with_label .label_input>label {
@@ -6407,7 +6408,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     border-color: var(--color-lines);
 }
 .app-body .list-editor .column-inline-form .icon-button {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .list-editor .column-inline-form .icon-button.disabled {
     opacity: .5;
@@ -6439,7 +6440,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 .app-body .item-list .column-link:hover {
     background-color: var(--color-content-secondary-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .item-list article:last-child .column-link {
     border-bottom: 0;
@@ -6474,7 +6475,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 .app-body .list-editor .account__relationship .icon-button {
     border-color: var(--color-accent);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .list-editor .search .search__input {
     border-top: 1px solid;
@@ -6596,7 +6597,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     opacity: .6;
 }
 .app-body .inline-follow-suggestions__body__scrollable__card .verified-badge {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .inline-follow-suggestions__body__scrollable__card button:active {
     transform: scale(.95);
@@ -6693,7 +6694,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .app-body .text-btn,
 .app-body .detailed-status__action-bar-dropdown .icon-button,
 .app-body .notification-bar-action {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .icon-button,
 .app-body .icon-button.inverted {
@@ -6707,7 +6708,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 .app-body .account__header__buttons .icon-button:hover {
     background-color: var(--color-accent-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .account__header__buttons .icon-button:has(.icon-ellipsis-v, .icon-close).active {
     background-color: var(--color-accent);
@@ -6719,7 +6720,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 .app-body .icon-button:is(:active, :focus, :hover) {
     background-color: var(--color-accent-bg);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .icon-button:has(.icon-ellipsis-v) {
     background-color: var(--color-content-secondary-bg);
@@ -6776,7 +6777,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .language-dropdown__dropdown__results__item:is(:active, :focus, :hover)
 :is(.language-dropdown__dropdown__results__item__native-name,
     .language-dropdown__dropdown__results__item__common-name) {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .button:not(.button-secondary):is(:active, :hover),
 .app-body .button.button-tertiary:is(:active, :hover),
@@ -7037,7 +7038,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
         .mute-modal__cancel-button
     ):not(:hover) {
         background-color: color-mix(in srgb, var(--color-accent), transparent 90%);
-        color: var(--color-accent);
+        color: var(--color-accent-text);
 }
 .app-body
     :is(
@@ -7047,7 +7048,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
         .mute-modal__cancel-button
     ):is(:active, :hover) {
         background-color: color-mix(in srgb, var(--color-accent), transparent 70%) !important;
-        color: var(--color-accent);
+        color: var(--color-accent-text);
 }
 .app-body
     :is(
@@ -7066,7 +7067,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
         transform: scale(.95);
 }
 .app-body .status__content a.hashtag {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 
@@ -7386,7 +7387,7 @@ a:is(.active,
     height: 25px;
 }
 .app-body .picture-in-picture__footer .animated-number {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .media-modal__page-dot {
     background-color: #858585;
@@ -7546,7 +7547,7 @@ a:is(.active,
     border-radius: 8px;
     background-color: var(--color-content-secondary-bg);
     border-color: var(--color-lines);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 /* ⏯️ Video controls */
@@ -7647,7 +7648,7 @@ a:is(.active,
 .app-body .button.button-tertiary {
     border: 0;
     background-color: color-mix(in srgb, var(--color-accent), transparent 82%);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .hover-card .button {
     line-height: 1.375;
@@ -7746,7 +7747,7 @@ a:is(.active,
 }
 .app-body .onboarding__steps__item__icon,
 .app-body .onboarding__link {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .onboarding__steps__item__description h6,
 .app-body .onboarding__steps__item__description p,
@@ -7800,7 +7801,7 @@ a:is(.active,
 }
 .app-form__avatar-input.selected .icon,
 .app-form__header-input.selected .icon {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .simple_form
     :is(
@@ -7888,7 +7889,7 @@ a:is(.active,
     color: var(--color-content-fg-bold);
 }
 .app-body .announcements__item__unread {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     background-color: var(--color-accent);
 }
 .app-body .announcements__pagination,
@@ -7915,7 +7916,7 @@ a:is(.active,
 }
 .app-body .reactions-bar__item__count,
 .app-body .reactions-bar__item__count .animated-number {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .reactions-bar__item:is(:active, :hover, :focus) .reactions-bar__item__count .animated-number {
     color: var(--color-content-fg);
@@ -7926,7 +7927,7 @@ a:is(.active,
 .app-body .reactions-bar .emoji-button,
 .app-body .announcements__item__content a.unhandled-link,
 .app-body .announcements__item__content a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .announcements .emoji-button {
     margin: 0;
@@ -8082,7 +8083,7 @@ a:is(.active,
 }
 .app-body .about__meta,
 .app-body .about__section__title {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     background-color: var(--color-content-secondary-bg);
     border: 0;
     border-radius: 8px;
@@ -8127,13 +8128,13 @@ a:is(.active,
 .app-body .hover-card__bio a,
 .app-body .hover-card .account-fields a {
     text-decoration: none;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body .about__section__body .prose a,
 .app-body .about__section__body .prose a:hover,
 .app-body .prose a strong,
 .app-body .hover-card__bio a span {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     text-decoration-line: underline;
     text-decoration-color: var(--color-accent-bg);
     text-decoration-thickness: 2px;
@@ -8488,7 +8489,7 @@ a:is(.active,
     color: var(--color-content-fg);
 }
 .app-body .switch-to-advanced .switch-to-advanced__toggle {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 
@@ -9077,7 +9078,7 @@ a:is(.active,
 }
 .app-body ._feat_account_timeline__pinnedBadge .icon-pinned {
     fill: var(--color-accent);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 
 
@@ -9134,7 +9135,7 @@ a:is(.active,
     border-bottom: 0;
 }
 .app-body ._comp_account_header__fieldItem dd a {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 /* Stats: move below the bio (above the tabs); value+label inline; hide "Joined". */
 .app-body ._comp_account_header__barWrapper {
@@ -9172,7 +9173,7 @@ a:is(.active,
     flex: 1 1 0;
     text-align: center;
     padding: 14px 10px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     font-weight: 600;
     border: 0;
     border-radius: 9px;
@@ -9181,7 +9182,7 @@ a:is(.active,
 }
 .app-body ._comp_tab_list__tab:not(.active):hover {
     background-color: var(--color-accent-lines);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
 }
 .app-body ._comp_tab_list__tab.active {
     background-color: var(--color-content-bg);
