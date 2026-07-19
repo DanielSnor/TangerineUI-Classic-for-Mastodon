@@ -6,6 +6,10 @@ ar:
     tangerineui-cherry: Tangerine UI (الكرز)
     tangerineui-lagoon: Tangerine UI (اللاجون)
     tangerineui-granite: Tangerine UI (الجرانيت)
+    tangerineui-garden: Tangerine UI (الحديقة)
+    tangerineui-ocean: Tangerine UI (المحيط)
+    tangerineui-bluebird: Tangerine UI (الطائر الأزرق)
+    tangerineui-sunflower: Tangerine UI (عباد الشمس)
 bn:
   themes:
     tangerineui: Tangerine UI
@@ -13,6 +17,21 @@ bn:
     tangerineui-cherry: Tangerine UI (চেরি)
     tangerineui-lagoon: Tangerine UI (লাগুন)
     tangerineui-granite: Tangerine UI (গ্রানাইট)
+    tangerineui-garden: Tangerine UI (বাগান)
+    tangerineui-ocean: Tangerine UI (সমুদ্র)
+    tangerineui-bluebird: Tangerine UI (নীলপাখি)
+    tangerineui-sunflower: Tangerine UI (সূর্যমুখী)
+cs:
+  themes:
+    tangerineui: Tangerine UI
+    tangerineui-purple: Tangerine UI (Fialová)
+    tangerineui-cherry: Tangerine UI (Třešeň)
+    tangerineui-lagoon: Tangerine UI (Laguna)
+    tangerineui-granite: Tangerine UI (Žula)
+    tangerineui-garden: Tangerine UI (Zahrada)
+    tangerineui-ocean: Tangerine UI (Oceán)
+    tangerineui-bluebird: Tangerine UI (Modrý pták)
+    tangerineui-sunflower: Tangerine UI (Slunečnice)
 de:
   themes:
     tangerineui: Tangerine UI
@@ -20,6 +39,10 @@ de:
     tangerineui-cherry: Tangerine UI (Kirsche)
     tangerineui-lagoon: Tangerine UI (Lagune)
     tangerineui-granite: Tangerine UI (Granit)
+    tangerineui-garden: Tangerine UI (Garten)
+    tangerineui-ocean: Tangerine UI (Ozean)
+    tangerineui-bluebird: Tangerine UI (Blauvogel)
+    tangerineui-sunflower: Tangerine UI (Sonnenblume)
 en:
   themes:
     tangerineui: Tangerine UI
@@ -38,6 +61,10 @@ es:
     tangerineui-cherry: Tangerine UI (Cereza)
     tangerineui-lagoon: Tangerine UI (Laguna)
     tangerineui-granite: Tangerine UI (Granito)
+    tangerineui-garden: Tangerine UI (Jardín)
+    tangerineui-ocean: Tangerine UI (Océano)
+    tangerineui-bluebird: Tangerine UI (Pájaro Azul)
+    tangerineui-sunflower: Tangerine UI (Girasol)
 fr:
   themes:
     tangerineui: Tangerine UI
@@ -45,6 +72,10 @@ fr:
     tangerineui-cherry: Tangerine UI (Cerise)
     tangerineui-lagoon: Tangerine UI (Lagon)
     tangerineui-granite: Tangerine UI (Granite)
+    tangerineui-garden: Tangerine UI (Jardin)
+    tangerineui-ocean: Tangerine UI (Océan)
+    tangerineui-bluebird: Tangerine UI (Oiseau Bleu)
+    tangerineui-sunflower: Tangerine UI (Tournesol)
 hi:
   themes:
     tangerineui: Tangerine UI
@@ -52,6 +83,10 @@ hi:
     tangerineui-cherry: Tangerine UI (चेरी)
     tangerineui-lagoon: Tangerine UI (लागून)
     tangerineui-granite: Tangerine UI (ग्रेनाइट)
+    tangerineui-garden: Tangerine UI (बाग़)
+    tangerineui-ocean: Tangerine UI (महासागर)
+    tangerineui-bluebird: Tangerine UI (नीली चिड़िया)
+    tangerineui-sunflower: Tangerine UI (सूरजमुखी)
 id:
   themes:
     tangerineui: Tangerine UI
@@ -59,6 +94,10 @@ id:
     tangerineui-cherry: Tangerine UI (Ceri)
     tangerineui-lagoon: Tangerine UI (Laguna)
     tangerineui-granite: Tangerine UI (Granit)
+    tangerineui-garden: Tangerine UI (Taman)
+    tangerineui-ocean: Tangerine UI (Samudra)
+    tangerineui-bluebird: Tangerine UI (Burung Biru)
+    tangerineui-sunflower: Tangerine UI (Bunga Matahari)
 it:
   themes:
     tangerineui: Tangerine UI
@@ -66,6 +105,10 @@ it:
     tangerineui-cherry: Tangerine UI (Ciliegia)
     tangerineui-lagoon: Tangerine UI (Laguna)
     tangerineui-granite: Tangerine UI (Granito)
+    tangerineui-garden: Tangerine UI (Giardino)
+    tangerineui-ocean: Tangerine UI (Oceano)
+    tangerineui-bluebird: Tangerine UI (Uccello Blu)
+    tangerineui-sunflower: Tangerine UI (Girasole)
 ja:
   themes:
     tangerineui: Tangerine UI
@@ -73,6 +116,10 @@ ja:
     tangerineui-cherry: Tangerine UI (チェリー)
     tangerineui-lagoon: Tangerine UI (ラグーン)
     tangerineui-granite: Tangerine UI (グラナイト)
+    tangerineui-garden: Tangerine UI (ガーデン)
+    tangerineui-ocean: Tangerine UI (オーシャン)
+    tangerineui-bluebird: Tangerine UI (ブルーバード)
+    tangerineui-sunflower: Tangerine UI (サンフラワー)
 ko:
   themes:
     tangerineui: Tangerine UI
@@ -80,6 +127,10 @@ ko:
     tangerineui-cherry: Tangerine UI (체리색)
     tangerineui-lagoon: Tangerine UI (라군색)
     tangerineui-granite: Tangerine UI (화강암)
+    tangerineui-garden: Tangerine UI (정원색)
+    tangerineui-ocean: Tangerine UI (바다색)
+    tangerineui-bluebird: Tangerine UI (파랑새)
+    tangerineui-sunflower: Tangerine UI (해바라기)
 nl:
   themes:
     tangerineui: Tangerine UI
@@ -87,6 +138,10 @@ nl:
     tangerineui-cherry: Tangerine UI (Kers)
     tangerineui-lagoon: Tangerine UI (Lagune)
     tangerineui-granite: Tangerine UI (Graniet)
+    tangerineui-garden: Tangerine UI (Tuin)
+    tangerineui-ocean: Tangerine UI (Oceaan)
+    tangerineui-bluebird: Tangerine UI (Blauwe Vogel)
+    tangerineui-sunflower: Tangerine UI (Zonnebloem)
 pt:
   themes:
     tangerineui: Tangerine UI
@@ -94,6 +149,10 @@ pt:
     tangerineui-cherry: Tangerine UI (Cereja)
     tangerineui-lagoon: Tangerine UI (Lagoa)
     tangerineui-granite: Tangerine UI (Granito)
+    tangerineui-garden: Tangerine UI (Jardim)
+    tangerineui-ocean: Tangerine UI (Oceano)
+    tangerineui-bluebird: Tangerine UI (Pássaro Azul)
+    tangerineui-sunflower: Tangerine UI (Girassol)
 ru:
   themes:
     tangerineui: Tangerine UI
@@ -101,6 +160,10 @@ ru:
     tangerineui-cherry: Tangerine UI (Вишневый)
     tangerineui-lagoon: Tangerine UI (Лагуна)
     tangerineui-granite: Tangerine UI (Гранит)
+    tangerineui-garden: Tangerine UI (Сад)
+    tangerineui-ocean: Tangerine UI (Океан)
+    tangerineui-bluebird: Tangerine UI (Синяя птица)
+    tangerineui-sunflower: Tangerine UI (Подсолнух)
 tr:
   themes:
     tangerineui: Tangerine UI
@@ -108,6 +171,10 @@ tr:
     tangerineui-cherry: Tangerine UI (Kiraz)
     tangerineui-lagoon: Tangerine UI (Lagün)
     tangerineui-granite: Tangerine UI (Granit)
+    tangerineui-garden: Tangerine UI (Bahçe)
+    tangerineui-ocean: Tangerine UI (Okyanus)
+    tangerineui-bluebird: Tangerine UI (Mavi Kuş)
+    tangerineui-sunflower: Tangerine UI (Ayçiçeği)
 zh-CN:
   themes:
     tangerineui: Tangerine UI
@@ -115,6 +182,10 @@ zh-CN:
     tangerineui-cherry: Tangerine UI (樱桃色)
     tangerineui-lagoon: Tangerine UI (潟湖色)
     tangerineui-granite: Tangerine UI (花岗岩)
+    tangerineui-garden: Tangerine UI (花园色)
+    tangerineui-ocean: Tangerine UI (海洋色)
+    tangerineui-bluebird: Tangerine UI (蓝鸟色)
+    tangerineui-sunflower: Tangerine UI (向日葵色)
 zh-TW:
   themes:
     tangerineui: Tangerine UI
@@ -122,6 +193,10 @@ zh-TW:
     tangerineui-cherry: Tangerine UI (櫻桃色)
     tangerineui-lagoon: Tangerine UI (潟湖色)
     tangerineui-granite: Tangerine UI (花崗岩)
+    tangerineui-garden: Tangerine UI (花園色)
+    tangerineui-ocean: Tangerine UI (海洋色)
+    tangerineui-bluebird: Tangerine UI (藍鳥色)
+    tangerineui-sunflower: Tangerine UI (向日葵色)
 zh-HK:
   themes:
     tangerineui: Tangerine UI
@@ -129,3 +204,7 @@ zh-HK:
     tangerineui-cherry: Tangerine UI (櫻桃色)
     tangerineui-lagoon: Tangerine UI (潟湖色)
     tangerineui-granite: Tangerine UI (花崗岩)
+    tangerineui-garden: Tangerine UI (花園色)
+    tangerineui-ocean: Tangerine UI (海洋色)
+    tangerineui-bluebird: Tangerine UI (藍鳥色)
+    tangerineui-sunflower: Tangerine UI (向日葵色)
