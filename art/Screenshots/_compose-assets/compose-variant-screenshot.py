@@ -181,6 +181,13 @@ def build(light_path, dark_path, phone_path, out_path, accent_hex):
 
         phone_composite = phone_frame.copy()
         phone_composite.alpha_composite(resized, dest=(x0, y0))
+        # Re-apply the frame on top: the content hole is a plain rectangle,
+        # but the frame's own bezel art rounds off the visible screen
+        # corners by overlapping slightly into the hole. That overlap gets
+        # covered by the opaque screenshot paste above, exposing square
+        # corners — redrawing the frame here restores it via the frame's
+        # own alpha, leaving the true (transparent) screen area untouched.
+        phone_composite.alpha_composite(phone_frame, dest=(0, 0))
         canvas.alpha_composite(phone_composite, dest=PHONE_OFFSET)
 
     # The base canvas carries a ~50px outer margin (the shape's drop-shadow
