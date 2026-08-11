@@ -22,7 +22,7 @@ Input screenshot requirements (see README-recipe.md in this folder):
                          part is reused from the template.
   <variant>-dark.png   : same size, dark mode.
   <variant>-iphone.png : app content only (no status bar / home indicator —
-                         those are baked into phone-frame-template2.png as
+                         those are baked into phone-frame-template.png as
                          realistic static chrome). Capture via Chrome
                          DevTools custom device: 359x706 viewport, DPR=2
                          (renders at exactly 718x1412, the content hole's
@@ -48,18 +48,11 @@ DARK_SIZE = (3250, 2784)
 LIGHT_OFFSET = (218, 173)
 DARK_OFFSET = (209, 169)
 
-# phone-frame-template2.png: a clean iPhone frame with a REALISTIC static
+# phone-frame-template.png: a clean iPhone frame with a REALISTIC static
 # status bar (09:41, Dynamic Island, signal/wifi/battery) and home indicator
 # already baked in as opaque chrome — only the actual app-content area is a
-# transparent hole. This is why the OLD phone-frame-template.png (from the
-# original PSD's Mobile layer, which was itself a real screenshot inside a
-# frame) produced screenshots that looked like they were missing a status
-# bar/home indicator: our own raw captures never had one either (they're
-# plain Chrome DevTools viewport captures, not real on-device screenshots),
-# so pasting them into the OLD frame's inner box (which spanned status bar
-# to home indicator) just showed blank app chrome where the status bar
-# should be. Content hole measured as a PLAIN RECTANGLE, no rounded corners
-# (confirmed by rendering the alpha channel as black/white and zooming the
+# transparent hole. Content hole measured as a PLAIN RECTANGLE, no rounded
+# corners (confirmed by rendering the alpha channel as black/white and zooming the
 # corner — the transition is a crisp right angle).
 PHONE_INNER_BOX = (76, 168, 794, 1580)  # x0,y0,x1,y1 within the 869x1698 frame
 PHONE_OFFSET = (2641, 1255)
@@ -175,7 +168,7 @@ def build(light_path, dark_path, phone_path, out_path, accent_hex):
     canvas.paste(patch, (0, band_top))
 
     if phone_path is not None:
-        phone_frame = Image.open(ASSETS / "phone-frame-template2.png").convert("RGBA")
+        phone_frame = Image.open(ASSETS / "phone-frame-template.png").convert("RGBA")
         phone_shot = Image.open(phone_path).convert("RGBA")
         x0, y0, x1, y1 = PHONE_INNER_BOX
         inner_w, inner_h = x1 - x0, y1 - y0

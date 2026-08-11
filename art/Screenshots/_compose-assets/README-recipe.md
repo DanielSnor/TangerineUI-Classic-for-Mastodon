@@ -15,7 +15,7 @@
      718x1412 — the exact size of the phone frame's content hole, no
      rescaling needed). This should be **app content only** — no status
      bar, no home indicator. Those are already baked into
-     `phone-frame-template2.png` as realistic static chrome (09:41,
+     `phone-frame-template.png` as realistic static chrome (09:41,
      Dynamic Island, signal/wifi/battery, home indicator bar). A plain
      DevTools capture never includes real device chrome anyway, so this
      just works — don't try to crop a real on-device screenshot instead,
@@ -34,7 +34,7 @@
    warm peach backdrop (measured ~20% accent / 80% white).
    Only needs `pip install Pillow` — the template assets in this folder
    were pre-extracted from `TangerineUI-template.psd` once (browser
-   chrome, drop shadow) and are already checked in; `phone-frame-template2.png`
+   chrome, drop shadow) and are already checked in; `phone-frame-template.png`
    is a separately-made clean iPhone frame (see below). No need to touch
    the PSD again.
 4. Inspect the corners (phone + browser window) and the status bar/home
@@ -72,7 +72,7 @@ against the original's custom warm promo-page color — hence
 `SHADOW_STRENGTH` (weakens it) and `--accent` (tints the page background
 to match, same idea as the original).
 
-**Phone frame (`phone-frame-template2.png`):** the PSD's own "Mobile"
+**Phone frame (`phone-frame-template.png`):** the PSD's own "Mobile"
 layer bakes a *real screenshot* into the frame, status bar and all — but
 our raw phone captures are plain Chrome DevTools viewport renders (no
 real device chrome), so pasting them into that layer's content area left
