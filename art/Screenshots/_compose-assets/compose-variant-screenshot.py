@@ -30,7 +30,7 @@ Input screenshot requirements (see README-recipe.md in this folder):
 """
 import argparse
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageFilter
 
 SHADOW_STRENGTH = 0.45  # scales down the base canvas's own alpha (the drop
                          # shadow); the shadow is legitimate/present in the
@@ -93,13 +93,6 @@ def build_masked_layer(template_path, new_content_path, chrome_h, target_size):
     return combined
 
 
-def rounded_mask(size, radius):
-    mask = Image.new("L", size, 0)
-    d = ImageDraw.Draw(mask)
-    d.rounded_rectangle([(0, 0), (size[0] - 1, size[1] - 1)], radius=radius, fill=255)
-    return mask
-
-
 def tint_bg_color(accent_hex, mix=0.20):
     """Light tint of the accent color, ~mix accent / (1-mix) white — same
     recipe as the original promo image's warm peach page background (derived
@@ -159,6 +152,28 @@ def build(light_path, dark_path, phone_path, out_path, accent_hex):
     canvas.alpha_composite(dark_combined, dest=DARK_OFFSET)
     canvas.alpha_composite(light_combined, dest=LIGHT_OFFSET)
 
+    # chrome-light-template.png's own alpha bakes in an extra shadow blur
+    # specific to the toolbar-height strip, stacking on top of the base
+    # shadow and leaving a visibly darker patch to the left of the
+    # window's top edge -- bounded exactly by LIGHT_OFFSET[1] to
+    # LIGHT_OFFSET[1]+CHROME_H_LIGHT (confirmed by sampling: the shadow
+    # darkens progressively through that band, then jumps back to the
+    # correct value right at the boundary). Fix: clone a clean strip of
+    # the correctly-shadowed background from just below the toolbar and
+    # paste it over the broken strip. band_top sits below LIGHT_OFFSET[1]
+    # -- the render right at/above the window's nominal top edge is
+    # already a plausible soft falloff, patching that high darkens pixels
+    # that were never broken. Width capped just short of the window's
+    # left edge (measured constant at canvas x=314 from the bottom of the
+    # rounded corner downward) so this never touches real window content.
+    band_top = LIGHT_OFFSET[1] + 72
+    band_bottom = LIGHT_OFFSET[1] + CHROME_H_LIGHT
+    band_height = band_bottom - band_top
+    clean_top = band_bottom + 20
+    fix_width = 313
+    patch = canvas.crop((0, clean_top, fix_width, clean_top + band_height))
+    canvas.paste(patch, (0, band_top))
+
     if phone_path is not None:
         phone_frame = Image.open(ASSETS / "phone-frame-template2.png").convert("RGBA")
         phone_shot = Image.open(phone_path).convert("RGBA")
@@ -179,14 +194,14 @@ def build(light_path, dark_path, phone_path, out_path, accent_hex):
         else:
             resized = phone_shot
 
-        phone_composite = phone_frame.copy()
+        # Screenshot first, frame on top: the content hole is a plain
+        # rectangle, but the frame's own bezel art rounds off the visible
+        # screen corners by overlapping slightly into the hole. Drawing
+        # the frame after the screenshot restores that rounding via the
+        # frame's own alpha, leaving the true (transparent) screen area
+        # untouched.
+        phone_composite = Image.new("RGBA", phone_frame.size, (0, 0, 0, 0))
         phone_composite.alpha_composite(resized, dest=(x0, y0))
-        # Re-apply the frame on top: the content hole is a plain rectangle,
-        # but the frame's own bezel art rounds off the visible screen
-        # corners by overlapping slightly into the hole. That overlap gets
-        # covered by the opaque screenshot paste above, exposing square
-        # corners — redrawing the frame here restores it via the frame's
-        # own alpha, leaving the true (transparent) screen area untouched.
         phone_composite.alpha_composite(phone_frame, dest=(0, 0))
         canvas.alpha_composite(phone_composite, dest=PHONE_OFFSET)
 
