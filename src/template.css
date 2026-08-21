@@ -124,7 +124,6 @@
     --color-bg-secondary: var(--color-content-secondary-bg);
     --color-bg-tertiary: var(--color-secondary-bg);
     --color-bg-inverted: var(--color-fg);
-    --color-bg-overlay-base: color-mix(in srgb, var(--color-content-fg-bold), transparent 40%);
     --color-bg-overlay-highlight: color-mix(in srgb, var(--color-content-fg-bold), transparent 95%);
     --color-bg-overlay: var(--color-content-bg);
     --color-bg-media-base: #000000;
