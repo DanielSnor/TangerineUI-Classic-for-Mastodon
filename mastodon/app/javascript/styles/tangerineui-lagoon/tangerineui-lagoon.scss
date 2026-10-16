@@ -241,20 +241,7 @@
     --color-bg-success-base: #0a5c2f;
     }
 
-/* ♿ High-contrast mode, part 2: the block above only overrides Mastodon's
-   own semantic tokens (--color-text-*, --color-bg-*, --color-border-*).
-   Our own custom-styled components (profile header, hashtag chips, nav,
-   etc.) read the theme's OWN variables directly (--color-fg,
-   --color-content-fg, --color-lines...), which the block above never
-   touches — so most of the theme didn't actually get any contrast boost.
-   This adds boosted values for the vars that are used at low contrast by
-   design (muted text, hairline borders). Deliberately plain neutral
-   grays, not per-variant: --color-content-fg, --color-content-fg-muted,
-   and --color-lines are already identical across every variant (not
-   placeholder-substituted), and --color-fg-muted — though per-variant normally —
-   is intentionally flattened to the same neutral gray here too, since
-   maximizing legibility is the point, not matching each variant's hue.
-   Verified live on Tangerine and Granite (light + dark). */
+/* ♿ High-contrast mode: theme variables */
 @media (prefers-contrast: more) {
     :root:root {
         --color-fg-muted: #1f1f1f;
@@ -9131,24 +9118,15 @@ a:is(.active,
 }
 
 
-/* Collections "Created by you / Featuring you" tab-list. Root cause
-   confirmed live: ._feat_collections__header has display:flex and a
-   fixed computed width (565px) set by Mastodon's own Collections CSS
-   chunk — which is route-lazy-loaded, so it lands AFTER our theme CSS in
-   the cascade and wins on source order even though our width:100% rule
-   isn't lower specificity. !important forces our override regardless of
-   load order. */
+/* Collections tab-list */
 .app-body ._feat_collections__header {
     width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
 }
 .app-body ._feat_collections__header ._comp_tab_list__tabList {
     width: 100% !important;
 }
 
-/* Handle explainer popover ("Handle je jako e-mailová adresa") on the profile
-   header — unstyled by default, so match the dropdown-menu look. */
+/* Handle explainer popover */
 .app-body ._comp_account_header__handleHelp {
     background-color: var(--color-content-bg);
     color: var(--color-content-fg);
@@ -9160,8 +9138,7 @@ a:is(.active,
     height: 14px;
 }
 
-/* Collection share modal: "Post on Mastodon" / "Share to…" ship as light
-   "button-secondary" too; make them solid accent like other primary actions. */
+/* Collection share modal buttons */
 .app-body ._collections_components_share_modal__shareButtonWrapper .button.button-secondary {
     background-color: var(--color-accent);
     color: var(--color-accent-fg);
@@ -9172,10 +9149,7 @@ a:is(.active,
     border-color: var(--color-accent-focus);
 }
 
-/* "Your Collections" is a bare <h1>, so it renders at the browser's default
-   h1 size/margin. Match the column-header title text format used elsewhere
-   (e.g. "Populární"): font-size 16px, font-weight 700, plus the same icon
-   treatment (a gray duotone Collections icon, scaled like column-header__icon). */
+/* Collections heading */
 .app-body ._feat_collections__heading {
     display: flex;
     align-items: center;
