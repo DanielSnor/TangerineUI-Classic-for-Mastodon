@@ -156,15 +156,18 @@
 }
 
 /* 🆕 Mastodon 5.0 redesigned interface.
-   5.0 sets a `data-density` attribute on <html>; no 4.x release does, so
-   this block is the switch that tells the two interfaces apart — every
+   5.0 sets a `data-theme-color` attribute on <html>; no 4.x release does,
+   so this block is the switch that tells the two interfaces apart — every
    rule scoped to it is inert on 4.6/4.7/4.8, which keeps the classic look
    byte-identical there. 5.0 derives its semantic tokens from a new
    --base-color-* family (per-palette: indigo/lime/pink/orange/cyan) and
    adds tokens the theme never had to map: strong/input borders, shadows
    and the admin graph colors. Point them all at the theme's own vars so
-   the new UI picks up the variant's palette instead of Mastodon's. */
-:root:root[data-density] {
+   the new UI picks up the variant's palette instead of Mastodon's.
+   An instance that registers no theme color gets no attribute at all
+   (the helper .compact's it away), so fall back to the presence of the
+   redesigned columns-area module. */
+:root:root:is([data-theme-color], :has([class*="_comp_columns_area_"])) {
     --base-color-bg: var(--color-content-bg);
     --base-color-bg-desktop: var(--color-bg);
     --base-color-fg: var(--color-content-fg);
@@ -4038,7 +4041,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 }
 /* 5.0 renames the direct-message marker to a CSS-module class and drops the
    wrapper the rules above key off, so tint it directly. Same mix as above. */
-html[data-density] .app-body [class*="_comp_status__isMessage"] {
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [class*="_comp_status__isMessage"] {
     background-color: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 96%);
 }
 .app-body .status__wrapper.status__wrapper-direct:has(.status__content:hover),
