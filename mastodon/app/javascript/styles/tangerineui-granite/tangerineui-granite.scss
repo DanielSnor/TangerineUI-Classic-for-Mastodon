@@ -7660,6 +7660,21 @@ a:is(.active,
     color: var(--color-fg-muted);
     order: 10;
 }
+/* 5.0 rebuilt the meta footer as a CSS module, so .link-footer above never
+   matches there: the links fall back to Mastodon's own color and the theme's
+   signature line disappears with them. Keyed off the module class rather than
+   the 5.0 attribute — the class exists only in 5.0, so this stays inert on
+   4.x either way, and it survives upstream renaming the detection attribute
+   (which already happened once mid-rollout). Confirmed against the live DOM:
+   div._feat_discovery_panel_footer_links__root > section > ul > li > a. */
+.app-body [class*="_footer_links__root"] {
+    color: var(--color-fg-muted);
+}
+.app-body [class*="_footer_links__root"]::after {
+    content: var(--meta);
+    display: block;
+    margin-top: 12px;
+}
 
 /* Server banner */
 .app-body .server-banner__introduction {
