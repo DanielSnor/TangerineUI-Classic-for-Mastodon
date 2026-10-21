@@ -1268,7 +1268,7 @@ body.app-body  {
     background-image: var(--icon-bookmark-accent);
 }
 .app-body .icon-button.active .icon-bookmark {
-    background-image: var(--icon-bookmark-active);
+    background-image: var(--icon-bookmark-column-link-accent-active);
 }
 /* Favorite */
 .app-body .icon-star {
@@ -1277,7 +1277,7 @@ body.app-body  {
 .app-body button.icon-button.active .icon-star,
 .app-body .notification__message .icon-star,
 .app-body .notification-group--favourite .icon-star {
-    background-image: var(--icon-star-active);
+    background-image: var(--icon-star-column-link-accent-active);
 }
 .app-body .detailed-status__link .icon-star {
     background-image: var(--icon-star);
@@ -1305,7 +1305,7 @@ body.app-body  {
     background-image: var(--icon-boost-accent-active);
 }
 .app-body .notification__message .icon-retweet {
-    background-image: var(--icon-boost-active);
+    background-image: var(--icon-boost-accent-active);
 }
 .app-body .detailed-status__link .icon-retweet {
     background-image: var(--icon-boost);
@@ -4772,6 +4772,29 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
    rather than with `transform`: setting both would compose into a wrong angle.
    The expanded rule carries the title class purely for weight — Mastodon's own
    .title[aria-expanded='true'] & is otherwise an exact specificity tie. */
+/* The boost button's menu still showed Mastodon's recycle arrows beside the
+   rocket on the button itself. Its two items carry no identity of their own —
+   same item class, same icon class, no per-item hook — so the only thing that
+   marks the menu out is being the one two-item card in the post UI. Brittle by
+   nature: a third item, or another two-item menu anywhere, breaks it. Kept
+   because the inconsistency is visible and the fallback is merely Mastodon's
+   own glyph. Dark artwork, not the accent one, to match the icons beside it. */
+.app-body
+    [class*="_menu__scrollableInnerCard"]:has([class*="_menu__item"]:nth-child(2)):not(:has([class*="_menu__item"]:nth-child(3)))
+    [class*="_menu__item"]:first-child
+    [class*="_menu__itemIcon"] {
+        background-image: var(--icon-boost);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+}
+.app-body
+    [class*="_menu__scrollableInnerCard"]:has([class*="_menu__item"]:nth-child(2)):not(:has([class*="_menu__item"]:nth-child(3)))
+    [class*="_menu__item"]:first-child
+    [class*="_menu__itemIcon"] > path {
+        display: none;
+}
+
 /* 5.0's account menu marks favourites with a heart. The theme has used a star
    for them everywhere else since 2.5, so put one back — same swap technique as
    the nav icons, keyed on the menu entry's destination. */
@@ -9711,35 +9734,6 @@ a:is(.active,
         color: var(--color-accent);
 }
 
-/* Mastodon flips a ghost button to the inverted palette both while held and
-   while its menu is open (.ghost's active mixin covers :active as well as
-   aria-expanded), dropping a near-black puck into a row of flat accent icons.
-   Take both states to solid accent instead, which also gives the bar the same
-   three-step ramp as the ... menus elsewhere: bare at rest, tinted on hover,
-   filled once pressed or open. Written as separate selectors rather than one
-   :is() — the grouped form misbehaved on the profile header's trigger. */
-.app-body
-    [class*="_status__actions"]
-    [class*="_button_redesign__base"]:active,
-.app-body
-    [class*="_status__actions"]
-    [class*="_button_redesign__base"][aria-expanded="true"] {
-        background-color: var(--color-accent);
-        color: var(--color-accent-fg);
-}
-/* The icon carries its own colour a few rules up, so inheriting from the button
-   is not enough — it would stay accent-on-accent and vanish. */
-.app-body
-    [class*="_status__actions"]
-    [class*="_button_redesign__base"]:active
-    [class*="_button_redesign__icon"],
-.app-body
-    [class*="_status__actions"]
-    [class*="_button_redesign__base"][aria-expanded="true"]
-    [class*="_button_redesign__icon"] {
-        color: var(--color-accent-fg);
-}
-
 /* …and swap reply, boost, favourite and bookmark for the theme's own artwork,
    the way 4.x draws them — the rocket in particular is one of Tangerine's
    signatures, and 5.0 would otherwise show Mastodon's recycle arrows. 5.0 gives
@@ -9795,7 +9789,7 @@ a:is(.active,
     background-image: var(--icon-bookmark-accent);
 }
 .app-body [class*="_status__actions"] [class*="_button_redesign__toggle"][class*="_button_redesign__iconOnly"][aria-pressed="true"] [class*="_button_redesign__icon"] {
-    background-image: var(--icon-bookmark-active);
+    background-image: var(--icon-bookmark-column-link-accent-active);
 }
 
 /* 5.0 rebuilt the profile buttons on the redesigned Button component, which
@@ -9814,66 +9808,33 @@ a:is(.active,
         background-color: var(--color-accent-focus);
         border-color: var(--color-accent-focus);
 }
-/* The ... menus — in the profile header and on the account card — plus the
-   icon-only buttons beside them. 5.0 gives the menu triggers no class of their
-   own (account_header's buttonMenu is only set on the legacy branch) and
-   renders the two in different variants, tonal and ghost, so they looked
-   unrelated. Key off their containers and escalate in the theme's own language:
-   tinted at rest, a stronger tint on hover, solid accent once pressed or while
-   the menu is open — the same three steps the filter bar and the action buttons
-   already use. Hover mixes its own tint rather than reaching for
-   --color-accent-lines: that one is a 12% translucent wash, weaker than the
-   opaque --color-accent-bg underneath it, so using it here stepped the ramp
-   backwards and read as a grey wash. The mix puts its percentage on the second
-   colour, the form used everywhere else here — written the other way round the
-   declaration was dropped and only the icon colour from this rule survived. */
-.app-body
-    :is(
-        [class*="_account_header__buttonsDesktop"],
-        [class*="_account_header__buttonsMobile"],
-        [class*="_account_card_and_menu__root"]
-    )
-    [class*="_button_redesign__iconOnly"] {
-        background-color: var(--color-accent-bg);
-        color: var(--color-accent);
-        border-color: transparent;
-        transition: all .2s;
+/* One treatment for every bare button that opens a menu — the post action bar,
+   the column header, the profile header, the account card — plus the action
+   bar's remaining buttons, so a row never mixes two behaviours. Mastodon flips
+   ghost buttons to the inverted palette while held or open, dropping a
+   near-black puck into rows of flat accent icons; escalate by tint instead,
+   and start from bare so the step is visible everywhere. Nothing goes solid:
+   the buttons whose glyph was swapped for artwork carry the accent baked into
+   the image and cannot invert, so a filled state would hide them. Separate
+   selectors rather than :is() — the grouped form misbehaved on the profile
+   header's trigger. */
+.app-body [class*="_button_redesign__base"][aria-haspopup="menu"],
+.app-body [class*="_status__actions"] [class*="_button_redesign__base"] {
+    background-color: transparent;
+    border-color: transparent;
+    transition: background-color .2s;
 }
-.app-body
-    :is(
-        [class*="_account_header__buttonsDesktop"],
-        [class*="_account_header__buttonsMobile"],
-        [class*="_account_card_and_menu__root"]
-    )
-    [class*="_button_redesign__iconOnly"]:hover,
-.app-body
-    :is(
-        [class*="_account_header__buttonsDesktop"],
-        [class*="_account_header__buttonsMobile"],
-        [class*="_account_card_and_menu__root"]
-    )
-    [class*="_button_redesign__iconOnly"]:focus-visible {
-        background-color: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 75%);
-        color: var(--color-accent);
+.app-body [class*="_button_redesign__base"][aria-haspopup="menu"]:hover,
+.app-body [class*="_button_redesign__base"][aria-haspopup="menu"]:focus-visible,
+.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:hover,
+.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:focus-visible {
+    background-color: var(--color-accent-bg);
 }
-.app-body
-    :is(
-        [class*="_account_header__buttonsDesktop"],
-        [class*="_account_header__buttonsMobile"],
-        [class*="_account_card_and_menu__root"]
-    )
-    [class*="_button_redesign__iconOnly"]:is(:active, [aria-expanded="true"]) {
-        background-color: var(--color-accent);
-        color: var(--color-accent-fg);
-}
-.app-body
-    :is(
-        [class*="_account_header__buttonsDesktop"],
-        [class*="_account_header__buttonsMobile"],
-        [class*="_account_card_and_menu__root"]
-    )
-    [class*="_button_redesign__iconOnly"]:active {
-        transform: scale(.9);
+.app-body [class*="_button_redesign__base"][aria-haspopup="menu"]:active,
+.app-body [class*="_button_redesign__base"][aria-haspopup="menu"][aria-expanded="true"],
+.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:active,
+.app-body [class*="_status__actions"] [class*="_button_redesign__base"][aria-expanded="true"] {
+    background-color: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 75%);
 }
 
 /* Collection share modal: "Post on Mastodon" / "Share to…" ship as light
