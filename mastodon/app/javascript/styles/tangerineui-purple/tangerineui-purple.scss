@@ -1399,6 +1399,14 @@ body.app-body  {
     margin-right: 7px;
     margin-left: 3px;
 }
+/* 5.0 draws the nav icons as Phosphor components driven by currentColor and
+   already swaps outline for fill on the active item — the same convention the
+   per-icon rules below implement by hand on 4.x. Colouring just the icon
+   wrapper keeps the labels dark and gets the active-state fill for free.
+   Keyed off the module class, which exists only in 5.0. */
+.app-body [class*="_navigation_link__icon"] {
+    color: var(--color-accent);
+}
 /* Home icon */
 .app-body .icon-home {
     background-image: var(--icon-home);
