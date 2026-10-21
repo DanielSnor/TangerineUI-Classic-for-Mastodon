@@ -9734,6 +9734,7 @@ a:is(.active,
     [class*="_button_redesign__base"]:not([class*="_button_redesign__iconOnly"]) {
         border: 1px solid var(--color-accent);
         color: var(--color-accent);
+        background-color: transparent;
 }
 
 /* 5.0 rewrote the composer into its own set of components, so the toolbar under
@@ -9747,6 +9748,10 @@ a:is(.active,
     [class*="_button_redesign__icon"],
 .app-body
     [class*="_compose_redesign__toolbar"]
+    [class*="_button_redesign__iconOnly"]
+    [class*="_button_redesign__icon"],
+.app-body
+    [class*="_compose_redesign__header"]
     [class*="_button_redesign__iconOnly"]
     [class*="_button_redesign__icon"] {
         color: var(--color-accent);
@@ -9831,6 +9836,22 @@ a:is(.active,
     background-image: var(--icon-bookmark-column-link-accent-active);
 }
 
+/* 5.0's labelled tonal buttons — Unfollow in notifications, Follow in
+   suggestions and on Explore's People — are the secondary buttons of 4.x,
+   which the theme draws as a light accent tint with accent text (see
+   .button.button-secondary above). Same look, new hook. Icon-only ones are
+   handled with the menu triggers; the composer's pills override this with
+   their outline. The hover carries Mastodon's :not() chain, see below. */
+.app-body [class*="_button_redesign__tonal"]:not([class*="_button_redesign__iconOnly"]) {
+    background-color: color-mix(in srgb, var(--color-accent), transparent 82%);
+    color: var(--color-accent-text);
+}
+.app-body [class*="_button_redesign__tonal"]:not([class*="_button_redesign__iconOnly"]):hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_button_redesign__tonal"]:not([class*="_button_redesign__iconOnly"]):active {
+    background-color: color-mix(in srgb, var(--color-accent), transparent 70%);
+    color: var(--color-accent-text);
+}
+
 /* 5.0 rebuilt the profile buttons on the redesigned Button component, which
    carries module classes instead of .button.button-secondary, so the rule above
    no longer reaches Edit profile / Follow and they sit in Mastodon's neutral
@@ -9856,7 +9877,7 @@ a:is(.active,
    only the emoji button opens a popover and carries aria-expanded, the other
    two are plain tonal buttons and would keep Mastodon's grey next to it; in
    the column header the "…" is a menu but the gear beside it is a plain
-   button. Mastodon flips
+   button; the composer's minimise and close are plain ghost buttons too. Mastodon flips
    ghost buttons to the inverted palette while held or open, dropping a
    near-black puck into rows of flat accent icons; escalate by tint instead,
    and start from bare so the step is visible everywhere. Nothing goes solid:
@@ -9874,6 +9895,7 @@ a:is(.active,
 .app-body [class*="_button_redesign__base"][aria-expanded],
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"],
 .app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"],
+.app-body [class*="_compose_redesign__header"] [class*="_button_redesign__iconOnly"],
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"] {
     background-color: transparent;
     border-color: transparent;
@@ -9885,6 +9907,8 @@ a:is(.active,
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"]:focus-visible,
 .app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
 .app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"]:focus-visible,
+.app-body [class*="_compose_redesign__header"] [class*="_button_redesign__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_compose_redesign__header"] [class*="_button_redesign__iconOnly"]:focus-visible,
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:focus-visible {
     background-color: var(--color-accent-bg);
@@ -9895,6 +9919,7 @@ a:is(.active,
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"][aria-expanded="true"],
 .app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"]:active,
 .app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"][aria-expanded="true"],
+.app-body [class*="_compose_redesign__header"] [class*="_button_redesign__iconOnly"]:active,
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:active,
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"][aria-expanded="true"] {
     background-color: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 75%);
