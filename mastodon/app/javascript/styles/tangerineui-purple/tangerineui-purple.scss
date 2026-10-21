@@ -9698,6 +9698,106 @@ a:is(.active,
     border-color: var(--color-accent-focus);
 }
 
+/* 5.0 builds the post action bar from redesign buttons with color='neutral',
+   so reply, boost, favourite and the rest sit in grey where 4.x draws them in
+   the accent. Their icons are Phosphor SVGs painted with currentColor, so
+   colouring the icon is enough — the count beside it keeps its own colour, as
+   on 4.x. Pressed buttons are left alone so Mastodon's own active colours
+   (the red heart, and whatever else it marks) still come through. */
+.app-body
+    [class*="_status__actions"]
+    [class*="_button_redesign__base"]:not([aria-pressed="true"])
+    [class*="_button_redesign__icon"] {
+        color: var(--color-accent);
+}
+
+/* Mastodon flips a ghost button to the inverted palette both while held and
+   while its menu is open (.ghost's active mixin covers :active as well as
+   aria-expanded), dropping a near-black puck into a row of flat accent icons.
+   Take both states to solid accent instead, which also gives the bar the same
+   three-step ramp as the ... menus elsewhere: bare at rest, tinted on hover,
+   filled once pressed or open. Written as separate selectors rather than one
+   :is() — the grouped form misbehaved on the profile header's trigger. */
+.app-body
+    [class*="_status__actions"]
+    [class*="_button_redesign__base"]:active,
+.app-body
+    [class*="_status__actions"]
+    [class*="_button_redesign__base"][aria-expanded="true"] {
+        background-color: var(--color-accent);
+        color: var(--color-accent-fg);
+}
+/* The icon carries its own colour a few rules up, so inheriting from the button
+   is not enough — it would stay accent-on-accent and vanish. */
+.app-body
+    [class*="_status__actions"]
+    [class*="_button_redesign__base"]:active
+    [class*="_button_redesign__icon"],
+.app-body
+    [class*="_status__actions"]
+    [class*="_button_redesign__base"][aria-expanded="true"]
+    [class*="_button_redesign__icon"] {
+        color: var(--color-accent-fg);
+}
+
+/* …and swap reply, boost, favourite and bookmark for the theme's own artwork,
+   the way 4.x draws them — the rocket in particular is one of Tangerine's
+   signatures, and 5.0 would otherwise show Mastodon's recycle arrows. 5.0 gives
+   every action icon the same class, so each button is told apart by what else
+   it carries: reply by clipPadding, boost by being the toggle that opens a
+   menu, favourite by actionsButtonGap, bookmark by being the icon-only toggle.
+   That is more brittle than the nav, where the link's href did the job, so if
+   an icon ever goes blank here, look for a renamed modifier first. Share and
+   the ... keep Mastodon's glyph in the accent — the set has no artwork for
+   them. */
+.app-body
+    [class*="_status__actions"]
+    :is(
+        [class*="_button_redesign__clipPadding"],
+        [class*="_button_redesign__toggle"][aria-haspopup="menu"],
+        [class*="_status__actionsButtonGap"],
+        [class*="_button_redesign__toggle"][class*="_button_redesign__iconOnly"]
+    )
+    [class*="_button_redesign__icon"] {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+}
+.app-body
+    [class*="_status__actions"]
+    :is(
+        [class*="_button_redesign__clipPadding"],
+        [class*="_button_redesign__toggle"][aria-haspopup="menu"],
+        [class*="_status__actionsButtonGap"],
+        [class*="_button_redesign__toggle"][class*="_button_redesign__iconOnly"]
+    )
+    [class*="_button_redesign__icon"] > path {
+        display: none;
+}
+.app-body [class*="_status__actions"] [class*="_button_redesign__clipPadding"] [class*="_button_redesign__icon"] {
+    background-image: var(--icon-reply-accent);
+}
+.app-body [class*="_status__actions"] [class*="_button_redesign__toggle"][aria-haspopup="menu"] [class*="_button_redesign__icon"] {
+    background-image: var(--icon-boost-accent);
+}
+.app-body [class*="_status__actions"] [class*="_button_redesign__toggle"][aria-haspopup="menu"][aria-pressed="true"] [class*="_button_redesign__icon"] {
+    background-image: var(--icon-boost-accent-active);
+}
+.app-body [class*="_status__actionsButtonGap"] [class*="_button_redesign__icon"] {
+    background-image: var(--icon-star-accent);
+}
+/* The gold --icon-star-active reads as a foreign colour next to the rest of the
+   bar, so mark the active state by fill in the variant's own accent instead. */
+.app-body [class*="_status__actionsButtonGap"][aria-pressed="true"] [class*="_button_redesign__icon"] {
+    background-image: var(--icon-star-column-link-accent-active);
+}
+.app-body [class*="_status__actions"] [class*="_button_redesign__toggle"][class*="_button_redesign__iconOnly"] [class*="_button_redesign__icon"] {
+    background-image: var(--icon-bookmark-accent);
+}
+.app-body [class*="_status__actions"] [class*="_button_redesign__toggle"][class*="_button_redesign__iconOnly"][aria-pressed="true"] [class*="_button_redesign__icon"] {
+    background-image: var(--icon-bookmark-active);
+}
+
 /* 5.0 rebuilt the profile buttons on the redesigned Button component, which
    carries module classes instead of .button.button-secondary, so the rule above
    no longer reaches Edit profile / Follow and they sit in Mastodon's neutral
