@@ -9714,29 +9714,66 @@ a:is(.active,
         background-color: var(--color-accent-focus);
         border-color: var(--color-accent-focus);
 }
-/* The icon-only buttons in the same row — the ... menu, unfollow, copy link —
-   get the theme's tinted-secondary look rather than Mastodon's grey. Scoped to
-   the header's button row: 5.0 gives the menu trigger no class of its own
-   (account_header's buttonMenu is only set on the legacy branch), so the row is
-   the nearest hook that doesn't catch every icon button in the app. */
+/* The ... menus — in the profile header and on the account card — plus the
+   icon-only buttons beside them. 5.0 gives the menu triggers no class of their
+   own (account_header's buttonMenu is only set on the legacy branch) and
+   renders the two in different variants, tonal and ghost, so they looked
+   unrelated. Key off their containers and escalate in the theme's own language:
+   tinted at rest, a stronger tint on hover, solid accent once pressed or while
+   the menu is open — the same three steps the filter bar and the action buttons
+   already use. Hover mixes its own tint rather than reaching for
+   --color-accent-lines: that one is a 12% translucent wash, weaker than the
+   opaque --color-accent-bg underneath it, so using it here stepped the ramp
+   backwards and read as a grey wash. The mix puts its percentage on the second
+   colour, the form used everywhere else here — written the other way round the
+   declaration was dropped and only the icon colour from this rule survived. */
 .app-body
     :is(
         [class*="_account_header__buttonsDesktop"],
-        [class*="_account_header__buttonsMobile"]
+        [class*="_account_header__buttonsMobile"],
+        [class*="_account_card_and_menu__root"]
     )
     [class*="_button_redesign__iconOnly"] {
         background-color: var(--color-accent-bg);
         color: var(--color-accent);
         border-color: transparent;
+        transition: all .2s;
 }
 .app-body
     :is(
         [class*="_account_header__buttonsDesktop"],
-        [class*="_account_header__buttonsMobile"]
+        [class*="_account_header__buttonsMobile"],
+        [class*="_account_card_and_menu__root"]
     )
-    [class*="_button_redesign__iconOnly"]:is(:hover, :active, :focus) {
-        background-color: var(--color-accent-lines);
+    [class*="_button_redesign__iconOnly"]:hover,
+.app-body
+    :is(
+        [class*="_account_header__buttonsDesktop"],
+        [class*="_account_header__buttonsMobile"],
+        [class*="_account_card_and_menu__root"]
+    )
+    [class*="_button_redesign__iconOnly"]:focus-visible {
+        background-color: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 75%);
         color: var(--color-accent);
+}
+.app-body
+    :is(
+        [class*="_account_header__buttonsDesktop"],
+        [class*="_account_header__buttonsMobile"],
+        [class*="_account_card_and_menu__root"]
+    )
+    [class*="_button_redesign__iconOnly"]:is(:active, [aria-expanded="true"]) {
+        background-color: var(--color-accent);
+        color: var(--color-accent-fg);
+}
+.app-body
+    :is(
+        [class*="_account_header__buttonsDesktop"],
+        [class*="_account_header__buttonsMobile"],
+        [class*="_account_card_and_menu__root"]
+    )
+    [class*="_button_redesign__iconOnly"]:active {
+        transform: scale(.9);
 }
 
 /* Collection share modal: "Post on Mastodon" / "Share to…" ship as light
