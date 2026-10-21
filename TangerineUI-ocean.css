@@ -9817,21 +9817,23 @@ a:is(.active,
    the buttons whose glyph was swapped for artwork carry the accent baked into
    the image and cannot invert, so a filled state would hide them. Separate
    selectors rather than :is() — the grouped form misbehaved on the profile
-   header's trigger. */
-.app-body [class*="_button_redesign__base"][aria-haspopup="menu"],
+   header's trigger. Keyed on aria-expanded rather than aria-haspopup: the
+   latter is only set for menus of type 'actions', so the account card's
+   navigation menu would slip through and keep Mastodon's black puck. */
+.app-body [class*="_button_redesign__base"][aria-expanded],
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"] {
     background-color: transparent;
     border-color: transparent;
     transition: background-color .2s;
 }
-.app-body [class*="_button_redesign__base"][aria-haspopup="menu"]:hover,
-.app-body [class*="_button_redesign__base"][aria-haspopup="menu"]:focus-visible,
+.app-body [class*="_button_redesign__base"][aria-expanded]:hover,
+.app-body [class*="_button_redesign__base"][aria-expanded]:focus-visible,
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"]:hover,
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"]:focus-visible {
     background-color: var(--color-accent-bg);
 }
-.app-body [class*="_button_redesign__base"][aria-haspopup="menu"]:active,
-.app-body [class*="_button_redesign__base"][aria-haspopup="menu"][aria-expanded="true"],
+.app-body [class*="_button_redesign__base"][aria-expanded]:active,
+.app-body [class*="_button_redesign__base"][aria-expanded][aria-expanded="true"],
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"]:active,
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"][aria-expanded="true"] {
     background-color: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 75%);
