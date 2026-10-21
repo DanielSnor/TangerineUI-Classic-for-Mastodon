@@ -9926,7 +9926,9 @@ a:is(.active,
         border: 1px solid var(--color-lines);
         border-bottom: 0;
     }
-    .app-body [class*="_column_header__extraStickyContent"] {
+    .app-body [class*="_column_header__extraStickyContent"],
+    /* Explore's search sits between the header and the tab bar, outside both. */
+    .app-body [class*="_column_header__root"] + .explore__search-header {
         border-inline: 1px solid var(--color-lines);
     }
 }
