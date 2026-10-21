@@ -17,7 +17,9 @@
     --variant-emoji: "\1FABB\00A0";
     --variant: var(--variant-emoji) var(--variant-name);
 
-    --meta: 'TangerineUI Classic for Mastodon: ' var(--version) ' \00B7 ' var(--variant);
+    /* The \A only breaks the line where white-space lets it (the 5.0 footer);
+       elsewhere it collapses to a space. */
+    --meta: 'TangerineUI Classic for Mastodon:\A' var(--version) ' \00B7 ' var(--variant);
 }
 
 /* 🎨 Colors */
@@ -177,7 +179,7 @@
     --base-color-danger: var(--color-reject);
     --base-highlight-strength: 10%;
     --color-bg-desktop: var(--color-bg);
-    --color-bg-highlight: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    --color-bg-highlight: color-mix(in srgb, var(--color-accent), transparent 90%);
     --color-border-strong: var(--color-fg);
     --color-border-input: var(--color-lines);
     --shadow-strength-primary: 12%;
@@ -7993,6 +7995,7 @@ a:is(.active,
     content: var(--meta);
     display: block;
     margin-top: 12px;
+    white-space: pre-line;
 }
 
 /* Server banner */
@@ -9721,6 +9724,42 @@ a:is(.active,
     border-color: var(--color-accent-focus);
 }
 
+/* 4.x shows the composer's visibility and language controls as outlined accent
+   pills; 5.0 renders them as plain tonal buttons. Give the outline back. Only
+   the ones with a label: the settings gear shares the row but is a round
+   icon-only button with no counterpart on 4.x, and a border would look wrong
+   on it. The redesign button is already pill-shaped, so the border is enough. */
+.app-body
+    [class*="_compose_redesign__toolbar"]
+    [class*="_button_redesign__base"]:not([class*="_button_redesign__iconOnly"]) {
+        border: 1px solid var(--color-accent);
+        color: var(--color-accent);
+}
+
+/* 5.0 rewrote the composer into its own set of components, so the toolbar under
+   the text and the settings gear above it sit in Mastodon's neutral grey where
+   4.x draws them in the accent. Only the icon-only buttons: Publish shares the
+   footer and is already a filled accent button, so colouring it too would hide
+   its label. */
+.app-body
+    [class*="_compose_redesign__footer"]
+    [class*="_button_redesign__iconOnly"]
+    [class*="_button_redesign__icon"],
+.app-body
+    [class*="_compose_redesign__toolbar"]
+    [class*="_button_redesign__iconOnly"]
+    [class*="_button_redesign__icon"] {
+        color: var(--color-accent);
+}
+
+/* The pop-out composer is framed by Mastodon's elevation border in the neutral
+   line colour; 4.x and stock 5.0 both draw that frame in the accent. Only the
+   colour: the width comes from the elevation mixin, and the standalone
+   composer (headless) removes the border altogether, which this leaves alone. */
+.app-body [class*="_compose_redesign__root"] {
+    border-color: var(--color-accent);
+}
+
 /* 5.0 builds the post action bar from redesign buttons with color='neutral',
    so reply, boost, favourite and the rest sit in grey where 4.x draws them in
    the accent. Their icons are Phosphor SVGs painted with currentColor, so
@@ -9804,13 +9843,20 @@ a:is(.active,
         border-color: var(--color-accent);
 }
 .app-body
-    [class*="_account_header__followButton"][class*="_button_redesign__tonal"]:is(:hover, :active, :focus) {
+    [class*="_account_header__followButton"][class*="_button_redesign__tonal"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body
+    [class*="_account_header__followButton"][class*="_button_redesign__tonal"]:is(:active, :focus) {
         background-color: var(--color-accent-focus);
         border-color: var(--color-accent-focus);
 }
 /* One treatment for every bare button that opens a menu — the post action bar,
    the column header, the profile header, the account card — plus the action
-   bar's remaining buttons, so a row never mixes two behaviours. Mastodon flips
+   bar's remaining buttons and the composer's footer icons (upload, emoji,
+   poll) and the column header's buttons, so a row never mixes two behaviours:
+   only the emoji button opens a popover and carries aria-expanded, the other
+   two are plain tonal buttons and would keep Mastodon's grey next to it; in
+   the column header the "…" is a menu but the gear beside it is a plain
+   button. Mastodon flips
    ghost buttons to the inverted palette while held or open, dropping a
    near-black puck into rows of flat accent icons; escalate by tint instead,
    and start from bare so the step is visible everywhere. Nothing goes solid:
@@ -9819,24 +9865,70 @@ a:is(.active,
    selectors rather than :is() — the grouped form misbehaved on the profile
    header's trigger. Keyed on aria-expanded rather than aria-haspopup: the
    latter is only set for menus of type 'actions', so the account card's
-   navigation menu would slip through and keep Mastodon's black puck. */
+   navigation menu would slip through and keep Mastodon's black puck.
+   Hover selectors carry Mastodon's own exclusion chain: the source writes
+   .base:hover:not(:active, :disabled, …), but postcss-preset-env unrolls the
+   list into five chained :not()s on the way to the page, which lifts that rule
+   to (0,7,0). A plain :hover here sits at (0,4,0) and loses regardless of
+   order — that is the grey hover of 5.0 bleeding through. */
 .app-body [class*="_button_redesign__base"][aria-expanded],
-.app-body [class*="_status__actions"] [class*="_button_redesign__base"] {
+.app-body [class*="_status__actions"] [class*="_button_redesign__base"],
+.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"],
+.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"] {
     background-color: transparent;
     border-color: transparent;
     transition: background-color .2s;
 }
-.app-body [class*="_button_redesign__base"][aria-expanded]:hover,
+.app-body [class*="_button_redesign__base"][aria-expanded]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
 .app-body [class*="_button_redesign__base"][aria-expanded]:focus-visible,
-.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:hover,
-.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:focus-visible {
+.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:focus-visible,
+.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"]:focus-visible,
+.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:focus-visible {
     background-color: var(--color-accent-bg);
 }
 .app-body [class*="_button_redesign__base"][aria-expanded]:active,
 .app-body [class*="_button_redesign__base"][aria-expanded][aria-expanded="true"],
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"]:active,
-.app-body [class*="_status__actions"] [class*="_button_redesign__base"][aria-expanded="true"] {
+.app-body [class*="_status__actions"] [class*="_button_redesign__base"][aria-expanded="true"],
+.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"]:active,
+.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"][aria-expanded="true"],
+.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:active,
+.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"][aria-expanded="true"] {
     background-color: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 75%);
+}
+
+/* …and the glyph of every icon-only menu trigger in the accent, so the account
+   card's and the profile header's "…" read like the one under a post. The
+   action bar and the composer colour theirs through their own rules above;
+   this catches the rest, and the column header's buttons (back, gear, "…")
+   come along whether or not they open a menu. Only icon-only triggers: the
+   composer's labelled pills are already accent, and solid ones keep their
+   inverted glyph. */
+.app-body
+    [class*="_button_redesign__base"][aria-expanded][class*="_button_redesign__iconOnly"]
+    [class*="_button_redesign__icon"],
+.app-body
+    [class*="_column_header__layout"]
+    [class*="_button_redesign__base"]
+    [class*="_button_redesign__icon"] {
+        color: var(--color-accent);
+}
+
+/* 4.x frames the column header with the line colour on three sides, rounded
+   at the top, and the column body continues the sides below it. 5.0 ships the
+   header without any border (upstream has it commented out), so the frame
+   stops dead above the title. Mobile keeps the stock edge-to-edge header. */
+@media screen and (min-width:761px) {
+    .app-body [class*="_column_header__layout"] {
+        border: 1px solid var(--color-lines);
+        border-bottom: 0;
+    }
+    .app-body [class*="_column_header__extraStickyContent"] {
+        border-inline: 1px solid var(--color-lines);
+    }
 }
 
 /* Collection share modal: "Post on Mastodon" / "Share to…" ship as light
@@ -9850,3 +9942,4 @@ a:is(.active,
     background-color: var(--color-accent-focus);
     border-color: var(--color-accent-focus);
 }
+
