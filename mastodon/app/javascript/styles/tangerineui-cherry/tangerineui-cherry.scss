@@ -418,6 +418,7 @@
     --icon-bookmark-column-link-accent-active: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23d3487f' viewBox='0 0 256 256'%3E%3Cpath d='M160,56H64A16,16,0,0,0,48,72V224a8,8,0,0,0,12.65,6.51L112,193.83l51.36,36.68A8,8,0,0,0,176,224V72A16,16,0,0,0,160,56Z'%3E%3C/path%3E%3Cpath d='M192,24H88a8,8,0,0,0,0,16H192V192a8,8,0,0,0,16,0V40A16,16,0,0,0,192,24Z'%3E%3C/path%3E%3C/svg%3E");
 
     --icon-star-column-link: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%232a2d37' viewBox='0 0 256 256'%3E%3Cpath d='M229.06,108.79l-48.7,42,14.88,62.79a8.4,8.4,0,0,1-12.52,9.17L128,189.09,73.28,222.74a8.4,8.4,0,0,1-12.52-9.17l14.88-62.79-48.7-42A8.46,8.46,0,0,1,31.73,94L95.64,88.8l24.62-59.6a8.36,8.36,0,0,1,15.48,0l24.62,59.6L224.27,94A8.46,8.46,0,0,1,229.06,108.79Z' opacity='0.2'%3E%3C/path%3E%3Cpath d='M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z'%3E%3C/path%3E%3C/svg%3E");
+    --icon-star-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%232a2d37' viewBox='0 0 256 256'%3E%3Cpath d='M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z'%3E%3C/path%3E%3C/svg%3E");
     --icon-star-column-link-active: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%232a2d37' viewBox='0 0 256 256'%3E%3Cpath d='M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z'%3E%3C/path%3E%3C/svg%3E");
     --icon-star-column-link-accent: var(--icon-star-accent);
     --icon-star-column-link-accent-active: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23d3487f' viewBox='0 0 256 256'%3E%3Cpath d='M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z'%3E%3C/path%3E%3C/svg%3E");
@@ -617,6 +618,7 @@
         --icon-bookmark-column-link-accent-active: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23d05c8a' viewBox='0 0 256 256'%3E%3Cpath d='M160,56H64A16,16,0,0,0,48,72V224a8,8,0,0,0,12.65,6.51L112,193.83l51.36,36.68A8,8,0,0,0,176,224V72A16,16,0,0,0,160,56Z'%3E%3C/path%3E%3Cpath d='M192,24H88a8,8,0,0,0,0,16H192V192a8,8,0,0,0,16,0V40A16,16,0,0,0,192,24Z'%3E%3C/path%3E%3C/svg%3E");
 
         --icon-star-column-link: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23ffffff' viewBox='0 0 256 256'%3E%3Cpath d='M229.06,108.79l-48.7,42,14.88,62.79a8.4,8.4,0,0,1-12.52,9.17L128,189.09,73.28,222.74a8.4,8.4,0,0,1-12.52-9.17l14.88-62.79-48.7-42A8.46,8.46,0,0,1,31.73,94L95.64,88.8l24.62-59.6a8.36,8.36,0,0,1,15.48,0l24.62,59.6L224.27,94A8.46,8.46,0,0,1,229.06,108.79Z' opacity='0.2'%3E%3C/path%3E%3Cpath d='M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z'%3E%3C/path%3E%3C/svg%3E");
+        --icon-star-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23ffffff' viewBox='0 0 256 256'%3E%3Cpath d='M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z'%3E%3C/path%3E%3C/svg%3E");
         --icon-star-column-link-active: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23ffffff' viewBox='0 0 256 256'%3E%3Cpath d='M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z'%3E%3C/path%3E%3C/svg%3E");
         --icon-star-column-link-accent: var(--icon-star-accent);
         --icon-star-column-link-accent-active: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%23d05c8a' viewBox='0 0 256 256'%3E%3Cpath d='M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z'%3E%3C/path%3E%3C/svg%3E");
@@ -1404,8 +1406,157 @@ body.app-body  {
    per-icon rules below implement by hand on 4.x. Colouring just the icon
    wrapper keeps the labels dark and gets the active-state fill for free.
    Keyed off the module class, which exists only in 5.0. */
+/* 5.0's nav header is the site name as text; the logo only appears when the
+   instance uploads its own app icon. 4.x always shows one, so draw the theme's
+   logo into the slot Mastodon already reserves for that icon — the header is a
+   flex row with its own column-gap, so it spaces itself. Skipped when the
+   instance did supply an icon, so we never paint over its branding. */
+.app-body
+    [class*="_redesign_header__siteNameLink"]:not(:has([class*="_redesign_header__appIcon"]))::before {
+        content: "";
+        flex: 0 0 auto;
+        align-self: center;
+        width: var(--app-icon-size, 40px);
+        height: var(--app-icon-size, 40px);
+        background-image: var(--logo);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+}
 .app-body [class*="_navigation_link__icon"] {
     color: var(--color-accent);
+}
+/* 5.0 draws the nav with flat single-weight Phosphor glyphs and swaps each for a
+   filled version on the current page. 4.x Classic instead draws them two-tone —
+   a 20% wash beneath the outline — which the collapse caret above uses too, so
+   recolouring alone left the caret looking unrelated to everything around it.
+   Swap in the theme's own artwork per destination. 5.0 gives every nav icon the
+   same class, so the link's href is the only thing that distinguishes them; the
+   4.x rules key the mobile bar off href the same way. Two blocks rather than one
+   because hiding the glyph needs its own selector — the same split the big icon
+   blocks near the top of this file use. Create Feed keeps Mastodon's plus: the
+   set has no two-tone plus yet. */
+.app-body
+    :is(
+        a[href="/home"],
+        a[href="/explore"],
+        a[href="/search"],
+        a[href^="/public/"],
+        a[href^="/lists/"]:not([href="/lists/new"]),
+        a[href="/notifications"],
+        a[href="/conversations"],
+        a[href="/bookmarks"]
+    )
+    [class*="_navigation_link__icon"] {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+}
+.app-body
+    :is(
+        a[href="/home"],
+        a[href="/explore"],
+        a[href="/search"],
+        a[href^="/public/"],
+        a[href^="/lists/"]:not([href="/lists/new"]),
+        a[href="/notifications"],
+        a[href="/conversations"],
+        a[href="/bookmarks"]
+    )
+    [class*="_navigation_link__icon"] > svg {
+        display: none;
+}
+.app-body a[href="/home"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-home-accent);
+}
+.app-body a[href="/home"][aria-current="page"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-home-accent-active);
+}
+.app-body :is(a[href="/explore"], a[href="/search"]) [class*="_navigation_link__icon"] {
+    background-image: var(--icon-explore-accent);
+}
+.app-body :is(a[href="/explore"], a[href="/search"])[aria-current="page"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-explore-accent-active);
+}
+.app-body a[href^="/public/"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-globe-accent);
+}
+.app-body a[href^="/public/"][aria-current="page"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-globe-accent-active);
+}
+.app-body a[href^="/lists/"]:not([href="/lists/new"]) [class*="_navigation_link__icon"] {
+    background-image: var(--icon-dot-accent);
+}
+.app-body a[href^="/lists/"]:not([href="/lists/new"])[aria-current="page"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-dot-accent-active);
+}
+.app-body a[href="/notifications"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-bell-accent);
+}
+.app-body a[href="/notifications"][aria-current="page"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-bell-accent-active);
+}
+.app-body a[href="/conversations"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-direct-messages-accent);
+}
+.app-body a[href="/conversations"][aria-current="page"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-direct-messages-accent-active);
+}
+.app-body a[href="/bookmarks"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-bookmark-column-link-accent);
+}
+.app-body a[href="/bookmarks"][aria-current="page"] [class*="_navigation_link__icon"] {
+    background-image: var(--icon-bookmark-column-link-accent-active);
+}
+/* 5.0's left nav parks Notifications / Messages / Saved at the very bottom as a
+   three-up grid of stacked icon tiles, with the compose button above them. The
+   classic arrangement reads as one continuous list, so: lay the three out as
+   ordinary rows, move them ahead of the compose button, let the whole block
+   follow the main list instead of hugging the viewport bottom, and pin only the
+   account card and the meta footer down there. It all stays inside the nav's own
+   flex column — .list and .footer are siblings (the JSX wraps them in a fragment,
+   which emits no element), so nothing needs reparenting. */
+.app-body [class*="_redesign__footerNav"] {
+    grid-template-columns: 1fr;
+    order: 1;
+}
+/* stacked tile -> ordinary nav row, matching the links in the list above
+   (.linkStacked turns the column, strips the inline padding and switches to the
+   monospace micro type; undo all three) */
+.app-body [class*="_navigation_link__linkStacked"] {
+    flex-direction: row;
+    row-gap: 0;
+    column-gap: var(--space-2);
+    padding-inline: var(--space-2);
+    min-height: 36px;
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--ls-normal);
+}
+.app-body [class*="_navigation_link__linkStacked"] [class*="_navigation_link__label"] {
+    text-align: start;
+}
+/* the unread badge is absolutely placed for the tile layout */
+.app-body [class*="_navigation_link__linkStacked"] [class*="_navigation_link__badge"] {
+    position: static;
+}
+/* exact class, not a substring: "__footer" is also a prefix of "__footerNav".
+   padding-inline matches .list's own margin-inline so both line up. */
+.app-body ._navigation_panel_redesign__footer {
+    justify-content: flex-start;
+    padding-inline: var(--space-4);
+}
+.app-body [class*="_redesign__newPostButton"] {
+    order: 2;
+    margin-bottom: 0;
+}
+.app-body [class*="_account_card_and_menu__root"] {
+    order: 3;
+    margin-top: auto;
+}
+.app-body ._navigation_panel_redesign__footer [class*="_footer_links__root"] {
+    order: 4;
 }
 /* Home icon */
 .app-body .icon-home {
@@ -4599,6 +4750,96 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
     transform: rotate(0);
     background-image: var(--icon-down-accent-active);
 }
+/* 5.0's redesigned nav drops the collapsible_panel markup the two rules above
+   key off and renders its own ListSection, whose toggle is a plain Phosphor
+   caret as inline SVG. Swap it for the theme's circled caret the same way the
+   other icons are handled — hide the inner path, paint our artwork behind it.
+   5.0 turns the caret with the standalone `rotate` property, so match it there
+   rather than with `transform`: setting both would compose into a wrong angle.
+   The expanded rule carries the title class purely for weight — Mastodon's own
+   .title[aria-expanded='true'] & is otherwise an exact specificity tie. */
+/* 5.0's account menu marks favourites with a heart. The theme has used a star
+   for them everywhere else since 2.5, so put one back — same swap technique as
+   the nav icons, keyed on the menu entry's destination. */
+.app-body a[href="/favourites"] [class*="_menu__itemIcon"] {
+    background-image: var(--icon-star-menu);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.app-body a[href="/favourites"] [class*="_menu__itemIcon"] path {
+    display: none;
+}
+/* Hashtag rows are the one nav entry 5.0 renders without an icon at all, so
+   there is no .icon span to paint — add one. 4.x marks the items inside a
+   collapsible panel with the dot (see the list-panel rule above), which is what
+   this mirrors. */
+.app-body
+    :is(a[href^="/tags/"], a[href="/followed_tags"])[class*="_navigation_link__link"]::before {
+        content: "";
+        flex: 0 0 auto;
+        width: var(--icon-size, 20px);
+        height: var(--icon-size, 20px);
+        background-image: var(--icon-dot-accent);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+}
+/* Even vertical rhythm. Two things pulled rows out of step: footerNav adds a
+   grid gap on top of the padding-bottom every row wrapper already carries, so
+   those three sat further apart than the list above; and section headings run
+   32px against the links' 36px. */
+.app-body [class*="_redesign__footerNav"] {
+    gap: 0;
+}
+/* The section's own padding-top lands on top of the padding-bottom every row
+   wrapper already carries, so a section sat ~20px from its neighbours against
+   the 4px between ordinary rows. Drop it and let the row above set the gap. */
+.app-body li[class*="_list_section__root"] {
+    padding-top: 0;
+}
+.app-body [class*="_list_section__title"] {
+    min-height: 36px;
+    margin-bottom: var(--space-1);
+}
+/* 4.x gives the Lists and Followed-hashtags headings their own icon; 5.0's
+   ListSection renders the title as bare text. Add it back as a ::before — the
+   title is already a flex row from link-base, so the existing column-gap spaces
+   it like any other nav icon. The section's `id` prop never reaches the DOM (it
+   only keys localStorage) and a collapsed section drops its items entirely
+   (`isOpen && <ul>`), so neither id nor :has() on the contents can tell the two
+   apart. Their order can: default to the list icon, then let a section that
+   follows another one take the hashtag icon. That also keeps the icon right
+   when Followed Hashtags is absent, which happens when nothing is followed. */
+.app-body [class*="_list_section__title"]::before {
+    content: "";
+    flex: 0 0 auto;
+    width: var(--icon-size, 20px);
+    height: var(--icon-size, 20px);
+    background-image: var(--icon-list-accent);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.app-body
+    li[class*="_list_section__root"] ~ li[class*="_list_section__root"]
+    [class*="_list_section__title"]::before {
+        background-image: var(--icon-hashtag-accent);
+}
+.app-body [class*="_list_section__toggleIcon"] {
+    background-image: var(--icon-down-accent);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    rotate: 90deg;
+}
+.app-body [class*="_list_section__toggleIcon"] > path {
+    display: none;
+}
+.app-body [class*="_list_section__title"][aria-expanded="true"] > [class*="_list_section__toggleIcon"] {
+    background-image: var(--icon-down-accent-active);
+    rotate: 0deg;
+}
 .app-body .navigation-panel__list-panel__header .icon-button {
     padding: 8px;
 }
@@ -5668,6 +5909,39 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
 .app-body .search__icon-wrapper {
     top: 50%;
     transform: translateY(-50%);
+}
+/* 5.0 keeps the same Search component but moved the input's own styling into a
+   CSS module, so .search__input below no longer matches and the field fell back
+   to Mastodon's transparent pill. Same treatment, new hook. */
+.app-body [class*="_components_search__search"] {
+    border-radius: 8px;
+    background-color: var(--color-accent-bg);
+    color: var(--color-content-fg);
+    border: 1px solid var(--color-accent-lines);
+    font-weight: 500;
+    outline-offset: 0;
+    outline: 0 solid var(--color-accent-bg);
+    transition:
+        border-color .2s,
+        background-color .2s,
+        outline .2s;
+}
+.app-body [class*="_components_search__search"]::placeholder {
+    font-weight: 500;
+    color: var(--color-accent-text);
+}
+.app-body [class*="_components_search__search"]:focus {
+    border-color: var(--color-accent);
+    background-color: var(--color-content-bg);
+    outline: 3px solid var(--color-accent-bg);
+}
+.app-body [class*="_components_search__search"]:focus::placeholder {
+    color: var(--color-content-fg);
+    opacity: .4;
+}
+/* The magnifier sits in its own wrapper and keeps currentColor. */
+.app-body [class*="_components_search__searchIcon"] {
+    color: var(--color-accent);
 }
 .app-body .search__input:where(:not(.active), .active) {
     border-radius: 8px;
