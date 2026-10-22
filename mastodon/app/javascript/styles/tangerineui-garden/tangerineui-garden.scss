@@ -2029,7 +2029,7 @@ body.app-body  {
 .app-body a.status-link:not(.mention, .hashtag),
 .app-body .status__content a.unhandled-link,
 .app-body a:is(.status-link, .mention, .navigation-bar__profile-edit) span,
-.app-body :is(.account__header__fields, .account__header__content, [class*="_account_bio__bio"]) a span {
+.app-body :is(.account__header__fields, .account__header__content, [class*="_account_bio__bio"], [class*="_feat_account_edit__bio"]) a span {
     text-decoration-line: underline;
     text-decoration-color: color-mix(in srgb, var(--color-accent), transparent 55%);
     text-decoration-thickness: 2px;
@@ -2038,7 +2038,7 @@ body.app-body  {
 .app-body a.status-link:not(.mention, .hashtag):is(:active, :focus, :hover),
 .app-body .status__content a.unhandled-link:hover,
 .app-body a:is(.status-link, .mention, .navigation-bar__profile-edit):is(:active, :focus, :hover) span,
-.app-body :is(.account__header__fields, .account__header__content, [class*="_account_bio__bio"], .trends__item__name) a:is(:active, :focus, :hover) span,
+.app-body :is(.account__header__fields, .account__header__content, [class*="_account_bio__bio"], [class*="_feat_account_edit__bio"], .trends__item__name) a:is(:active, :focus, :hover) span,
 .app-body
     :is(
         .detailed-status__display-name,
@@ -2056,7 +2056,7 @@ body.app-body  {
         text-underline-offset: 2px;
 }
 .app-body a.mention:is(:active, :focus, :hover),
-.app-body :is(.account__header__fields, .account__header__content, [class*="_account_bio__bio"]) a:is(:active, :focus, :hover),
+.app-body :is(.account__header__fields, .account__header__content, [class*="_account_bio__bio"], [class*="_feat_account_edit__bio"]) a:is(:active, :focus, :hover),
 .app-body :is(.detailed-status__datetime, .status__relative-time):is(:active, :focus, :hover) {
     text-decoration: none !important;
 }
@@ -4123,6 +4123,18 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     background-color: rgba(0, 0, 0, .1);
     border-radius: 6px;
 }
+/* 5.0 draws Hide, ALT and the other on-media pills as redesign buttons inside
+   a data-color-scheme="dark" island, where Mastodon's own palette comes back,
+   so they turned lavender with a navy label. Neutral instead, like the
+   theme's spoiler label: the content background and text colour of the page,
+   with the light hairline. */
+.app-body [class*="_button_redesign__base"][class*="_button_redesign__contrastOnMedia"]:not([class*="_button_redesign__accent"]):not([class*="_button_redesign__destructive"]) {
+    --bg: var(--color-content-bg);
+    --bg-hover: var(--color-content-secondary-bg);
+    --fg: var(--color-content-fg);
+    /* Mastodon's own border here is the island's border colour (0,4,0) */
+    border: 1px solid var(--color-lines-translucent);
+}
 .app-body .spoiler-button:not(.spoiler-button--minified) ~ .media-gallery__item :is(.media-gallery__alt__label, .media-gallery__gifv__label) {
     display: none;
 }
@@ -5242,7 +5254,8 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
    themselves; the theme underlines the text inside them instead (see Links),
    so the link's own line has to go or mentions show two. */
 .app-body .account__header__content a,
-.app-body [class*="_account_bio__bio"] a {
+.app-body [class*="_account_bio__bio"] a,
+.app-body [class*="_feat_account_edit__bio"] a /* the same bio on the Edit Profile page */ {
     color: var(--color-accent-text);
     text-decoration: none;
 }
@@ -7076,10 +7089,38 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
 .app-body .button.disabled {
     opacity: .7;
 }
-.app-body .button[class*="verifiedLinkHelpButton"],
-.app-body .button[class*="verifiedLinkHelpButton"]:is(:active, :hover, :focus) {
-    color: var(--color-accent-fg);
+/* Edit Profile page. Reorder fields, Customize and the verified-link help are
+   secondary actions, but as plain .button they came out as solid accent,
+   as loud as the page's main action: give them the light accent tint of the
+   theme's secondary buttons. The pencil and bin are bare icon buttons in the
+   accent like the theme's others (Mastodon frames them in an 8px box), and
+   the bin turns red on hover. */
+.app-body .button:is([class*="_feat_account_edit__editButton"], [class*="verifiedLinkHelpButton"]) {
+    border: 0;
+    background-color: color-mix(in srgb, var(--color-accent), transparent 82%);
+    color: var(--color-accent-text);
     text-decoration: none;
+}
+/* :not(.button-secondary) matches the general .button hover rule further down,
+   which is as specific and later, and would fill these solid on hover. */
+.app-body .button:is([class*="_feat_account_edit__editButton"], [class*="verifiedLinkHelpButton"]):not(.button-secondary):is(:active, :hover, :focus) {
+    background-color: color-mix(in srgb, var(--color-accent), transparent 70%);
+    color: var(--color-accent-text);
+    text-decoration: none;
+}
+.app-body .icon-button[class*="_feat_account_edit__editButton"] {
+    border-color: transparent;
+    border-radius: 999px;
+    background-color: transparent;
+    color: var(--color-accent);
+}
+.app-body .icon-button[class*="_feat_account_edit__editButton"]:is(:active, :hover, :focus-visible) {
+    background-color: var(--color-accent-bg);
+    color: var(--color-accent);
+}
+.app-body .icon-button[class*="_feat_account_edit__deleteButton"]:is(:active, :hover, :focus-visible) {
+    background-color: color-mix(in srgb, var(--color-reject), transparent 84%);
+    color: var(--color-reject);
 }
 .app-body .text-icon-button.active,
 .app-body .button.button-tertiary,
@@ -9999,6 +10040,8 @@ a:is(.active,
     [class*="_account_header__followButton"][class*="_button_redesign__tonal"]:is(:active, :focus) {
         background-color: var(--color-accent-focus);
         border-color: var(--color-accent-focus);
+        /* the labelled-tonal rule above sets accent text on hover and press */
+        color: var(--color-accent-fg);
 }
 /* One treatment for every bare button that opens a menu — the post action bar,
    the column header, the profile header, the account card — plus the action
