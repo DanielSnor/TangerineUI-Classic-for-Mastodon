@@ -3925,6 +3925,23 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     outline: 1px solid var(--color-lines-translucent);
     outline-offset: -1px;
 }
+/* 5.0 clips attachments at 16px corners, and a more specific stock rule drops
+   the outline above, so media had no edge at all and light images (screenshots,
+   infographics) ran straight into the post. Match the pieces to 5.0's radius
+   and draw the hairline as an inset overlay that follows the corners. From
+   Tangerine Neue. */
+.app-body [class*="_comp_status_attachments__galleryWrapper"] :is(.media-gallery__item, .media-gallery__item-thumbnail, .media-gallery__item-thumbnail img, .media-gallery__preview, .video-player, .audio-player) {
+    border-radius: var(--radius-4, 16px) !important;
+}
+.app-body [class*="_comp_status_attachments__galleryWrapper"] :is(.media-gallery__item, .video-player, .audio-player)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px var(--color-lines-translucent);
+    pointer-events: none;
+}
 
 /* Quote posts */
 .app-body .status__quote {
@@ -7485,6 +7502,76 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
 }
 .app-body .dialog-modal {
     border-radius: 8px;
+}
+/* 5.0 draws its own dialogs (Discard draft and the like) as a rounded shell
+   with pill buttons, while the older safety dialogs (mute, block, confirm)
+   keep the 4.x box with a tinted footer strip; side by side they read as two
+   designs. On 5.0 only, give the older ones the same shell, after Tangerine
+   Neue, but in the theme's own button voice: the secondary actions take the
+   light accent tint of other secondary buttons, the main one stays solid.
+   No opening animation. */
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal {
+    width: 480px;
+    max-width: calc(100vw - 32px);
+    padding: 16px;
+    border-radius: 24px;
+    border: 1px solid var(--color-lines);
+    outline: 0;
+    box-shadow: 0 24px 48px -12px var(--color-shadow-primary);
+    background-color: var(--color-content-bg);
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal:has(.safety-action-modal__confirmation) {
+    width: 400px;
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body :is(.safety-action-modal__top, .safety-action-modal__bottom) {
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal__bottom {
+    margin-top: 16px;
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal__confirmation {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 13px;
+    line-height: 18px;
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal__confirmation h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal__confirmation p {
+    margin: 0;
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal__actions {
+    justify-content: space-between;
+    gap: 16px;
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal__actions :is(.link-button, .button) {
+    min-height: 40px;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    text-decoration: none;
+    transition: background-color .2s;
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal__actions .link-button {
+    color: var(--color-accent-text);
+    background-color: color-mix(in srgb, var(--color-accent), transparent 82%);
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal__actions .link-button:hover {
+    background-color: color-mix(in srgb, var(--color-accent), transparent 70%);
+}
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body .safety-action-modal__actions .button {
+    margin-inline-start: auto;
 }
 @media screen and (max-width: 630px) {
     .app-body .dialog-modal {
