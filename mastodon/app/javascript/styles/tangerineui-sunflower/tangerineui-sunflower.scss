@@ -5990,8 +5990,10 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
 }
 /* 5.0 keeps the same Search component but moved the input's own styling into a
    CSS module, so .search__input below no longer matches and the field fell back
-   to Mastodon's transparent pill. Same treatment, new hook. */
-.app-body [class*="_components_search__search"] {
+   to Mastodon's transparent pill. Same treatment, new hook, matched on the input
+   only: the icon wrapper's class starts with the same name (…__searchIcon) and
+   would otherwise get the field's tint and border as a disc under the glyph. */
+.app-body input[class*="_components_search__search"] {
     border-radius: 8px;
     background-color: var(--color-accent-bg);
     color: var(--color-content-fg);
@@ -6004,16 +6006,16 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
         background-color .2s,
         outline .2s;
 }
-.app-body [class*="_components_search__search"]::placeholder {
+.app-body input[class*="_components_search__search"]::placeholder {
     font-weight: 500;
     color: var(--color-accent-text);
 }
-.app-body [class*="_components_search__search"]:focus {
+.app-body input[class*="_components_search__search"]:focus {
     border-color: var(--color-accent);
     background-color: var(--color-content-bg);
     outline: 3px solid var(--color-accent-bg);
 }
-.app-body [class*="_components_search__search"]:focus::placeholder {
+.app-body input[class*="_components_search__search"]:focus::placeholder {
     color: var(--color-content-fg);
     opacity: .4;
 }
