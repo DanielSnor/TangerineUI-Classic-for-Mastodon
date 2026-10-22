@@ -743,7 +743,17 @@
 body.app-body  {
     background-color: var(--color-bg);
     color: var(--color-fg);
-    font-family: ui-rounded, "mastodon-font-sans-serif", sans-serif;
+    font-family: ui-rounded, "SF Pro Rounded", "mastodon-font-sans-serif", sans-serif;
+}
+/* 5.0 sets type through --font-body (Inter) and --font-heading (Cal Sans UI)
+   on <html>, so the font-family above no longer reached most text. Point both
+   at the same rounded stack, unless the user picked Mastodon's system-font
+   preference. "SF Pro Rounded" is named after ui-rounded because only Safari
+   honours the keyword; Chromium browsers pick the font up by name. From
+   Tangerine Neue. */
+:root:root:not(.system-font) {
+    --font-body: ui-rounded, "SF Pro Rounded", "mastodon-font-sans-serif", Inter, sans-serif;
+    --font-heading: ui-rounded, "SF Pro Rounded", "mastodon-font-sans-serif", Inter, sans-serif;
 }
 
 ::selection {
@@ -10062,11 +10072,36 @@ a:is(.active,
         color: var(--color-accent);
 }
 
+/* …except the page controls on the right of the column header (settings,
+   "…", bookmark): 4.x draws those in the text colour and brings the accent in
+   only on hover and while open, keeping the accent for actions on content.
+   The back button on the left stays in the accent, as on 4.x. */
+.app-body
+    [class*="_column_header__layout"]
+    [class*="_column_header__rightButtons"]
+    [class*="_button_redesign__base"] [class*="_button_redesign__icon"] {
+        color: var(--color-content-fg);
+}
+.app-body
+    [class*="_column_header__layout"]
+    [class*="_column_header__rightButtons"]
+    [class*="_button_redesign__base"]:is(:hover, :focus-visible, :active, [aria-expanded="true"], [aria-pressed="true"]) [class*="_button_redesign__icon"] {
+        color: var(--color-accent);
+}
+
 /* 4.x frames the column header with the line colour on three sides, rounded
    at the top, and the column body continues the sides below it. 5.0 ships the
    header without any border (upstream has it commented out), so the frame
-   stops dead above the title. Mobile keeps the stock edge-to-edge header. */
-@media screen and (min-width:761px) {
+   stops dead above the title. Mobile keeps the stock edge-to-edge header.
+   Same breakpoint as the feed's own side borders (removed at 770px and
+   below), so header and feed never disagree. The header lays a fade under
+   itself so posts soften as they scroll beneath it; it spans the column, so
+   it is inset by a pixel each side to leave the borders intact (from
+   Tangerine Neue). */
+@media screen and (min-width:771px) {
+    .app-body [class*="_column_header__root"]::after {
+        inset-inline: 1px;
+    }
     .app-body [class*="_column_header__layout"] {
         border: 1px solid var(--color-lines);
         border-bottom: 0;
@@ -10076,6 +10111,23 @@ a:is(.active,
     .app-body [class*="_column_header__root"] + .explore__search-header {
         border-inline: 1px solid var(--color-lines);
     }
+}
+
+/* Mastodon shrinks the loading spinner inside its older .button and
+   .icon-button but not inside the redesigned buttons, so while account
+   relationships load (the follow buttons on a following list) a 50px page
+   spinner overflowed a 24px button, and the accent spinner vanished on a
+   solid accent one. Make it a 16px inline spinner in the button's own text
+   colour. From Tangerine Neue. */
+.app-body [class*="_button_redesign__base"] .loading-indicator {
+    position: static;
+    transform: none;
+    color: inherit;
+}
+.app-body [class*="_button_redesign__base"] .loading-indicator .circular-progress {
+    width: 16px;
+    height: 16px;
+    color: inherit;
 }
 
 /* The collection notification boxes its "⋮" in a 1px frame of its own
