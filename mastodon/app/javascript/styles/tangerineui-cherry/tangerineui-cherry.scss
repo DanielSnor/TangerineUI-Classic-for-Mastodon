@@ -11,7 +11,7 @@
 
 /* 📄 Meta */
 :root {
-    --version: "v2.6.5c1";
+    --version: "v3.0.0c1";
 
     --variant-name: "Cherry";
     --variant-emoji: "\1F352\00A0";
@@ -8002,6 +8002,15 @@ a:is(.active,
     content: var(--meta);
     color: var(--color-fg-muted);
     order: 10;
+}
+/* 4.6 already rebuilt the footer as a CSS module (link_footer.module.scss),
+   so .link-footer above has not matched since then and the signature line
+   was missing on 4.6–4.7. Same treatment as the 5.0 footer below. The
+   multi-column layout is left out: its drawer shows the line already. */
+.app-body [class*="_link_footer__wrapper"]:not([data-context="multi-column"])::after {
+    content: var(--meta);
+    color: var(--color-fg-muted);
+    white-space: pre-line;
 }
 /* 5.0 rebuilt the meta footer as a CSS module, so .link-footer above never
    matches there: the links fall back to Mastodon's own color and the theme's
