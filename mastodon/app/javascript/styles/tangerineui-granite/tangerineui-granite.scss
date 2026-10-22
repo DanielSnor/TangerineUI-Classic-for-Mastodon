@@ -4135,6 +4135,18 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     /* Mastodon's own border here is the island's border colour (0,4,0) */
     border: 1px solid var(--color-lines-translucent);
 }
+/* The ALT and GIF badges are still the older labels, translucent on 4.x so the
+   picture showed through (and on 5.0 the GIF badge picked up the island's
+   blue). On 5.0 they sit next to the Hide pill above, so give them the same
+   neutral pill. 4.x keeps its translucent badges. */
+html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body :is(.media-gallery__alt__label, .media-gallery__gifv__label) {
+    background-color: var(--color-content-bg);
+    color: var(--color-content-fg);
+    border: 1px solid var(--color-lines-translucent);
+    border-radius: 999px;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
 .app-body .spoiler-button:not(.spoiler-button--minified) ~ .media-gallery__item :is(.media-gallery__alt__label, .media-gallery__gifv__label) {
     display: none;
 }
@@ -9072,6 +9084,19 @@ a:is(.active,
         width: 92%;
         margin-inline: auto;
     }
+}
+/* 5.0 rebuilt the deck: each column is a module (column/styles.module.scss)
+   with a fixed width sized for four columns — clamp(360px, a quarter of the
+   space, 400px) — laid out from the left, so with fewer columns the rest of
+   the screen stayed empty on the right. Same treatment as above: content
+   columns, the spare one for opened pages included, share the free width
+   equally, at least 360px (5.0's own minimum); the navigation and the search
+   column keep their widths. The class is doubled to outrank Mastodon's rule
+   whatever the stylesheet order. */
+.layout-multiple-columns [class*="_comp_column__root"][class*="_comp_column__root"] {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 360px;
 }
 
 .app-body .switch-to-advanced {
