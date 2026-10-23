@@ -10181,6 +10181,13 @@ a:is(.active,
     }
 }
 
+/* 5.0 shows the post a notification refers to as a card that is clickable
+   through JavaScript, so it never got a pointer cursor. Cards Mastodon marks
+   as unclickable are left alone. From Tangerine Neue. */
+.app-body .notification-group__main > [class*="_comp_card__root"]:not([class*="_comp_card__rootUnclickable"]) {
+    cursor: pointer;
+}
+
 /* Mastodon shrinks the loading spinner inside its older .button and
    .icon-button but not inside the redesigned buttons, so while account
    relationships load (the follow buttons on a following list) a 50px page
