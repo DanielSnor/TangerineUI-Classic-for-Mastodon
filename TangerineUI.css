@@ -9954,11 +9954,18 @@ a:is(.active,
 }
 
 /* The pop-out composer is framed by Mastodon's elevation border in the neutral
-   line colour; 4.x and stock 5.0 both draw that frame in the accent. Only the
-   colour: the width comes from the elevation mixin, and the standalone
-   composer (headless) removes the border altogether, which this leaves alone. */
+   line colour; draw it in the accent at 2px, so the pop-out reads as one
+   strong frame. Only colour and width: the style comes from the elevation
+   mixin, so the standalone composer (headless, border: 0) and the mobile
+   full-screen one (no elevation) stay unframed. The text field inside then
+   steps down to a 1px focus ring, so the two frames don't compete. */
 .app-body [class*="_compose_redesign__root"] {
     border-color: var(--color-accent);
+    border-width: 2px;
+}
+.app-body [class*="_compose_redesign__textarea"]:focus {
+    outline: 1px solid var(--color-accent);
+    outline-offset: -1px;
 }
 
 /* 5.0 builds the post action bar from redesign buttons with color='neutral',
