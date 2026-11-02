@@ -182,6 +182,7 @@
     --color-bg-highlight: color-mix(in srgb, var(--color-accent), transparent 90%);
     --color-border-strong: var(--color-fg);
     --color-border-input: var(--color-lines);
+    --color-border-column: var(--color-lines);
     --shadow-strength-primary: 12%;
     --color-shadow-primary: color-mix(in srgb, #000000 var(--shadow-strength-primary), transparent);
     --overlay-icon-shadow: drop-shadow(0 0 8px var(--color-shadow-primary));
@@ -1583,6 +1584,61 @@ body.app-body  {
 }
 .app-body ._navigation_panel_redesign__footer [class*="_footer_links__root"] {
     order: 4;
+}
+/* 4.x has Notifications straight after the first links, but 5.0 keeps it in the
+   footer with Messages and Saved, so it cannot reach the main list by order
+   alone. On the desktop sidebar of a signed-in user, dissolve .list, .footer
+   and .footerNav so every row is an item of the nav's own flex column, then
+   order the rows: first links, Notifications, sections, Messages and Saved,
+   New Post, account card, meta footer. Dissolving .footer costs its stickiness
+   and its padding, so the rows take the inset back and the account card sticks
+   by itself. The slide-out menu and the mobile bar keep their own layout.
+   Technique from Tangerine Neue. */
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) > :is(ul[class*="_navigation_panel_redesign__list"], footer[class*="_navigation_panel_redesign__footer"]),
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) ul[class*="_navigation_panel_redesign__footerNav"] {
+    display: contents;
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) > footer::before {
+    display: none;
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) > :last-child {
+    order: 99;
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) :is(ul[class*="_navigation_panel_redesign__list"], ul[class*="_navigation_panel_redesign__footerNav"]) > li {
+    margin-inline: var(--space-4);
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) ul[class*="_navigation_panel_redesign__list"] > li {
+    order: 1;
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) li:has(> a[href="/notifications"]) {
+    order: 2;
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) ul[class*="_navigation_panel_redesign__list"] > li[class*="_list_section__root"] {
+    order: 3;
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) ul[class*="_navigation_panel_redesign__footerNav"] > li:not(:has(> a[href="/notifications"])) {
+    order: 4;
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_redesign__newPostButton"] {
+    order: 5;
+    margin-inline: calc(var(--space-4) - var(--space-1)) var(--space-4);
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_account_card_and_menu__root"] {
+    order: 6;
+    position: sticky;
+    bottom: var(--space-6);
+    box-sizing: border-box;
+    width: calc(100% - 2 * var(--space-4));
+    min-width: 0;
+    margin-inline: var(--space-4);
+    margin-bottom: var(--space-6);
+    background-color: var(--color-bg);
+    box-shadow: 0 var(--space-6) 0 0 var(--color-bg);
+}
+.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_footer_links__root"] {
+    order: 7;
+    margin-inline: var(--space-4);
+    margin-bottom: var(--space-6);
 }
 /* Home icon */
 .app-body .icon-home {
@@ -10217,11 +10273,15 @@ a:is(.active,
         border: 1px solid var(--color-lines);
         border-bottom: 0;
     }
-    .app-body [class*="_column_header__extraStickyContent"],
-    /* Explore's search sits between the header and the tab bar, outside both. */
-    .app-body [class*="_column_header__root"] + .explore__search-header {
+    .app-body [class*="_column_header__extraStickyContent"] {
         border-inline: 1px solid var(--color-lines);
     }
+}
+/* Later 5.0 builds draw the column's own side borders on its root, in the
+   theme's line colour through --color-border-column, so anything inside that
+   still draws its own would double the line. */
+.app-body [class*="_comp_column__root"] :is(.scrollable, .account__section-headline, .notification__filter-bar) {
+    border-inline: 0;
 }
 
 /* 5.0 shows the post a notification refers to as a card that is clickable
