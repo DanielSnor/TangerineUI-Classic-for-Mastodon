@@ -6028,7 +6028,7 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
    to Mastodon's transparent pill. Same treatment, new hook, matched on the input
    only: the icon wrapper's class starts with the same name (…__searchIcon) and
    would otherwise get the field's tint and border as a disc under the glyph. */
-.app-body input[class*="_components_search__search"] {
+.app-body input[class*="_comp_search__search"] {
     border-radius: 8px;
     background-color: var(--color-accent-bg);
     color: var(--color-content-fg);
@@ -6041,21 +6041,21 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
         background-color .2s,
         outline .2s;
 }
-.app-body input[class*="_components_search__search"]::placeholder {
+.app-body input[class*="_comp_search__search"]::placeholder {
     font-weight: 500;
     color: var(--color-accent-text);
 }
-.app-body input[class*="_components_search__search"]:focus {
+.app-body input[class*="_comp_search__search"]:focus {
     border-color: var(--color-accent);
     background-color: var(--color-content-bg);
     outline: 3px solid var(--color-accent-bg);
 }
-.app-body input[class*="_components_search__search"]:focus::placeholder {
+.app-body input[class*="_comp_search__search"]:focus::placeholder {
     color: var(--color-content-fg);
     opacity: .4;
 }
 /* The magnifier sits in its own wrapper and keeps currentColor. */
-.app-body [class*="_components_search__searchIcon"] {
+.app-body [class*="_comp_search__searchIcon"] {
     color: var(--color-accent);
 }
 .app-body .search__input:where(:not(.active), .active) {
@@ -7134,6 +7134,27 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
     background-color: color-mix(in srgb, var(--color-reject), transparent 84%);
     color: var(--color-reject);
 }
+/* Later 5.0 builds moved this page to redesign buttons, without the classes
+   above: the labelled ones are tonal and take the secondary look on their
+   own, the rest need the same treatment through the button's own variables,
+   which also leaves its hover logic and disabled fade working. */
+.app-body [class*="verifiedLinkHelpButton"][class*="_button_redesign__base"] {
+    --bg: color-mix(in srgb, var(--color-accent), transparent 82%);
+    --bg-hover: color-mix(in srgb, var(--color-accent), transparent 70%);
+    --fg: var(--color-accent-text);
+    text-decoration: none;
+}
+.app-body [class*="_feat_account_edit__section"] [class*="_button_redesign__iconOnly"] {
+    --bg: transparent;
+    --bg-hover: var(--color-accent-bg);
+    --fg: var(--color-accent);
+}
+.app-body [class*="_feat_account_edit__section"] [class*="_button_redesign__iconOnly"][class*="_button_redesign__destructive"] {
+    --bg-hover: color-mix(in srgb, var(--color-reject), transparent 84%);
+}
+.app-body [class*="_feat_account_edit__section"] [class*="_button_redesign__iconOnly"][class*="_button_redesign__destructive"]:is(:hover, :active, :focus-visible) {
+    --fg: var(--color-reject);
+}
 .app-body .text-icon-button.active,
 .app-body .button.button-tertiary,
 .app-body .account__header__fields a,
@@ -7142,6 +7163,7 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
 .app-body .status__content a,
 .app-body .status__content a.hashtag,
 .app-body .status__content a.unhandled-link,
+.app-body [class*="_comp_status_quote__body"] a, /* 5.0's quoted post */
 .app-body .column-back-button,
 .app-body .about__section__title,
 .app-body .prose a,
@@ -9926,7 +9948,7 @@ a:is(.active,
    icon-only button with no counterpart on 4.x, and a border would look wrong
    on it. The redesign button is already pill-shaped, so the border is enough. */
 .app-body
-    [class*="_compose_redesign__toolbar"]
+    [class*="_feat_compose__toolbar"]
     [class*="_button_redesign__base"]:not([class*="_button_redesign__iconOnly"]) {
         border: 1px solid var(--color-accent);
         color: var(--color-accent);
@@ -9939,15 +9961,15 @@ a:is(.active,
    footer and is already a filled accent button, so colouring it too would hide
    its label. */
 .app-body
-    [class*="_compose_redesign__footer"]
+    [class*="_feat_compose__footer"]
     [class*="_button_redesign__iconOnly"]
     [class*="_button_redesign__icon"],
 .app-body
-    [class*="_compose_redesign__toolbar"]
+    [class*="_feat_compose__toolbar"]
     [class*="_button_redesign__iconOnly"]
     [class*="_button_redesign__icon"],
 .app-body
-    [class*="_compose_redesign__header"]
+    [class*="_feat_compose__header"]
     [class*="_button_redesign__iconOnly"]
     [class*="_button_redesign__icon"] {
         color: var(--color-accent);
@@ -9959,11 +9981,11 @@ a:is(.active,
    mixin, so the standalone composer (headless, border: 0) and the mobile
    full-screen one (no elevation) stay unframed. The text field inside then
    steps down to a 1px focus ring, so the two frames don't compete. */
-.app-body [class*="_compose_redesign__root"] {
+.app-body [class*="_feat_compose__root"] {
     border-color: var(--color-accent);
     border-width: 2px;
 }
-.app-body [class*="_compose_redesign__textarea"]:focus {
+.app-body [class*="_feat_compose__textarea"]:focus {
     outline: 1px solid var(--color-accent);
     outline-offset: -1px;
 }
@@ -10099,8 +10121,8 @@ a:is(.active,
    order — that is the grey hover of 5.0 bleeding through. */
 .app-body [class*="_button_redesign__base"][aria-expanded],
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"],
-.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"],
-.app-body [class*="_compose_redesign__header"] [class*="_button_redesign__iconOnly"],
+.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"],
+.app-body [class*="_feat_compose__header"] [class*="_button_redesign__iconOnly"],
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"] {
     background-color: transparent;
     border-color: transparent;
@@ -10110,10 +10132,10 @@ a:is(.active,
 .app-body [class*="_button_redesign__base"][aria-expanded]:focus-visible,
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"]:focus-visible,
-.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
-.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"]:focus-visible,
-.app-body [class*="_compose_redesign__header"] [class*="_button_redesign__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
-.app-body [class*="_compose_redesign__header"] [class*="_button_redesign__iconOnly"]:focus-visible,
+.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"]:focus-visible,
+.app-body [class*="_feat_compose__header"] [class*="_button_redesign__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_feat_compose__header"] [class*="_button_redesign__iconOnly"]:focus-visible,
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:focus-visible {
     background-color: var(--color-accent-bg);
@@ -10122,9 +10144,9 @@ a:is(.active,
 .app-body [class*="_button_redesign__base"][aria-expanded][aria-expanded="true"],
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"]:active,
 .app-body [class*="_status__actions"] [class*="_button_redesign__base"][aria-expanded="true"],
-.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"]:active,
-.app-body [class*="_compose_redesign__footer"] [class*="_button_redesign__iconOnly"][aria-expanded="true"],
-.app-body [class*="_compose_redesign__header"] [class*="_button_redesign__iconOnly"]:active,
+.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"]:active,
+.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"][aria-expanded="true"],
+.app-body [class*="_feat_compose__header"] [class*="_button_redesign__iconOnly"]:active,
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:active,
 .app-body [class*="_column_header__layout"] [class*="_button_redesign__base"][aria-expanded="true"] {
     background-color: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 75%);
@@ -10162,6 +10184,20 @@ a:is(.active,
     [class*="_column_header__rightButtons"]
     [class*="_button_redesign__base"]:is(:hover, :focus-visible, :active, [aria-expanded="true"], [aria-pressed="true"]) [class*="_button_redesign__icon"] {
         color: var(--color-accent);
+}
+
+/* The Edit Profile camera buttons are menu triggers too, but they sit on the
+   photo, where a bare accent glyph disappears: give them the solid neutral
+   look of the on-media pills. */
+.app-body [class*="_feat_account_edit__imageButton"][class*="_button_redesign__base"] {
+    background-color: var(--color-content-bg);
+    border: 1px solid var(--color-lines-translucent);
+}
+.app-body [class*="_feat_account_edit__imageButton"][class*="_button_redesign__base"][class*="_button_redesign__iconOnly"] [class*="_button_redesign__icon"] {
+    color: var(--color-content-fg);
+}
+.app-body [class*="_feat_account_edit__imageButton"][class*="_button_redesign__base"][class*="_button_redesign__iconOnly"]:is(:hover, :focus-visible, :active, [aria-expanded="true"]) [class*="_button_redesign__icon"] {
+    color: var(--color-accent);
 }
 
 /* 4.x frames the column header with the line colour on three sides, rounded
