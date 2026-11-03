@@ -1642,16 +1642,22 @@ body.app-body  {
 }
 /* 4.x keeps the account and the compose button in the right column, under
    search. 5.0 renders both in the sidebar, and CSS cannot move them into
-   another container, but anchor positioning can show them there, hung below
-   the search field. Both hang from search itself (an element can only anchor
-   to something earlier in the document, and the card comes after New Post),
-   so the card gets a fixed height and New Post sits that far further down.
-   While the search menu is open both step aside, or they would peek out
-   between the field and the menu. Only where the right column is shown —
-   single column, wider than 1175px — and only where the browser knows
-   anchors; everywhere else both stay in the sidebar. */
+   another container, but anchor positioning can show them there. They line
+   up with the right column through the content column's right edge, which
+   every view has (Explore and search results hide the sidebar search), and
+   take the right column's width: its 16px inset, at most 288px wide. Below
+   the search field where there is one, at the top of the column where there
+   is not. An element can only anchor to something earlier in the document
+   and the card comes after New Post, so the card gets a fixed height and New
+   Post sits that far further down. While the search menu is open both step
+   aside, or they would peek out between the field and the menu. Only where
+   the right column is shown — single column, wider than 1175px — and only
+   where the browser knows anchors; everywhere else both stay in the sidebar. */
 @supports (anchor-name: --a) {
     @media (min-width: 1176px) {
+        .layout-single-column [class*="_comp_columns_area__main"] {
+            anchor-name: --tng-main;
+        }
         .layout-single-column [class*="_comp_columns_area__discoveryWrapper"] .search {
             anchor-name: --tng-search;
         }
@@ -1665,18 +1671,22 @@ body.app-body  {
         }
         .app-body.layout-single-column nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) {
             --tng-card-height: 52px;
+            --tng-top: 20px;
             /* Mastodon isolates the sidebar into its own stacking context.
                Once its lists overflow it becomes a live scroller, and Safari
                then paints our fixed children inside the scroller's clip, out
                of sight on the right. Without the isolation they escape it. */
             isolation: auto;
         }
+        .app-body.layout-single-column:has([class*="_comp_columns_area__discoveryWrapper"] .search) nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) {
+            --tng-top: calc(anchor(--tng-search bottom) + 12px);
+        }
         .app-body.layout-single-column nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_account_card_and_menu__root"] {
             position: fixed;
-            position-anchor: --tng-search;
-            top: calc(anchor(bottom) + 12px);
-            left: anchor(left);
-            width: anchor-size(width);
+            top: var(--tng-top);
+            left: calc(anchor(--tng-main right) + 16px);
+            right: max(16px, calc(anchor(--tng-main right) - 304px));
+            width: auto;
             height: var(--tng-card-height);
             box-sizing: border-box;
             display: flex;
@@ -1686,9 +1696,8 @@ body.app-body  {
         }
         .app-body.layout-single-column nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_redesign__newPostButton"] {
             position: fixed;
-            position-anchor: --tng-search;
-            top: calc(anchor(bottom) + 12px + var(--tng-card-height) + 12px);
-            left: anchor(left);
+            top: calc(var(--tng-top) + var(--tng-card-height) + 12px);
+            left: calc(anchor(--tng-main right) + 16px);
             margin: 0;
             padding: 0;
         }
