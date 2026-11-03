@@ -1640,6 +1640,50 @@ body.app-body  {
     margin-inline: var(--space-4);
     margin-bottom: var(--space-6);
 }
+/* 4.x keeps the account and the compose button in the right column, under
+   search. 5.0 renders both in the sidebar, and CSS cannot move them into
+   another container, but anchor positioning can show them there, hung below
+   the search field. Both hang from search itself (an element can only anchor
+   to something earlier in the document, and the card comes after New Post),
+   so the card gets a fixed height and New Post sits that far further down.
+   While the search menu is open both step aside, or they would peek out
+   between the field and the menu. Only where the right column is shown —
+   single column, wider than 1175px — and only where the browser knows
+   anchors; everywhere else both stay in the sidebar. */
+@supports (anchor-name: --a) {
+    @media (min-width: 1176px) {
+        .layout-single-column [class*="_comp_columns_area__discoveryWrapper"] .search {
+            anchor-name: --tng-search;
+        }
+        .app-body.layout-single-column nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) {
+            --tng-card-height: 52px;
+        }
+        .app-body.layout-single-column nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_account_card_and_menu__root"] {
+            position: fixed;
+            position-anchor: --tng-search;
+            top: calc(anchor(bottom) + 12px);
+            left: anchor(left);
+            width: anchor-size(width);
+            height: var(--tng-card-height);
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            box-shadow: none;
+        }
+        .app-body.layout-single-column nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_redesign__newPostButton"] {
+            position: fixed;
+            position-anchor: --tng-search;
+            top: calc(anchor(bottom) + 12px + var(--tng-card-height) + 12px);
+            left: anchor(left);
+            margin: 0;
+            padding: 0;
+        }
+        .app-body.layout-single-column:has([class*="_comp_columns_area__discoveryWrapper"] .search.active) :is([class*="_account_card_and_menu__root"], [class*="_redesign__newPostButton"]) {
+            visibility: hidden;
+        }
+    }
+}
 /* Home icon */
 .app-body .icon-home {
     background-image: var(--icon-home);
