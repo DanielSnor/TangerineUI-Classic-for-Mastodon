@@ -9263,6 +9263,34 @@ a:is(.active,
     flex: 1 1 0;
     width: auto;
     min-width: 360px;
+    max-width: 600px;
+}
+/* The navigation and the search column take their single-column width,
+   320px each, and content columns stop at the single-column 600px. Whatever
+   width is left over centres the deck: auto margins on its outer columns,
+   which, unlike centring the row, keep the left edge reachable once the deck
+   overflows and scrolls sideways. The deck pads only its right end, which
+   would leave it half that padding off centre, out of line with the centred
+   composer; pad the left end the same. */
+.layout-multiple-columns [class*="_styles_multi_column__root"] {
+    padding-inline-start: var(--multi-column-gap);
+}
+.layout-multiple-columns [class*="_styles_multi_column__navigationWrapper"] {
+    flex: 0 0 320px;
+    width: 320px;
+    margin-inline-start: auto;
+}
+.layout-multiple-columns [class*="_styles_multi_column__discoveryColumn"][class*="_comp_column__root"][class*="_comp_column__root"] {
+    flex: 0 0 320px;
+    width: 320px;
+    min-width: 0;
+    max-width: none;
+    margin-inline-end: auto;
+}
+/* The composer opens in the deck's grid next to the navigation. Give it the
+   single-column width, 600px, centred on the whole screen instead. */
+.layout-multiple-columns [class*="_feat_compose_trigger__root"] {
+    --columns-area-grid-columns: minmax(0, 1fr) minmax(0, 600px) minmax(0, 1fr);
 }
 
 .app-body .switch-to-advanced {
