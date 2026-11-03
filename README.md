@@ -109,6 +109,12 @@ All variants of TangerineUI Classic support Mastodon's multi-column layout — r
 <img width="1784" alt="Mastodon's advanced web interface featuring TangerineUI Classic, split diagonally between light and dark mode" src="./art/Screenshots/TangerineUI-advanced.png">  
 
 
+🆕 **Mastodon 5.0 (nightly)**  
+TangerineUI Classic adapts to Mastodon's redesigned web interface, tested on mastodon.social's 5.0 nightly builds, keeping the same flat look and accent colors. In wide windows, the account card and New Post sit in the right column under search, where 4.x kept your account and the compose form.
+  
+<img width="1784" alt="Mastodon 5.0's redesigned web interface featuring TangerineUI Classic, split diagonally between light and dark mode, with the mobile layout on an iPhone" src="./art/Screenshots/TangerineUI-tangerine-m5.png">  
+
+
 🚀 **Playful animations**  
 The rocket flies!
   
