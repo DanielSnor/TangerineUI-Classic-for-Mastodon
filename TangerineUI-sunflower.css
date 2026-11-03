@@ -1655,6 +1655,14 @@ body.app-body  {
         .layout-single-column [class*="_comp_columns_area__discoveryWrapper"] .search {
             anchor-name: --tng-search;
         }
+        /* The card and New Post still belong to the sidebar's stacking
+           context, and the right column (sticky, same z-index, later in the
+           document) lies over them and takes their clicks. Lift the sidebar
+           above it; the search menu is above nothing of ours, as both step
+           aside while it is open. */
+        .app-body.layout-single-column [class*="_comp_columns_area__navigationWrapper"]:has(nav[data-mode="static"] ul[class*="_navigation_panel_redesign__footerNav"]) {
+            z-index: 2;
+        }
         .app-body.layout-single-column nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) {
             --tng-card-height: 52px;
         }
