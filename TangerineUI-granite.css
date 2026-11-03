@@ -1665,6 +1665,11 @@ body.app-body  {
         }
         .app-body.layout-single-column nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) {
             --tng-card-height: 52px;
+            /* Mastodon isolates the sidebar into its own stacking context.
+               Once its lists overflow it becomes a live scroller, and Safari
+               then paints our fixed children inside the scroller's clip, out
+               of sight on the right. Without the isolation they escape it. */
+            isolation: auto;
         }
         .app-body.layout-single-column nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_account_card_and_menu__root"] {
             position: fixed;
