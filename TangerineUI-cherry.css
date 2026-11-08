@@ -10458,6 +10458,15 @@ a:is(.active,
     border-inline: 0;
 }
 
+/* Column titles and dialog headings take focus from script, when a page opens
+   or a dialog appears, and show the browser's own blue ring where the rest of
+   5.0 uses the accent. From Tangerine Neue. */
+.app-body :is([class*="_comp_column_header__title"], [class*="_comp_modal_shell_redesign__title"]):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
 /* 5.0 shows the post a notification refers to as a card that is clickable
    through JavaScript, so it never got a pointer cursor. Cards Mastodon marks
    as unclickable are left alone. From Tangerine Neue. */
