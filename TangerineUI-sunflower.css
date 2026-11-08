@@ -9873,7 +9873,7 @@ a:is(.active,
 /* Pinned badge: match the other post-header labels (boosted / show thread) —
    fully-rounded pill, page background, muted bold text, accent icon; reset the
    line-height it inherits from .status__info (which clipped the label). */
-.app-body ._feat_account_timeline__pinnedBadge {
+.app-body ._comp_status_header__pinnedBadge {
     line-height: normal;
     background-color: var(--color-bg);
     border-radius: 50px;
@@ -9881,11 +9881,11 @@ a:is(.active,
     font-weight: 600;
     padding: 4px 10px;
 }
-.app-body ._feat_account_timeline__pinnedBadge ._comp_badge__content {
+.app-body ._comp_status_header__pinnedBadge ._comp_badge__content {
     line-height: normal;
     overflow: visible;
 }
-.app-body ._feat_account_timeline__pinnedBadge .icon-pinned {
+.app-body ._comp_status_header__pinnedBadge .icon-pinned {
     fill: var(--color-fg-muted);
     color: var(--color-fg-muted);
 }
