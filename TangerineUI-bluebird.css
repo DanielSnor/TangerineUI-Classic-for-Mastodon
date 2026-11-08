@@ -10161,6 +10161,40 @@ a:is(.active,
     outline-offset: -1px;
 }
 
+/* 5.0 sets the composer's title at the start of its header, with minimise and
+   close after it. Centre the title across the whole header and keep the
+   buttons on the right; the title lets clicks through to the buttons beneath
+   it. From Tangerine Neue. */
+.app-body [class*="_feat_compose__header"] {
+    position: relative;
+    align-items: center;
+}
+.app-body [class*="_feat_compose__header"] > h2 {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    pointer-events: none;
+}
+.app-body [class*="_feat_compose__header"] > h2 + * {
+    margin-inline-start: auto;
+}
+
+/* 5.0 counts characters in the monospace font; 4.x uses the theme's own, so
+   go back to it, with tabular figures so the count doesn't shift as it
+   changes. The class is matched as a substring, which also catches
+   counterError, so the muted colour is kept off it: past the limit Mastodon's
+   own error colour has to win. From Tangerine Neue. */
+.app-body [class*="_feat_compose__counter"] {
+    font-family: inherit;
+    font-variant-numeric: tabular-nums;
+}
+.app-body [class*="_feat_compose__counter"]:not([class*="_feat_compose__counterError"]) {
+    color: var(--color-fg-muted);
+}
+
 /* 5.0 builds the post action bar from redesign buttons with color='neutral',
    so reply, boost, favourite and the rest sit in grey where 4.x draws them in
    the accent. Their icons are Phosphor SVGs painted with currentColor, so
