@@ -1727,6 +1727,28 @@ body.app-body  {
         .app-body.layout-multiple-columns:has([class*="_styles_multi_column__discoveryColumn"] .search.active) :is([class*="_account_card_and_menu__root"], [class*="_redesign__newPostButton"]) {
             visibility: hidden;
         }
+        /* EXPERIMENT: the composer opens in the right column, under New Post,
+           instead of docked at the bottom of the content column. 5.0 renders
+           it before the content column and the right column, so it cannot
+           anchor to them; the card and New Post come earlier, so it hangs from
+           those: its top 12px under New Post, its right edge on the card's. */
+        .app-body.layout-single-column [class*="_account_card_and_menu__root"] {
+            anchor-name: --tng-card;
+        }
+        .app-body.layout-single-column [class*="_redesign__newPostButton"] {
+            anchor-name: --tng-newpost;
+        }
+        .app-body.layout-single-column:has(nav[data-mode="static"] ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_feat_compose_trigger__root"][data-fullscreen="false"] [class*="_feat_compose_trigger__composer"] {
+            position: fixed;
+            top: calc(anchor(--tng-newpost bottom) + 12px);
+            right: anchor(--tng-card right);
+            bottom: auto;
+            width: min(580px, calc(100vw - 32px));
+            max-height: calc(100vh - 300px);
+            overflow-y: auto;
+            border-bottom-style: solid;
+            border-radius: var(--radius-6);
+        }
     }
 }
 /* Home icon */
