@@ -10499,6 +10499,20 @@ a:is(.active,
     border-radius: 8px;
 }
 
+/* Required inputs turn green once they hold a valid value, in 5.0's text
+   inputs and in the server-rendered simple_form pages alike. Green is for
+   confirmations; the theme keeps the accent for this, as it does for poll
+   results. From Tangerine Neue. */
+.app-body [class*="_comp_form_fields_text_input__input"]:required:user-valid {
+    outline-color: color-mix(in srgb, var(--color-accent), transparent 50%);
+}
+:is(.app-body, .admin-wrapper, .form-container) .simple_form :is(input[type="text"], input[type="number"], input[type="email"], input[type="password"], input[type="url"], input[type="datetime-local"], textarea):required:valid {
+    border-color: color-mix(in srgb, var(--color-accent), transparent 50%);
+}
+.app-body [class*="_comp_form_fields_text_input__input"]:focus {
+    outline-color: var(--color-accent);
+}
+
 /* 5.0 shows the post a notification refers to as a card that is clickable
    through JavaScript, so it never got a pointer cursor. Cards Mastodon marks
    as unclickable are left alone. From Tangerine Neue. */
