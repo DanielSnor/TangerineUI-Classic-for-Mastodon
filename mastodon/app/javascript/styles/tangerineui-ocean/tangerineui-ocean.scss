@@ -168,8 +168,9 @@
    the new UI picks up the variant's palette instead of Mastodon's.
    An instance that registers no theme color gets no attribute at all
    (the helper .compact's it away), so fall back to the presence of the
-   redesigned columns-area module. */
-:root:root:is([data-theme-color], :has([class*="_comp_columns_area_"])) {
+   redesigned columns-area module, or on the server-rendered pages (sign-in,
+   sign-up, password), which have no columns area, the form container. */
+:root:root:is([data-theme-color], :has([class*="_comp_columns_area_"], .form-container)) {
     --base-color-bg: var(--color-content-bg);
     --base-color-bg-desktop: var(--color-bg);
     --base-color-fg: var(--color-content-fg);
@@ -9896,11 +9897,35 @@ a:is(.active,
    src="logo.svg">, which can't be recoloured via fill — so replace the image
    content with the themed logo. */
 .sidebar-wrapper .logo--icon,
-.logo-container .logo {
+.logo-container img.logo {
     content: var(--logo);
     width: 100px;
     height: 100px;
     object-fit: contain;
+}
+/* 5.0's sign-in, sign-up and password pages draw the Mastodon wordmark as an
+   inline <svg> inside the link, where `content` does nothing and the "m" is a
+   hard-coded gradient. Hide it and show the themed wordmark on the link (or on
+   the container, when there is no link) instead, at the wordmark's own
+   261:66 proportions. */
+.logo-container svg.logo {
+    display: none;
+}
+.logo-container > a:has(> svg.logo),
+.logo-container:not(:has(> a)):has(> svg.logo) {
+    display: block;
+    width: 174px;
+    height: 44px;
+    margin-inline: auto;
+    background-image: var(--logo-wordmark);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.logo-container > a:has(> svg.logo):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 6px;
+    border-radius: 8px;
 }
 /* On narrow displays the sidebar swaps the big logo for the Mastodon wordmark
    (.logo--wordmark). Its "m" is a hard-coded gradient inside a <use> symbol that
