@@ -9943,6 +9943,38 @@ a:is(.active,
     height: 30px;
 }
 
+/* Native form controls on the settings, admin and sign-in pages take the
+   browser's own blue; give checkboxes and radios the accent, and file inputs
+   a pill for "Choose File" in the same tint as the secondary buttons. From
+   Tangerine Neue. */
+.admin-wrapper :is(input[type="checkbox"], input[type="radio"]),
+.form-container :is(input[type="checkbox"], input[type="radio"]) {
+    accent-color: var(--color-accent);
+}
+.admin-wrapper input[type="file"],
+.form-container input[type="file"] {
+    color: var(--color-content-fg-muted);
+    font: inherit;
+}
+.admin-wrapper input[type="file"]::file-selector-button,
+.form-container input[type="file"]::file-selector-button {
+    appearance: none;
+    margin-inline-end: 12px;
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 999px;
+    background-color: var(--color-accent-bg);
+    color: var(--color-accent);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+.admin-wrapper input[type="file"]::file-selector-button:hover,
+.form-container input[type="file"]::file-selector-button:hover {
+    background-color: color-mix(in srgb, var(--color-accent), var(--color-accent-bg) 80%);
+}
+
 
 /* --- Profile header: pre-4.6 layout (optional / opinionated) --------------
    4.6 rebuilt the account header as a CSS-modules component. The rules below
