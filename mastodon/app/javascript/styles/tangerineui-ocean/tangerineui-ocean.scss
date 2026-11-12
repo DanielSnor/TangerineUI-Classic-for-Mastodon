@@ -1428,7 +1428,7 @@ body.app-body  {
    flex row with its own column-gap, so it spaces itself. Skipped when the
    instance did supply an icon, so we never paint over its branding. */
 .app-body
-    [class*="_redesign_header__siteNameLink"]:not(:has([class*="_redesign_header__appIcon"]))::before {
+    [class*="_navigation_panel_header__siteNameLink"]:not(:has([class*="_navigation_panel_header__appIcon"]))::before {
         content: "";
         flex: 0 0 auto;
         align-self: center;
@@ -1544,7 +1544,7 @@ body.app-body  {
    account card and the meta footer down there. It all stays inside the nav's own
    flex column — .list and .footer are siblings (the JSX wraps them in a fragment,
    which emits no element), so nothing needs reparenting. */
-.app-body [class*="_redesign__footerNav"] {
+.app-body [class*="_navigation_panel__footerNav"] {
     grid-template-columns: 1fr;
     order: 1;
 }
@@ -1571,11 +1571,11 @@ body.app-body  {
 }
 /* exact class, not a substring: "__footer" is also a prefix of "__footerNav".
    padding-inline matches .list's own margin-inline so both line up. */
-.app-body ._navigation_panel_redesign__footer {
+.app-body ._navigation_panel__footer {
     justify-content: flex-start;
     padding-inline: var(--space-4);
 }
-.app-body [class*="_redesign__newPostButton"] {
+.app-body [class*="_navigation_panel__newPostButton"] {
     order: 2;
     margin-bottom: 0;
 }
@@ -1583,7 +1583,7 @@ body.app-body  {
     order: 3;
     margin-top: auto;
 }
-.app-body ._navigation_panel_redesign__footer [class*="_footer_links__root"] {
+.app-body ._navigation_panel__footer [class*="_footer_links__root"] {
     order: 4;
 }
 /* 4.x has Notifications straight after the first links, but 5.0 keeps it in the
@@ -1595,36 +1595,36 @@ body.app-body  {
    and its padding, so the rows take the inset back and the account card sticks
    by itself. The slide-out menu and the mobile bar keep their own layout.
    Technique from Tangerine Neue. */
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) > :is(ul[class*="_navigation_panel_redesign__list"], footer[class*="_navigation_panel_redesign__footer"]),
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) ul[class*="_navigation_panel_redesign__footerNav"] {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) > :is(ul[class*="_navigation_panel__list"], footer[class*="_navigation_panel__footer"]),
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) ul[class*="_navigation_panel__footerNav"] {
     display: contents;
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) > footer::before {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) > footer::before {
     display: none;
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) > :last-child {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) > :last-child {
     order: 99;
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) :is(ul[class*="_navigation_panel_redesign__list"], ul[class*="_navigation_panel_redesign__footerNav"]) > li {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) :is(ul[class*="_navigation_panel__list"], ul[class*="_navigation_panel__footerNav"]) > li {
     margin-inline: var(--space-4);
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) ul[class*="_navigation_panel_redesign__list"] > li {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) ul[class*="_navigation_panel__list"] > li {
     order: 1;
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) li:has(> a[href="/notifications"]) {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) li:has(> a[href="/notifications"]) {
     order: 2;
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) ul[class*="_navigation_panel_redesign__list"] > li[class*="_list_section__root"] {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) ul[class*="_navigation_panel__list"] > li[class*="_list_section__root"] {
     order: 3;
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) ul[class*="_navigation_panel_redesign__footerNav"] > li:not(:has(> a[href="/notifications"])) {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) ul[class*="_navigation_panel__footerNav"] > li:not(:has(> a[href="/notifications"])) {
     order: 4;
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_redesign__newPostButton"] {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) [class*="_navigation_panel__newPostButton"] {
     order: 5;
     margin-inline: calc(var(--space-4) - var(--space-1)) var(--space-4);
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_account_card_and_menu__root"] {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) [class*="_account_card_and_menu__root"] {
     order: 6;
     position: sticky;
     bottom: var(--space-6);
@@ -1636,7 +1636,7 @@ body.app-body  {
     background-color: var(--color-bg);
     box-shadow: 0 var(--space-6) 0 0 var(--color-bg);
 }
-.app-body nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_footer_links__root"] {
+.app-body nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) [class*="_footer_links__root"] {
     order: 7;
     margin-inline: var(--space-4);
     margin-bottom: var(--space-6);
@@ -1673,11 +1673,11 @@ body.app-body  {
            document) lies over them and takes their clicks. Lift the sidebar
            above it; the search menu is above nothing of ours, as both step
            aside while it is open. */
-        .app-body.layout-single-column [class*="_comp_columns_area__navigationWrapper"]:has(nav[data-mode="static"] ul[class*="_navigation_panel_redesign__footerNav"]),
-        .app-body.layout-multiple-columns [class*="_styles_multi_column__navigationWrapper"]:has(nav[data-mode="static"] ul[class*="_navigation_panel_redesign__footerNav"]) {
+        .app-body.layout-single-column [class*="_comp_columns_area__navigationWrapper"]:has(nav[data-mode="static"] ul[class*="_navigation_panel__footerNav"]),
+        .app-body.layout-multiple-columns [class*="_styles_multi_column__navigationWrapper"]:has(nav[data-mode="static"] ul[class*="_navigation_panel__footerNav"]) {
             z-index: 2;
         }
-        .app-body:is(.layout-single-column, .layout-multiple-columns) nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) {
+        .app-body:is(.layout-single-column, .layout-multiple-columns) nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) {
             --tng-card-height: 52px;
             --tng-top: 20px;
             --tng-left: calc(anchor(--tng-main right) + 16px);
@@ -1688,16 +1688,16 @@ body.app-body  {
                of sight on the right. Without the isolation they escape it. */
             isolation: auto;
         }
-        .app-body.layout-multiple-columns nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) {
+        .app-body.layout-multiple-columns nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) {
             --tng-top: calc(anchor(--tng-discovery top) + 20px);
             --tng-left: calc(anchor(--tng-discovery left) + 16px);
             --tng-right: calc(anchor(--tng-discovery right) + 16px);
         }
-        .app-body.layout-single-column:has([class*="_comp_columns_area__discoveryWrapper"] .search) nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]),
-        .app-body.layout-multiple-columns:has([class*="_styles_multi_column__discoveryColumn"] .search) nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) {
+        .app-body.layout-single-column:has([class*="_comp_columns_area__discoveryWrapper"] .search) nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]),
+        .app-body.layout-multiple-columns:has([class*="_styles_multi_column__discoveryColumn"] .search) nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) {
             --tng-top: calc(anchor(--tng-search bottom) + 12px);
         }
-        .app-body:is(.layout-single-column, .layout-multiple-columns) nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_account_card_and_menu__root"] {
+        .app-body:is(.layout-single-column, .layout-multiple-columns) nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) [class*="_account_card_and_menu__root"] {
             position: fixed;
             top: var(--tng-top);
             left: var(--tng-left);
@@ -1711,20 +1711,20 @@ body.app-body  {
             box-shadow: none;
         }
         /* The card keeps its fixed height, so a long name stays on one line */
-        .app-body:is(.layout-single-column, .layout-multiple-columns) nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_account_card_and_menu__root"] :is([class*="_comp_lockup__title"], [class*="_comp_lockup__subtitle"]) {
+        .app-body:is(.layout-single-column, .layout-multiple-columns) nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) [class*="_account_card_and_menu__root"] :is([class*="_comp_lockup__title"], [class*="_comp_lockup__subtitle"]) {
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
         }
-        .app-body:is(.layout-single-column, .layout-multiple-columns) nav[class*="_navigation_panel_redesign__root"][data-mode="static"]:has(ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_redesign__newPostButton"] {
+        .app-body:is(.layout-single-column, .layout-multiple-columns) nav[class*="_navigation_panel__root"][data-mode="static"]:has(ul[class*="_navigation_panel__footerNav"]) [class*="_navigation_panel__newPostButton"] {
             position: fixed;
             top: calc(var(--tng-top) + var(--tng-card-height) + 12px);
             left: var(--tng-left);
             margin: 0;
             padding: 0;
         }
-        .app-body.layout-single-column:has([class*="_comp_columns_area__discoveryWrapper"] .search.active) :is([class*="_account_card_and_menu__root"], [class*="_redesign__newPostButton"]),
-        .app-body.layout-multiple-columns:has([class*="_styles_multi_column__discoveryColumn"] .search.active) :is([class*="_account_card_and_menu__root"], [class*="_redesign__newPostButton"]) {
+        .app-body.layout-single-column:has([class*="_comp_columns_area__discoveryWrapper"] .search.active) :is([class*="_account_card_and_menu__root"], [class*="_navigation_panel__newPostButton"]),
+        .app-body.layout-multiple-columns:has([class*="_styles_multi_column__discoveryColumn"] .search.active) :is([class*="_account_card_and_menu__root"], [class*="_navigation_panel__newPostButton"]) {
             visibility: hidden;
         }
         /* EXPERIMENT: the composer opens in the right column, under New Post,
@@ -1735,10 +1735,10 @@ body.app-body  {
         .app-body.layout-single-column [class*="_account_card_and_menu__root"] {
             anchor-name: --tng-card;
         }
-        .app-body.layout-single-column [class*="_redesign__newPostButton"] {
+        .app-body.layout-single-column [class*="_navigation_panel__newPostButton"] {
             anchor-name: --tng-newpost;
         }
-        .app-body.layout-single-column:has(nav[data-mode="static"] ul[class*="_navigation_panel_redesign__footerNav"]) [class*="_feat_compose_trigger__root"][data-fullscreen="false"] [class*="_feat_compose_trigger__composer"] {
+        .app-body.layout-single-column:has(nav[data-mode="static"] ul[class*="_navigation_panel__footerNav"]) [class*="_feat_compose_trigger__root"][data-fullscreen="false"] [class*="_feat_compose_trigger__composer"] {
             position: fixed;
             top: calc(anchor(--tng-newpost bottom) + 12px);
             right: anchor(--tng-card right);
@@ -4265,7 +4265,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
 .app-body .spoiler-button:hover ~ .media-gallery__item > .media-gallery__preview {
     outline: 1px solid var(--color-lines-translucent);
 }
-.app-body .media-gallery__actions__pill:not([class*="_comp_button_redesign"]) {
+.app-body .media-gallery__actions__pill:not([class*="_comp_button"]) {
     border-radius: 6px;
     padding: 3px 8px;
     font-weight: 500;
@@ -4286,7 +4286,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     font-weight: bold;
 }
 
-.app-body :is(.media-gallery__alt__label, .media-gallery__gifv__label):not([class*="_comp_button_redesign"]) {
+.app-body :is(.media-gallery__alt__label, .media-gallery__gifv__label):not([class*="_comp_button"]) {
     background-color: rgba(0, 0, 0, .1);
     border-radius: 6px;
 }
@@ -4295,7 +4295,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
    so they turned lavender with a navy label. Neutral instead, like the
    theme's spoiler label: the content background and text colour of the page,
    with the light hairline. */
-.app-body [class*="_button_redesign__base"][class*="_button_redesign__contrastOnMedia"]:not([class*="_button_redesign__accent"]):not([class*="_button_redesign__destructive"]) {
+.app-body [class*="_button__base"][class*="_button__media"]:not([class*="_button__accent"]):not([class*="_button__destructive"]) {
     --bg: var(--color-content-bg);
     --bg-hover: var(--color-content-secondary-bg);
     --fg: var(--color-content-fg);
@@ -5064,7 +5064,7 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
    grid gap on top of the padding-bottom every row wrapper already carries, so
    those three sat further apart than the list above; and section headings run
    32px against the links' 36px. */
-.app-body [class*="_redesign__footerNav"] {
+.app-body [class*="_navigation_panel__footerNav"] {
     gap: 0;
 }
 /* The section's own padding-top lands on top of the padding-bottom every row
@@ -7305,21 +7305,21 @@ html:is([data-theme-color], :has([class*="_comp_columns_area_"])) .app-body [cla
    above: the labelled ones are tonal and take the secondary look on their
    own, the rest need the same treatment through the button's own variables,
    which also leaves its hover logic and disabled fade working. */
-.app-body [class*="verifiedLinkHelpButton"][class*="_button_redesign__base"] {
+.app-body [class*="verifiedLinkHelpButton"][class*="_button__base"] {
     --bg: color-mix(in srgb, var(--color-accent), transparent 82%);
     --bg-hover: color-mix(in srgb, var(--color-accent), transparent 70%);
     --fg: var(--color-accent-text);
     text-decoration: none;
 }
-.app-body [class*="_feat_account_edit__section"] [class*="_button_redesign__iconOnly"] {
+.app-body [class*="_feat_account_edit__section"] [class*="_button__iconOnly"] {
     --bg: transparent;
     --bg-hover: var(--color-accent-bg);
     --fg: var(--color-accent);
 }
-.app-body [class*="_feat_account_edit__section"] [class*="_button_redesign__iconOnly"][class*="_button_redesign__destructive"] {
+.app-body [class*="_feat_account_edit__section"] [class*="_button__iconOnly"][class*="_button__destructive"] {
     --bg-hover: color-mix(in srgb, var(--color-reject), transparent 84%);
 }
-.app-body [class*="_feat_account_edit__section"] [class*="_button_redesign__iconOnly"][class*="_button_redesign__destructive"]:is(:hover, :active, :focus-visible) {
+.app-body [class*="_feat_account_edit__section"] [class*="_button__iconOnly"][class*="_button__destructive"]:is(:hover, :active, :focus-visible) {
     --fg: var(--color-reject);
 }
 .app-body .text-icon-button.active,
@@ -10199,7 +10199,7 @@ a:is(.active,
    on it. The redesign button is already pill-shaped, so the border is enough. */
 .app-body
     [class*="_feat_compose__toolbar"]
-    [class*="_button_redesign__base"]:not([class*="_button_redesign__iconOnly"]) {
+    [class*="_button__base"]:not([class*="_button__iconOnly"]) {
         border: 1px solid var(--color-accent);
         color: var(--color-accent);
         background-color: transparent;
@@ -10212,16 +10212,16 @@ a:is(.active,
    its label. */
 .app-body
     [class*="_feat_compose__footer"]
-    [class*="_button_redesign__iconOnly"]
-    [class*="_button_redesign__icon"],
+    [class*="_button__iconOnly"]
+    [class*="_button__icon"],
 .app-body
     [class*="_feat_compose__toolbar"]
-    [class*="_button_redesign__iconOnly"]
-    [class*="_button_redesign__icon"],
+    [class*="_button__iconOnly"]
+    [class*="_button__icon"],
 .app-body
     [class*="_feat_compose__header"]
-    [class*="_button_redesign__iconOnly"]
-    [class*="_button_redesign__icon"] {
+    [class*="_button__iconOnly"]
+    [class*="_button__icon"] {
         color: var(--color-accent);
 }
 
@@ -10282,8 +10282,8 @@ a:is(.active,
    (the red heart, and whatever else it marks) still come through. */
 .app-body
     [class*="_status__actions"]
-    [class*="_button_redesign__base"]:not([aria-pressed="true"])
-    [class*="_button_redesign__icon"] {
+    [class*="_button__base"]:not([aria-pressed="true"])
+    [class*="_button__icon"] {
         color: var(--color-accent);
 }
 
@@ -10300,12 +10300,12 @@ a:is(.active,
 .app-body
     [class*="_status__actions"]
     :is(
-        [class*="_button_redesign__clipPadding"],
-        [class*="_button_redesign__toggle"][aria-haspopup="menu"],
+        [class*="_button__clipPadding"],
+        [class*="_button__toggle"][aria-haspopup="menu"],
         [class*="_status__actionsButtonGap"],
-        [class*="_button_redesign__toggle"][class*="_button_redesign__iconOnly"]
+        [class*="_button__toggle"][class*="_button__iconOnly"]
     )
-    [class*="_button_redesign__icon"] {
+    [class*="_button__icon"] {
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -10313,35 +10313,35 @@ a:is(.active,
 .app-body
     [class*="_status__actions"]
     :is(
-        [class*="_button_redesign__clipPadding"],
-        [class*="_button_redesign__toggle"][aria-haspopup="menu"],
+        [class*="_button__clipPadding"],
+        [class*="_button__toggle"][aria-haspopup="menu"],
         [class*="_status__actionsButtonGap"],
-        [class*="_button_redesign__toggle"][class*="_button_redesign__iconOnly"]
+        [class*="_button__toggle"][class*="_button__iconOnly"]
     )
-    [class*="_button_redesign__icon"] > path {
+    [class*="_button__icon"] > path {
         display: none;
 }
-.app-body [class*="_status__actions"] [class*="_button_redesign__clipPadding"] [class*="_button_redesign__icon"] {
+.app-body [class*="_status__actions"] [class*="_button__clipPadding"] [class*="_button__icon"] {
     background-image: var(--icon-reply-accent);
 }
-.app-body [class*="_status__actions"] [class*="_button_redesign__toggle"][aria-haspopup="menu"] [class*="_button_redesign__icon"] {
+.app-body [class*="_status__actions"] [class*="_button__toggle"][aria-haspopup="menu"] [class*="_button__icon"] {
     background-image: var(--icon-boost-accent);
 }
-.app-body [class*="_status__actions"] [class*="_button_redesign__toggle"][aria-haspopup="menu"][aria-pressed="true"] [class*="_button_redesign__icon"] {
+.app-body [class*="_status__actions"] [class*="_button__toggle"][aria-haspopup="menu"][aria-pressed="true"] [class*="_button__icon"] {
     background-image: var(--icon-boost-accent-active);
 }
-.app-body [class*="_status__actionsButtonGap"] [class*="_button_redesign__icon"] {
+.app-body [class*="_status__actionsButtonGap"] [class*="_button__icon"] {
     background-image: var(--icon-star-accent);
 }
 /* The gold --icon-star-active reads as a foreign colour next to the rest of the
    bar, so mark the active state by fill in the variant's own accent instead. */
-.app-body [class*="_status__actionsButtonGap"][aria-pressed="true"] [class*="_button_redesign__icon"] {
+.app-body [class*="_status__actionsButtonGap"][aria-pressed="true"] [class*="_button__icon"] {
     background-image: var(--icon-star-column-link-accent-active);
 }
-.app-body [class*="_status__actions"] [class*="_button_redesign__toggle"][class*="_button_redesign__iconOnly"] [class*="_button_redesign__icon"] {
+.app-body [class*="_status__actions"] [class*="_button__toggle"][class*="_button__iconOnly"] [class*="_button__icon"] {
     background-image: var(--icon-bookmark-accent);
 }
-.app-body [class*="_status__actions"] [class*="_button_redesign__toggle"][class*="_button_redesign__iconOnly"][aria-pressed="true"] [class*="_button_redesign__icon"] {
+.app-body [class*="_status__actions"] [class*="_button__toggle"][class*="_button__iconOnly"][aria-pressed="true"] [class*="_button__icon"] {
     background-image: var(--icon-bookmark-column-link-accent-active);
 }
 
@@ -10351,12 +10351,12 @@ a:is(.active,
    .button.button-secondary above). Same look, new hook. Icon-only ones are
    handled with the menu triggers; the composer's pills override this with
    their outline. The hover carries Mastodon's :not() chain, see below. */
-.app-body [class*="_button_redesign__tonal"]:not([class*="_button_redesign__iconOnly"]) {
+.app-body [class*="_button__tonal"]:not([class*="_button__iconOnly"]) {
     background-color: color-mix(in srgb, var(--color-accent), transparent 82%);
     color: var(--color-accent-text);
 }
-.app-body [class*="_button_redesign__tonal"]:not([class*="_button_redesign__iconOnly"]):hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
-.app-body [class*="_button_redesign__tonal"]:not([class*="_button_redesign__iconOnly"]):active {
+.app-body [class*="_button__tonal"]:not([class*="_button__iconOnly"]):hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_button__tonal"]:not([class*="_button__iconOnly"]):active {
     background-color: color-mix(in srgb, var(--color-accent), transparent 70%);
     color: var(--color-accent-text);
 }
@@ -10367,15 +10367,15 @@ a:is(.active,
    tonal grey. Same intent, new hooks: the tonal variant is the one the theme
    has filled with the accent since before 4.6. */
 .app-body
-    [class*="_account_header__followButton"][class*="_button_redesign__tonal"] {
+    [class*="_account_header__followButton"][class*="_button__tonal"] {
         background-color: var(--color-accent);
         color: var(--color-accent-fg);
         border-color: var(--color-accent);
 }
 .app-body
-    [class*="_account_header__followButton"][class*="_button_redesign__tonal"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+    [class*="_account_header__followButton"][class*="_button__tonal"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
 .app-body
-    [class*="_account_header__followButton"][class*="_button_redesign__tonal"]:is(:active, :focus) {
+    [class*="_account_header__followButton"][class*="_button__tonal"]:is(:active, :focus) {
         background-color: var(--color-accent-focus);
         border-color: var(--color-accent-focus);
         /* the labelled-tonal rule above sets accent text on hover and press */
@@ -10403,36 +10403,36 @@ a:is(.active,
    list into five chained :not()s on the way to the page, which lifts that rule
    to (0,7,0). A plain :hover here sits at (0,4,0) and loses regardless of
    order — that is the grey hover of 5.0 bleeding through. */
-.app-body [class*="_button_redesign__base"][aria-expanded],
-.app-body [class*="_status__actions"] [class*="_button_redesign__base"],
-.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"],
-.app-body [class*="_feat_compose__header"] [class*="_button_redesign__iconOnly"],
-.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"] {
+.app-body [class*="_button__base"][aria-expanded],
+.app-body [class*="_status__actions"] [class*="_button__base"],
+.app-body [class*="_feat_compose__footer"] [class*="_button__iconOnly"],
+.app-body [class*="_feat_compose__header"] [class*="_button__iconOnly"],
+.app-body [class*="_column_header__layout"] [class*="_button__base"] {
     background-color: transparent;
     border-color: transparent;
     transition: background-color .2s;
 }
-.app-body [class*="_button_redesign__base"][aria-expanded]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
-.app-body [class*="_button_redesign__base"][aria-expanded]:focus-visible,
-.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
-.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:focus-visible,
-.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
-.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"]:focus-visible,
-.app-body [class*="_feat_compose__header"] [class*="_button_redesign__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
-.app-body [class*="_feat_compose__header"] [class*="_button_redesign__iconOnly"]:focus-visible,
-.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
-.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:focus-visible {
+.app-body [class*="_button__base"][aria-expanded]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_button__base"][aria-expanded]:focus-visible,
+.app-body [class*="_status__actions"] [class*="_button__base"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_status__actions"] [class*="_button__base"]:focus-visible,
+.app-body [class*="_feat_compose__footer"] [class*="_button__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_feat_compose__footer"] [class*="_button__iconOnly"]:focus-visible,
+.app-body [class*="_feat_compose__header"] [class*="_button__iconOnly"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_feat_compose__header"] [class*="_button__iconOnly"]:focus-visible,
+.app-body [class*="_column_header__layout"] [class*="_button__base"]:hover:not(:active):not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):not([aria-expanded="true"]),
+.app-body [class*="_column_header__layout"] [class*="_button__base"]:focus-visible {
     background-color: var(--color-accent-bg);
 }
-.app-body [class*="_button_redesign__base"][aria-expanded]:active,
-.app-body [class*="_button_redesign__base"][aria-expanded][aria-expanded="true"],
-.app-body [class*="_status__actions"] [class*="_button_redesign__base"]:active,
-.app-body [class*="_status__actions"] [class*="_button_redesign__base"][aria-expanded="true"],
-.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"]:active,
-.app-body [class*="_feat_compose__footer"] [class*="_button_redesign__iconOnly"][aria-expanded="true"],
-.app-body [class*="_feat_compose__header"] [class*="_button_redesign__iconOnly"]:active,
-.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"]:active,
-.app-body [class*="_column_header__layout"] [class*="_button_redesign__base"][aria-expanded="true"] {
+.app-body [class*="_button__base"][aria-expanded]:active,
+.app-body [class*="_button__base"][aria-expanded][aria-expanded="true"],
+.app-body [class*="_status__actions"] [class*="_button__base"]:active,
+.app-body [class*="_status__actions"] [class*="_button__base"][aria-expanded="true"],
+.app-body [class*="_feat_compose__footer"] [class*="_button__iconOnly"]:active,
+.app-body [class*="_feat_compose__footer"] [class*="_button__iconOnly"][aria-expanded="true"],
+.app-body [class*="_feat_compose__header"] [class*="_button__iconOnly"]:active,
+.app-body [class*="_column_header__layout"] [class*="_button__base"]:active,
+.app-body [class*="_column_header__layout"] [class*="_button__base"][aria-expanded="true"] {
     background-color: color-mix(in srgb, var(--color-accent), var(--color-content-bg) 75%);
 }
 
@@ -10444,12 +10444,12 @@ a:is(.active,
    composer's labelled pills are already accent, and solid ones keep their
    inverted glyph. */
 .app-body
-    [class*="_button_redesign__base"][aria-expanded][class*="_button_redesign__iconOnly"]
-    [class*="_button_redesign__icon"],
+    [class*="_button__base"][aria-expanded][class*="_button__iconOnly"]
+    [class*="_button__icon"],
 .app-body
     [class*="_column_header__layout"]
-    [class*="_button_redesign__base"]
-    [class*="_button_redesign__icon"] {
+    [class*="_button__base"]
+    [class*="_button__icon"] {
         color: var(--color-accent);
 }
 
@@ -10460,27 +10460,27 @@ a:is(.active,
 .app-body
     [class*="_column_header__layout"]
     [class*="_column_header__rightButtons"]
-    [class*="_button_redesign__base"] [class*="_button_redesign__icon"] {
+    [class*="_button__base"] [class*="_button__icon"] {
         color: var(--color-content-fg);
 }
 .app-body
     [class*="_column_header__layout"]
     [class*="_column_header__rightButtons"]
-    [class*="_button_redesign__base"]:is(:hover, :focus-visible, :active, [aria-expanded="true"], [aria-pressed="true"]) [class*="_button_redesign__icon"] {
+    [class*="_button__base"]:is(:hover, :focus-visible, :active, [aria-expanded="true"], [aria-pressed="true"]) [class*="_button__icon"] {
         color: var(--color-accent);
 }
 
 /* The Edit Profile camera buttons are menu triggers too, but they sit on the
    photo, where a bare accent glyph disappears: give them the solid neutral
    look of the on-media pills. */
-.app-body [class*="_feat_account_edit__imageButton"][class*="_button_redesign__base"] {
+.app-body [class*="_feat_account_edit__imageButton"][class*="_button__base"] {
     background-color: var(--color-content-bg);
     border: 1px solid var(--color-lines-translucent);
 }
-.app-body [class*="_feat_account_edit__imageButton"][class*="_button_redesign__base"][class*="_button_redesign__iconOnly"] [class*="_button_redesign__icon"] {
+.app-body [class*="_feat_account_edit__imageButton"][class*="_button__base"][class*="_button__iconOnly"] [class*="_button__icon"] {
     color: var(--color-content-fg);
 }
-.app-body [class*="_feat_account_edit__imageButton"][class*="_button_redesign__base"][class*="_button_redesign__iconOnly"]:is(:hover, :focus-visible, :active, [aria-expanded="true"]) [class*="_button_redesign__icon"] {
+.app-body [class*="_feat_account_edit__imageButton"][class*="_button__base"][class*="_button__iconOnly"]:is(:hover, :focus-visible, :active, [aria-expanded="true"]) [class*="_button__icon"] {
     color: var(--color-accent);
 }
 
@@ -10548,12 +10548,12 @@ a:is(.active,
    spinner overflowed a 24px button, and the accent spinner vanished on a
    solid accent one. Make it a 16px inline spinner in the button's own text
    colour. From Tangerine Neue. */
-.app-body [class*="_button_redesign__base"] .loading-indicator {
+.app-body [class*="_button__base"] .loading-indicator {
     position: static;
     transform: none;
     color: inherit;
 }
-.app-body [class*="_button_redesign__base"] .loading-indicator .circular-progress {
+.app-body [class*="_button__base"] .loading-indicator .circular-progress {
     width: 16px;
     height: 16px;
     color: inherit;
