@@ -168,9 +168,10 @@
    the new UI picks up the variant's palette instead of Mastodon's.
    An instance that registers no theme color gets no attribute at all
    (the helper .compact's it away), so fall back to the presence of the
-   redesigned columns-area module, or on the server-rendered pages (sign-in,
-   sign-up, password), which have no columns area, the form container. */
-:root:root:is([data-theme-color], :has([class*="_comp_columns_area_"], .form-container)) {
+   redesigned columns-area module, or on the server-rendered pages, which have
+   no columns area: the form container of the sign-in, sign-up and password
+   pages, and the content wrapper of the settings and admin layout. */
+:root:root:is([data-theme-color], :has([class*="_comp_columns_area_"], .form-container, .admin-wrapper > .content-wrapper:last-child)) {
     --base-color-bg: var(--color-content-bg);
     --base-color-bg-desktop: var(--color-bg);
     --base-color-fg: var(--color-content-fg);
