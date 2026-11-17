@@ -1429,7 +1429,7 @@ body.app-body  {
    flex row with its own column-gap, so it spaces itself. Skipped when the
    instance did supply an icon, so we never paint over its branding. */
 .app-body
-    [class*="_navigation_panel_header__siteNameLink"]:not(:has([class*="_navigation_panel_header__appIcon"]))::before {
+    [class*="_navigation_panel_header__lockupLink"]:not(:has([class*="_navigation_panel_header__lockupIcon"]))::before {
         content: "";
         flex: 0 0 auto;
         align-self: center;
@@ -10235,6 +10235,20 @@ a:is(.active,
 .app-body [class*="_feat_compose__root"] {
     border-color: var(--color-accent);
     border-width: 2px;
+}
+/* 5.0 opens the composer as a centred dialog over a dimmed page. The dimming
+   is the ::before of the trigger root, filled with --color-bg-overlay, which
+   the theme maps to the content background for the sheets and menus that use
+   the token as a surface, so the page vanished behind a white sheet. Give the
+   backdrop Mastodon's own 50% black back. */
+.app-body [class*="_feat_compose_trigger__showing"][data-fullscreen="false"]::before {
+    background-color: rgb(0 0 0 / .5);
+}
+/* Mastodon keeps `border-bottom: none` from when the composer was docked at
+   the bottom of the screen, which leaves the floating dialog open at the
+   bottom. */
+.app-body [data-fullscreen="false"] [class*="_feat_compose__root"] {
+    border-bottom-style: solid;
 }
 .app-body [class*="_feat_compose__textarea"]:focus {
     outline: 1px solid var(--color-accent);
